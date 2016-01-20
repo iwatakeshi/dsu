@@ -58,3 +58,8 @@ int main () {
 ```bash
 g++ main.cpp -std=gnu++11 -o main.out && ./main.out
 ```
+
+### Windows
+
+* Open the Visual Studio Project
+* Run without debugging (CTRL + F5)
