@@ -16,6 +16,7 @@
 * `setNext(): void`
 * `getNext(): Node*`
 * `print(): void`
+* `print(int index): void`
 
 ### LinkedList (`link.h`)
 
@@ -25,8 +26,11 @@
 
 #### Methods
 
+* `insert(data:int, index: int) : void`
 * `append(data: int): void`
 * `remove(): void`
+* `remove(index: int): void`
+* `clear() : void`
 * `print(): void`
 * `isEmpty(): bool`
 
@@ -37,16 +41,16 @@
 #include "link.h"
 
 int main () {
-  LinkedList * list = new LinkedList();
-  list->append(2);
-  list->append(3);
-  list->append(5);
-  list->print();
+  LinkedList list;
+  list.append(2);
+  list.append(3);
+  list.append(5);
+  list.print();
   
   std::cout << std::endl;
   
-  list->remove();
-  list->print();
+  list.remove();
+  list.print();
   return 0;
 }
 ```
