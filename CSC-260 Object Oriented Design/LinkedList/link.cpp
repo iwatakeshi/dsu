@@ -24,14 +24,12 @@ Node* LinkedList::operator() (int index) {
   return NULL;
 }
 
-int& LinkedList::operator[] (const int index) {
-  int value = 0;
+int LinkedList::operator[] (const int index) {
  if (index < 0 || index >= size() || isEmpty()) throw std::out_of_range("Error: Index out of bounds.");
   else {
-    value = (*this)(index)->getData();
-    return value;
+    return (*this)(index)->getData();
   }
-  return value;
+  return -1;
 }
 
 /* Public Methods */

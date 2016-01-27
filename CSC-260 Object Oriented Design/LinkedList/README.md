@@ -16,6 +16,7 @@
 * `setNext(): void`
 * `getNext(): Node*`
 * `print(): void`
+* `print(int index): void`
 
 ### LinkedList (`link.h`)
 
@@ -25,8 +26,11 @@
 
 #### Methods
 
+* `insert(data:int, index: int) : void`
 * `append(data: int): void`
 * `remove(): void`
+* `remove(index: int): void`
+* `clear() : void`
 * `print(): void`
 * `isEmpty(): bool`
 
