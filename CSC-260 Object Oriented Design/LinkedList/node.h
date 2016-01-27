@@ -23,11 +23,6 @@ class Node {
       this->data = data;
       next = NULL;
     }
-    /* @destructor {Node} */
-    ~Node () {
-      this->data = 0;
-      delete next;
-    }
     /* 
       @method {setData} - Sets the data.
       @param {data: int} - The data stored as an integer.

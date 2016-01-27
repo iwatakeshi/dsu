@@ -5,8 +5,22 @@ int main () {
   list->append(3);
   list->append(5);
   list->print();
-  std::cout << std::endl;
+
+
   list->remove();
+  list->print();
+
+  list->append(10);
+  list->append(22);
+  list->print();
+
+  list->remove(2);
+  list->print();
+
+  list->insert(100, 3);
+  list->print();
+
+  list->clear();
   list->print();
   return 0;
 }
