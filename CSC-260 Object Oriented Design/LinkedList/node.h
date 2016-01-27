@@ -30,14 +30,14 @@ class Node {
     }
     /* 
       @method {setData} - Sets the data.
-      @param {data:int} - The data stored as an integer.
+      @param {data: int} - The data stored as an integer.
     */
       void setData (int data) {
         this->data = data;
       }
     /* 
       @method {setNext} - Sets the next node.
-      @param {node:Node*} - The address to the next node.
+      @param {node: Node*} - The address to the next node.
     */
       void setNext(Node* node) {
         next = node;
@@ -60,7 +60,14 @@ class Node {
       @method {print} - Prints the data in the node.
     */
     void print () {
-      std::cout << data << std::endl;
+      std::cout << "Data: " << data << std::endl;
+    }
+    /* 
+      @method {print} - Prints the data in the node with an index.
+      @param {index: int}
+    */
+    void print (int index) {
+      std::cout << "Data: " << data << " at index: " << index << std::endl;
     }
 };
 
