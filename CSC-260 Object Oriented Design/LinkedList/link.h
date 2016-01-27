@@ -11,7 +11,7 @@ class LinkedList {
     ~LinkedList();
     Node* operator() (int index);
 
-    int operator[] (int index);
+    int& operator[] (const int index);
 
     void insert(int data, int index);
    /* 
@@ -39,7 +39,7 @@ class LinkedList {
      @method {size} - Returns the size of the list.
      @return {int}
     */
-   int size();
+   int size() const;
    /* 
     @method {isEmpty} - Determines whether the list is empty.
     @return {bool}

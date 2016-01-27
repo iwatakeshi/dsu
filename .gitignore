@@ -3,3 +3,6 @@
 *.obj
 *.log
 *.out
+*.vspx
+*.pdb
+*.xml
