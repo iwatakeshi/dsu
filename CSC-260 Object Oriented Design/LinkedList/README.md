@@ -60,7 +60,7 @@ int main () {
 ### OSX
 
 ```bash
-g++ main.cpp -std=gnu++11 -o main.out && ./main.out
+g++ main.cpp link.cpp -std=gnu++11 -o main.out && ./main.out
 ```
 
 ### Windows
