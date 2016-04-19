@@ -11,11 +11,11 @@ class LinkedList {
     LinkedList();
     ~LinkedList();
     int operator[] (const int index);
-
+    /* Adds the data at the specified index. */
     void insert(int data, int index);
     /* Adds the data to the end of the list. */
     void append(int data);
-    /* Removes the data from the top */
+    /* Removes the data from the top. */
     void remove();
     /* Removes the data at the specified index. */
     void remove(int index);
