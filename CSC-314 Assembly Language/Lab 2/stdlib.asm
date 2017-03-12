@@ -65,4 +65,27 @@ section .text
     itoa.done:
       mov eax, esi
       ret
+    
+    ; itoa2 - converts an unsigned integer to a string
+    ; @param eax - an integer to convert
+    ; @param esi - a pointer to the buffer to store the string
+    ; @return eax - a pointer to the first character of the generated string
+    itoa2:
+    add esi, 10               ; point to the 10th byte
+    mov ebx, base             ; set the base
+    push eax
+    itoa2.loop:
+      xor edx, edx            ; clear edx before dividing edx:eax by ebx
+      div ebx                 ; eax /= 10
+      add dl, '0'             ; convert the integer to ascii
+      dec esi                 ; store the characters in reverse (move the pointer)
+      mov [esi], dl           ; copy the converted character to the buffer
+      test eax, eax
+      jnz itoa2.loop           ; repeat until eax == 0
+      pop ebx                 ; restore the number
+      test ebx, ebx           ; check whether edi is 0
+      jns itoa2.done
+    itoa2.done:
+      mov eax, esi
+      ret
 %endif

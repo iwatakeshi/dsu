@@ -25,22 +25,24 @@ _start:
 ; wc counts lines, words, and charaters
 wc:
     wc.top:
-        mov eax, input
-        call cin
+        mov ecx, input
+        mov edx, buffer_size
+        call read
         mov esi, input
         cmp eax, 0                  ; check if we need to end
         je wc.done
         mov ecx, eax                ; store the length of input
-        mov byte [state], OUT       ; set initial state to false
+        mov byte [state], OUT       ; set initial state to OUT
         xor eax, eax
     wc.loop:
         mov al, [esi]                   ; c = getchar()
         ; i ++
         inc esi
         ; chars++
-        add word [chars], 1
-        adc word [chars + 2], 0
+        add dword [chars], 1
+        adc dword [chars + 4], 0
         jc wc.overflow
+        jo wc.overflow
         
         ; compare
         cmp al, NEWLINE                 ; if (c == '\n') { newline++ }
@@ -63,8 +65,8 @@ wc:
     wc.newline:
         mov byte [state], OUT           ; state = OUT
         ; newline++
-        add word[lines], 1
-        adc word[lines + 2], 0
+        add dword [lines], 1
+        adc dword [lines + 4], 0
         jc wc.overflow
     jmp wc.continue
 
@@ -75,8 +77,8 @@ wc:
     wc.set_state_to_in:
         mov byte [state], IN            ; state = IN;
         ; words++
-        add word[words], 1
-        adc word[words + 2], 0
+        add dword [words], 1
+        adc dword [words + 4], 0
         jc wc.overflow
     wc.continue:
         dec ecx
@@ -94,7 +96,7 @@ print_result:
     ; print lines
     mov eax, [lines]
     mov esi, lines_string
-    call itoa
+    call itoa2
     call cout
 
     mov eax, space
@@ -103,7 +105,8 @@ print_result:
     ; print words
     mov eax, [words]
     mov esi, words_string
-    call itoa
+    call itoa2
+    
     call cout
 
     mov eax, space
@@ -112,8 +115,7 @@ print_result:
     ; print chars
     mov eax, [chars]
     mov esi, chars_string
-
-    call itoa
+    call itoa2
     call cout
 
     mov eax, newline
@@ -126,18 +128,15 @@ section .bss
     state resb 1             ; reserve a byte for boolean values
 
 section .data
-    lines dw 0
-          dw 0
-    words dw 0
-          dw 0
-    chars dw 0
-          dw 0
+    lines dd 0
+    words dd 0
+    chars dd 0
 
     lines_string times 10000 dq 0
     words_string times 10000 dq 0
     chars_string times 10000 dq 0
 
-    newline db ' ',0x0a
-    space   db ' ',0x0
+    newline db ' ',0x0a, 0x0
+    space   db ' ', 0x0
     debug db 'here',0x0a, 0x00
     overflow db 'An overflow occured', 0x0a, 0x00

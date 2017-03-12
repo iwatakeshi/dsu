@@ -238,3 +238,6 @@ _Pvt_Extensions
 *.tlog
 # OSX specific
 *.out
+*.o
+
+CSC-314 Assembly Language/Lab 2/lab2p1

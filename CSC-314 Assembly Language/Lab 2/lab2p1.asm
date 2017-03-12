@@ -21,9 +21,7 @@ section .text
 
 _start:
     call app
-    call print_result
     call exit
-
 
 app:
     app.top:
@@ -32,111 +30,38 @@ app:
         call read
         ;---------------------------------
         cmp eax, buffer_size
-        jl app.input_ok
+        jl app.main
         cmp byte [ecx + edx - 1], 10
-        je app.input_ok
+        je app.main
         mov byte[ecx + edx - 1], 10
         call cout.clear
         ;---------------------------------
-        app.input_ok:
+        app.main:
             mov esi, input
             cmp eax, 0                  ; check if we need to end
             je app.done
             mov ecx, eax                ; store the length of input
-            mov byte [state], OUT       ; set initial state to false
-            xor eax, eax
-        
-            mov ebx, temp
-    app.loop:
-        mov al, [esi]                   ; c = getchar()
-        
-        ; chars++
-        add byte [chars], 1
-        ; collect the characters
-        mov [ebx], al
-        inc ebx
-        ; compare
-        cmp al, NEWLINE                 ; if (c == '\n')
-        je app.whitespace
-        cmp al, HTAB                    ; if (c == ' ' || c == '\n' || c = '\t' || c == '\r')
-        je app.whitespace
-        cmp al, VTAB
-        je app.whitespace
-        cmp al, SPACE
-        je app.whitespace
-        cmp al, CR
-        je app.whitespace
-        cmp al, FEED
-        je app.whitespace
+            
+            push eax
+            
+            mov eax, input
+            ; ecx already has the length
+            call reverse
 
-        cmp byte [state], OUT           ;  else if (state == OUT)
-        je app.set_state_to_in
-        jmp app.continue
+            mov ecx, input
+            pop edx
+            call print
+        app.done:
+            ; mov eax, string
+            ; call slen
+            ; mov ecx, string
+            ; mov edx, eax
+            ; call print
+            ; mov eax, newline
+            ; call cout
+            ret
 
-    app.whitespace:          ; alias of set_state_to_out
-    app.set_state_to_out:
-        mov byte [state], OUT          ; state = OUT;
-        ; save the states
-        push ecx
-        push esi
-        push ebx
-        sub ebx, [chars]
-        push ebx
 
-        ; reverse the string
-        mov eax, ebx                    ; set the string to reverse
-        mov ecx, [chars]                     ; pop and save the string length
-        call reverse                    ; reverse it
-        
-        mov ecx, [chars]
-        xor eax, eax
-        pop esi
-        mov edi, string
-        add edi, [string_length]
-        ; add esi, [string_length];
-        ; sub esi, [chars]
-        ; append it to the string
-        app.append:
-            mov al, [esi]
-            mov byte [edi], al
-            inc esi
-            inc edi
-            loop app.append
-        
-        mov ecx, [chars]
-        add [string_length], ecx
-        mov byte [chars], 0
-        ; restore the states
-        pop ebx
-        pop esi
-        pop ecx
-        jmp app.continue
-    app.set_state_to_in:
-        mov byte [state], IN            ; state = IN;
-    app.continue:
-        ; i ++
-        inc esi
-        dec ecx
-        cmp ecx, 0
-        je app.top
-        jmp app.loop
-    app.overflow:
-        mov eax, overflow
-        call cout
-        call exit
-    app.done:
-        ret
-
-print_result:
-    mov eax, string                 ; set the string
-    call slen                       ; get the length again
-    mov ecx, string                 ; set the string
-    mov edx, eax                    ; set the length
-    call print                      ; print it
-
-    mov eax, newline
-    call cout
-    ret
 
 section .bss
     input resb 10000000
