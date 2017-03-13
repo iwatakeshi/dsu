@@ -3,6 +3,7 @@
 %include "cstdlib.asm"
 %include "algorithm.asm"
 %include "string.asm"
+%include "cstring.asm"
 
 %define NEWLINE 10
 %define CR 13
@@ -28,37 +29,53 @@ app:
         mov ecx, input
         mov edx, buffer_size
         call read
-        ;---------------------------------
-        cmp eax, buffer_size
-        jl app.main
-        cmp byte [ecx + edx - 1], 10
-        je app.main
-        mov byte[ecx + edx - 1], 10
-        call cout.clear
-        ;---------------------------------
+        mov esi, input
+        cmp eax, 0                  ; check if we need to end
+        je app.done
+        mov dword [string_length], eax
+        add dword [chars_read], eax
+        mov ecx, eax
         app.main:
-            mov esi, input
-            cmp eax, 0                  ; check if we need to end
-            je app.done
-            mov ecx, eax                ; store the length of input
-            
-            push eax
-            
-            mov eax, input
-            ; ecx already has the length
-            call reverse
+            push ecx
+            app.scan:
+                mov esi, input
+                app.scan.loop:
+                    mov al, [esi]             ; get the first char from esi
+                    inc esi                   ; increment the pointer position
+                    add dword [chars], 1      ; increment the characters
+                    cmp al, NEWLINE           ; did we find a LF?
+                    jne app.scan.loop         ; if not then keep looking
+                app.scan.done:
+                    ; copy the string
+                    mov eax, input
+                    mov ecx, [chars]
+                    call reverse
 
-            mov ecx, input
-            pop edx
-            call print
+                    mov ecx, [chars]
+                    mov esi, input
+                    sub esi, ecx                ; set the start position for input
+
+                    ; copy the string
+                    mov esi, input
+                    mov edi, string
+                    mov ecx, [chars]
+                    ; get the current 'string' position
+                    mov dword eax, [chars_read]
+                    sub dword eax, [chars]
+                    add edi, eax
+                    call strcpy
+                    mov dword [chars], 0
+                    pop ecx
+                    dec ecx
+                    cmp ecx, 0
+                    jne app.top
         app.done:
-            ; mov eax, string
-            ; call slen
-            ; mov ecx, string
-            ; mov edx, eax
-            ; call print
-            ; mov eax, newline
-            ; call cout
+            mov ecx, string
+            mov dword edx, [chars_read]
+            call print
+            mov ecx, newline
+            mov edx, 2
+            call print
             ret
 
 
@@ -66,15 +83,13 @@ app:
 section .bss
     input resb 10000000
     string resb 10000000
-    temp resb 10000000
-    state resb 1             ; reserve a byte for boolean values
-    
-    chars resb 100
 
 section .data
-    string_length dw 0
-                 dw 0
-    newline db ' ',0x0a
-    space   db ' ',0x0
+    string_length dd 0
+    chars dd 0
+    chars_read dd 0
+
+    newline db ' ', 0x0a, 0x0
+    space   db ' ', 0x0
     debug db 'here',0x0a, 0x00
     overflow db 'An overflow occured', 0x0a, 0x00

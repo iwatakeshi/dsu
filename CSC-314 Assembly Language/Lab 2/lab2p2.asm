@@ -113,7 +113,10 @@ print_result:
     mov eax, [chars]
     mov esi, chars_string
     call itoa2
-    call cout
+    call slen
+    mov ecx, chars_string
+    mov edx, 100
+    call print
 
     mov eax, newline
     call cout
