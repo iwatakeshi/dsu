@@ -40,9 +40,8 @@ wc:
         inc esi
         ; chars++
         add dword [chars], 1
-        adc dword [chars + 4], 0
-        jc wc.overflow
-        jo wc.overflow
+        ; jc wc.overflow
+        ; jo wc.overflow
         
         ; compare
         cmp al, NEWLINE                 ; if (c == '\n') { newline++ }
@@ -66,8 +65,7 @@ wc:
         mov byte [state], OUT           ; state = OUT
         ; newline++
         add dword [lines], 1
-        adc dword [lines + 4], 0
-        jc wc.overflow
+        ; jc wc.overflow
     jmp wc.continue
 
     wc.whitespace_not_newline:          ; alias of set_state_to_out
@@ -78,8 +76,7 @@ wc:
         mov byte [state], IN            ; state = IN;
         ; words++
         add dword [words], 1
-        adc dword [words + 4], 0
-        jc wc.overflow
+        ; jc wc.overflow
     wc.continue:
         dec ecx
         cmp ecx, 0
@@ -106,7 +103,7 @@ print_result:
     mov eax, [words]
     mov esi, words_string
     call itoa2
-    
+
     call cout
 
     mov eax, space
