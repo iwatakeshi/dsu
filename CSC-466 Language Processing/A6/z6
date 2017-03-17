@@ -1,0 +1,7 @@
+START
+  x: BOOL;
+ x := :);
+ x := :(;
+FINISH
+
+

@@ -1,0 +1,8 @@
+START
+  x: INT;
+  y: FLOAT;
+  yes: INT;
+ yes := x + y ;
+FINISH
+
+

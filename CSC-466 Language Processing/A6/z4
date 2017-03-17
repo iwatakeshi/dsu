@@ -1,0 +1,9 @@
+START
+  x: INT;
+  x: FLOAT;
+  y: FLOAT;
+  yes: FLOAT;
+ yes := (x + y) * x / y;
+FINISH
+
+

@@ -1,0 +1,11 @@
+START
+  x: FLOAT;
+  y: FLOAT;
+  yes: FLOAT;
+  no :FLOAT;
+ yes := x + y ;
+ no  := 1.00 + 2.00; 
+
+FINISH
+
+

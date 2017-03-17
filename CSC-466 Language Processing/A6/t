@@ -1,0 +1,7 @@
+START
+  x: BOOL;
+  yes: INT;
+ yes := x + 5 ;
+FINISH
+
+

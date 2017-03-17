@@ -1,0 +1,8 @@
+START
+  x: INT;
+  y: INT;
+  yes: INT;
+ yes := x + y ;
+FINISH
+
+
