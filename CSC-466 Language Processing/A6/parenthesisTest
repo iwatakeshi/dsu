@@ -1,0 +1,8 @@
+START
+ ia, ib, ic: INT;
+
+ ia := ia + ib * ic;
+ ia := (ia + ib) * ic;
+ ia := (ia + ib * ic;
+ ia := ia + ib) * ic;
+FINISH

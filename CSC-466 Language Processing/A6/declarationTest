@@ -1,0 +1,5 @@
+START
+ x: INT;
+ x: FLOAT; 
+ a, b, x, b: BOOL;
+FINISH

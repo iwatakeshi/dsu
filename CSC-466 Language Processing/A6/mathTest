@@ -1,0 +1,24 @@
+START
+ ia, ib: INT;
+ fa, fb: FLOAT; 
+
+ ia := ia + ib;
+ ia := ia + fa;
+ ia := fa + ia;
+ ia := fa + fb;
+
+ ia := ia - ib;
+ ia := ia - fa;
+ ia := fa - ia;
+ ia := fa - fb;
+
+ ia := ia * ib;
+ ia := ia * fa;
+ ia := fa * ia;
+ ia := fa * fb;
+
+ ia := ia / ib;
+ ia := ia / fa;
+ ia := fa / ia;
+ ia := fa / fb;
+FINISH

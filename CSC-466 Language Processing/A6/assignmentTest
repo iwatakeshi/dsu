@@ -1,0 +1,17 @@
+START
+ ia, ib: INT;
+ fa, fb: FLOAT; 
+ ba, bb: BOOL;
+
+ ia := ib;
+ ia := fa;
+ ia := ba;
+
+ fa := fb;
+ fa := ia;
+ fa := ba;
+
+ ba := bb;
+ ba := ia;
+ ba := fa;
+FINISH

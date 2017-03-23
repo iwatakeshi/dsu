@@ -1,0 +1,8 @@
+START
+ fa: FLOAT; 
+
+ fa := 103.32;
+ fa := 103.5;
+ fa := 103.123;
+ fa := 103.;
+FINISH

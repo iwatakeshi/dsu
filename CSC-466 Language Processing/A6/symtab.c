@@ -1,3 +1,4 @@
+#include "tokentype.h"
 
 
 
@@ -17,7 +18,7 @@ void showtab()
 {
  int i;
  for (i = 1; i <= nsym; ++i)
-   printf("%d: %s %d\n", i, symtab[i].sname, symtab[i].stype);
+   printf("%d: %s %d - %s\n", i, symtab[i].sname, symtab[i].stype, gettypestr(symtab[i].stype));
 }
 
 int intab( char *s)
@@ -41,17 +42,6 @@ void addtab( char *s)
  symtab[nsym].stype = -1;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 int addtype( char *s, int t)
 {
  int i, loc = -1;
@@ -62,7 +52,7 @@ int addtype( char *s, int t)
  }
  if (loc > 0)
   {
-   printf("Set type %s to %d\n", s, t);
+  //  printf("Set type %s to %d\n", s, t);
    symtab[loc].stype = t; 
   }
  else
@@ -84,14 +74,14 @@ int gettype( char *s)
  if (loc > 0)
   {
    t = symtab[loc].stype;
-   printf("Get type for %s to %d\n", s, t);
+  //  printf("Get type for %s to %d\n", s, t);
   }
- if (loc <= 0)
-   printf("gettype var %s not found\n", s);
- else if (t < 0)
-   printf("gettype var %s has bad type %d\n", s, t);
- else 
-   printf("gettype var %s has type %d\n", s, t);
+//  if (loc <= 0)b
+  //  printf("gettype var %s not found\n", s);
+//  else if (t < 0)b
+  //  printf("gettype var %s has bad type %d\n", s, t);
+//  else b
+  //  printf("gettype var %s has type %d\n", s, t);
    
  return t;
 }
