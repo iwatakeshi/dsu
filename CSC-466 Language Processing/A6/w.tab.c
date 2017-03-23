@@ -496,7 +496,7 @@ static const char *const yytname[] =
   "TIntLiteral", "TFloatLiteral", "TBoolLiteral", "TPrint", "TPrintLn",
   "TIf", "TWhile", "TLessThan", "TGreaterThan", "TEqual", "TFalse",
   "TTrue", "TAssign", "TStringLiteral", "TIdentifier", "','", "':'", "';'",
-  "'+'", "'-'", "'*'", "'/'", "'('", "')'", "$accept", "p", "prog",
+  "'+'", "'-'", "'*'", "'/'", "'('", "')'", "$accept", "p", "Program",
   "Declaration", "SingleDeclaration", "SingleDeclarationTail", "Type",
   "Statement", "SingleStatement", "Expression", "Term", "Factor", YY_NULLPTR
 };
@@ -1384,7 +1384,7 @@ yyreduce:
     {
         case 4:
 #line 57 "w.y" /* yacc.c:1646  */
-    {printf("Prog\n");}
+    {printf("Program\n");}
 #line 1389 "w.tab.c" /* yacc.c:1646  */
     break;
 
@@ -1466,7 +1466,7 @@ yyreduce:
 #line 85 "w.y" /* yacc.c:1646  */
     { printf("print id\n");
                                               if ( intab((yyvsp[-1]).lexeme) )
-                                                printf("%s is declared %d\n", (yyvsp[-1]).lexeme, (yylsp[-1]).first_line);
+                                                printf("'%s' is declared %d\n", (yyvsp[-1]).lexeme, (yylsp[-1]).first_line);
                                               else
                                                 printf("UNDECLARED:: %s \n", (yyvsp[-1]).lexeme);
                                             }
@@ -1478,7 +1478,7 @@ yyreduce:
     {
                               printf("assign\n");
                               if ( intab((yyvsp[-3]).lexeme) )
-                                printf("%s is declared\n", (yyvsp[-3]).lexeme);
+                                printf("'%s' is declared\n", (yyvsp[-3]).lexeme);
                               else
                                 printf("UNDECLARED:: %s \n", (yyvsp[-3]).lexeme);
 
@@ -1576,7 +1576,7 @@ yyreduce:
 #line 163 "w.y" /* yacc.c:1646  */
     {
                         if ( intab((yyvsp[0]).lexeme) )
-                           printf("%s is declared\n", (yyvsp[0]).lexeme);
+                           printf("'%s' is declared\n", (yyvsp[0]).lexeme);
                         else
                            printf("UNDECLARED:: %s \n", (yyvsp[0]).lexeme);
                         (yyval).tokentype = gettype((yyvsp[0]).lexeme);
@@ -1862,6 +1862,5 @@ int main()
 void yyerror(char *s)  /* Called by yyparse on error */
 {
   printf ("\terror: %s\n", s);
-  printf ("ERROR: %s at line %d\n", s, 123);
 }
 

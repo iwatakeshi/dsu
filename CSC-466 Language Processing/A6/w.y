@@ -51,10 +51,10 @@ void yyerror( char *s );
 
 %%
 
-p : prog ;
+p : Program ;
 
-prog : TStart  TFinish
- |  TStart Declaration Statement TFinish  {printf("Prog\n");}
+Program : TStart  TFinish
+ |  TStart Declaration Statement TFinish  {printf("Program\n");}
  ;
 
 Declaration : SingleDeclaration { printf("Declaration\n"); }
@@ -84,7 +84,7 @@ Statement : SingleStatement { printf("Statement\n"); }
 SingleStatement : TPrint TStringLiteral ';' { printf("print lit\n"); }
                 | TPrintLn TIdentifier ';'  { printf("print id\n");
                                               if ( intab($2.lexeme) )
-                                                printf("%s is declared %d\n", $2.lexeme, @2.first_line);
+                                                printf("'%s' is declared %d\n", $2.lexeme, @2.first_line);
                                               else
                                                 printf("UNDECLARED:: %s \n", $2.lexeme);
                                             }       
@@ -93,7 +93,7 @@ SingleStatement : TPrint TStringLiteral ';' { printf("print lit\n"); }
                             {
                               printf("assign\n");
                               if ( intab($1.lexeme) )
-                                printf("%s is declared\n", $1.lexeme);
+                                printf("'%s' is declared\n", $1.lexeme);
                               else
                                 printf("UNDECLARED:: %s \n", $1.lexeme);
 
@@ -162,7 +162,7 @@ Term : Term '*' Factor
 Factor  : TIdentifier  
                       {
                         if ( intab($1.lexeme) )
-                           printf("%s is declared\n", $1.lexeme);
+                           printf("'%s' is declared\n", $1.lexeme);
                         else
                            printf("UNDECLARED:: %s \n", $1.lexeme);
                         $$.tokentype = gettype($1.lexeme);
@@ -191,6 +191,5 @@ int main()
 void yyerror(char *s)  /* Called by yyparse on error */
 {
   printf ("\terror: %s\n", s);
-  printf ("ERROR: %s at line %d\n", s, 123);
 }
 

@@ -508,9 +508,7 @@ typedef struct
 
 #include "w.tab.h"
 
-int lineno = 1;
-
-#line 514 "lex.yy.c"
+#line 512 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -733,7 +731,7 @@ YY_DECL
 
 
 
-#line 737 "lex.yy.c"
+#line 735 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -793,114 +791,114 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 28 "w.l"
-{ if (88) printf("  -%s\n",yytext); return TStart;}
+{ return TStart;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 29 "w.l"
-{ if (88) printf("  -%s\n",yytext); return TFinish;}
+{ return TFinish;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 30 "w.l"
-{ if (88) printf("  -%s\n",yytext); return TBegin;}
+{ return TBegin;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 31 "w.l"
-{ if (88) printf("  -%s\n",yytext); return TEnd;}
+{ return TEnd;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 32 "w.l"
-{ if (88) printf("  -%s\n",yytext); return TIntLiteral;}
+{ return TIntLiteral;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 33 "w.l"
-{ if (88) printf("  -%s\n",yytext); return TFloatLiteral;}
+{ return TFloatLiteral;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 34 "w.l"
-{ if (88) printf("  -%s\n",yytext); return TBoolLiteral;}
+{ return TBoolLiteral;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 35 "w.l"
-{ if (88) printf("  -%s\n",yytext); return TPrint;}
+{ return TPrint;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 36 "w.l"
-{ if (88) printf("  -%s\n",yytext); return TPrintLn;}
+{ return TPrintLn;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 37 "w.l"
-{ if (88) printf("  -%s\n",yytext); return TIf;}
+{ return TIf;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 38 "w.l"
-{ if (88) printf("  -%s\n",yytext); return TWhile;}
+{ return TWhile;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 39 "w.l"
-{ if (88) printf("  -%s\n",yytext); return TLessThan;}
+{ return TLessThan;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 40 "w.l"
-{ if (88) printf("  -%s\n",yytext); return TGreaterThan;}
+{ return TGreaterThan;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 41 "w.l"
-{ if (88) printf("  -%s\n",yytext); return TEqual;}
+{ return TEqual;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 42 "w.l"
-{ if (88) printf("  -%s\n",yytext); return TFalse;}
+{ return TFalse;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 43 "w.l"
-{ if (88) printf("  -%s\n",yytext); return TTrue;}
+{ return TTrue;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 44 "w.l"
-{ if (88) printf("  -%s\n",yytext); return TAssign;}
+{ return TAssign;}
 	YY_BREAK
 case 18:
 /* rule 18 can match eol */
 YY_RULE_SETUP
 #line 46 "w.l"
-{ if (88) printf("  -%s\n",yytext); return TStringLiteral;}
+{ return TStringLiteral;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 47 "w.l"
-{ if (88) printf("  -%s\n",yytext); strcpy(yylval.lexeme,yytext); return TIdentifier; }
+{ strcpy(yylval.lexeme,yytext); return TIdentifier; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 48 "w.l"
-{ if (88) printf("  -%s\n",yytext); return TIntLiteral; }
+{ return TIntLiteral; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 49 "w.l"
-{ if(88) if (88) printf("  -%s\n",yytext); return TFloatLiteral; }
+{ return TFloatLiteral; }
 	YY_BREAK
 case 22:
 /* rule 22 can match eol */
 YY_RULE_SETUP
 #line 54 "w.l"
-{lineno++;} /* comments  */   
+{} /* comments  */   
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
@@ -911,7 +909,7 @@ case 24:
 /* rule 24 can match eol */
 YY_RULE_SETUP
 #line 59 "w.l"
-{ lineno++; yylloc.first_line = lineno;}
+{}
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
 #line 61 "w.l"
@@ -927,7 +925,7 @@ YY_RULE_SETUP
 #line 65 "w.l"
 ECHO;
 	YY_BREAK
-#line 931 "lex.yy.c"
+#line 929 "lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{

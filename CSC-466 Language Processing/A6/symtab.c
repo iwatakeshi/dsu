@@ -34,7 +34,7 @@ int intab( char *s)
 void addtab( char *s)
 {
   if(intab(s)) {
-    printf("error: var has already been declared.\n");
+    printf("error: '%s' has already been declared.\n", s);
   }
  nsym++;
  strcpy( symtab[nsym].sname, s);

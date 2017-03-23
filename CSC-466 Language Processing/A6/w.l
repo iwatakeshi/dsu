@@ -14,53 +14,53 @@ typedef struct
 
 #include "w.tab.h"
 
-int lineno = 1;
-
 %}
 
 DIGIT  [0-9]
+UPPERCASELETTER [A-Z]
+LOWERCASELETTER [a-z]
 LETTER      [A-Za-z]
 
 %%
 
 
 
-START     { if (88) printf("  -%s\n",yytext); return TStart;}
-FINISH    { if (88) printf("  -%s\n",yytext); return TFinish;}
-BEGIN     { if (88) printf("  -%s\n",yytext); return TBegin;}
-END     { if (88) printf("  -%s\n",yytext); return TEnd;}
-INT     { if (88) printf("  -%s\n",yytext); return TIntLiteral;}
-FLOAT     { if (88) printf("  -%s\n",yytext); return TFloatLiteral;}
-BOOL    { if (88) printf("  -%s\n",yytext); return TBoolLiteral;}
-PRINT     { if (88) printf("  -%s\n",yytext); return TPrint;}
-PRINTLN    { if (88) printf("  -%s\n",yytext); return TPrintLn;}
-IF     { if (88) printf("  -%s\n",yytext); return TIf;}
-WHILE    { if (88) printf("  -%s\n",yytext); return TWhile;}
-LT     { if (88) printf("  -%s\n",yytext); return TLessThan;}
-GT     { if (88) printf("  -%s\n",yytext); return TGreaterThan;}
-EQ     { if (88) printf("  -%s\n",yytext); return TEqual;}
-":("     { if (88) printf("  -%s\n",yytext); return TFalse;}
-":)"     { if (88) printf("  -%s\n",yytext); return TTrue;}
-":="     { if (88) printf("  -%s\n",yytext); return TAssign;}
+START       { return TStart;}
+FINISH      { return TFinish;}
+BEGIN       { return TBegin;}
+END         { return TEnd;}
+INT         { return TIntLiteral;}
+FLOAT       { return TFloatLiteral;}
+BOOL        { return TBoolLiteral;}
+PRINT       { return TPrint;}
+PRINTLN     { return TPrintLn;}
+IF          { return TIf;}
+WHILE       { return TWhile;}
+LT          { return TLessThan;}
+GT          { return TGreaterThan;}
+EQ          { return TEqual;}
+":("        { return TFalse;}
+":)"        { return TTrue;}
+":="        { return TAssign;}
 
-\"([^"]*)\"  { if (88) printf("  -%s\n",yytext); return TStringLiteral;}
-{LETTER}+     { if (88) printf("  -%s\n",yytext); strcpy(yylval.lexeme,yytext); return TIdentifier; }
-{DIGIT}+     { if (88) printf("  -%s\n",yytext); return TIntLiteral; }
-{DIGIT}+\.{DIGIT}{DIGIT} { if(88) if (88) printf("  -%s\n",yytext); return TFloatLiteral; }
-
-
+\"([^"]*)\" { return TStringLiteral;}
+{LETTER}+   { strcpy(yylval.lexeme,yytext); return TIdentifier; }
+{DIGIT}+    { return TIntLiteral; }
+{DIGIT}+\.{DIGIT}{DIGIT} { return TFloatLiteral; }
 
 
-@@.*\n     {lineno++;} /* comments  */   
+
+
+@@.*\n   {} /* comments  */   
 
 
 [ \t]     /* ignore whitespace */
 
-\n     { lineno++; yylloc.first_line = lineno;}
+\n       {}
 
 <<EOF>>   yyterminate();  /* signal end of dialogue */
 
-.        return yytext[0];
+.         return yytext[0];
 
 %%
 
