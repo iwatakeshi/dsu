@@ -1,16 +1,7 @@
 
-recdec: lex.yy.c w.tab.c
-	gcc w.tab.c lex.yy.c -lfl -ly -o recdec
-
-lex.yy.c: w.l
-	flex w.l
-
-w.tab.c: w.y
-	bison -dv w.y
+recdec:
+	g++ -g -o recdec main.cpp
 
 clean:
-	rm -f lex.yy.c
-	rm -f w.output
-	rm -f w.tab.h
-	rm -f w.tab.c
+	rm -f *.o
 	rm -f recdec

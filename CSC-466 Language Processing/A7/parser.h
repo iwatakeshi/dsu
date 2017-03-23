@@ -31,6 +31,7 @@ namespace parser {
     void reset() {
         references = 0;
         assignments = 0;
+        currentToken = Token();
         scanner::reset();
     }
     
