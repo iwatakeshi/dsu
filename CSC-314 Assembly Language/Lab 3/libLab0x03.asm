@@ -8,6 +8,12 @@ section .text
     global _replaceChar
 
 _replaceChar:
+    push ebp		; set up stack frame for debugger
+	mov ebp, esp
+	push ebx		; program must preserve ebp, ebx, esi, & edi
+	push esi
+	push edi
+
     sub esp, 20
 
     ; get the *text from stack
@@ -25,3 +31,11 @@ _replaceChar:
     ; get the (char) replacement from stack
     mov edx, [ebp + 4]
     mov [replacement], edx
+
+    pop edi			    ; restore saved registers
+	pop esi
+	pop ebx
+	mov esp, ebp		; destroy stack frame before returning
+	pop ebp
+    
+    ret

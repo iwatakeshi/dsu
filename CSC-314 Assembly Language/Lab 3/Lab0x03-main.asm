@@ -21,11 +21,7 @@ global _start
 extern _replaceChar
 	
 _start:
-    push ebp		; set up stack frame for debugger
-	mov ebp, esp
-	push ebx		; program must preserve ebp, ebx, esi, & edi
-	push esi
-	push edi
+    
 	; begin procedure	
 
     ; ---- prompt user for character ---- ;
@@ -67,12 +63,5 @@ _start:
         add esp, 20
         while: cmp eax, 0
                jne do
-	
-	; end
-	pop edi			    ; restore saved registers
-	pop esi
-	pop ebx
-	mov esp, ebp		; destroy stack frame before returning
-	pop ebp
 	; ret			        ; return control to Linux
     call exit
