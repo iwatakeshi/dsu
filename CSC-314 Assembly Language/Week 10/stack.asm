@@ -22,7 +22,7 @@ _PushLoop:
  
     cmp dword [userNumber], 0
     je _PopLoop
-    push dword [userNumber]    ; subtract 4 from ESP, copy 4 bytes from [userNumber] 
+    push dword [userNumber]    ; subtract 4 from ESP (stack), copy 4 bytes from [userNumber] 
                                ; to the top 4 bytes of the stack
     jmp _PushLoop
     

@@ -3,10 +3,11 @@
 
 %include "string.asm"
 
-sys_read equ 3
-sys_write equ 4
-fd_stdin equ 0
-fd_stdout equ 1
+section .data
+  sys_read equ 3
+  sys_write equ 4
+  fd_stdin equ 0
+  fd_stdout equ 1
 
 %define buffer_size 100000
 

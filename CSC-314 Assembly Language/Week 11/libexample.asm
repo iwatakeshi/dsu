@@ -10,7 +10,7 @@ max:
     push ebp
     mov ebp, esp
 
-    ; reserve space for local variables in c
+    ; reserve space for local variables in c-style
     sub esp, 4
     
     push ebx
@@ -18,7 +18,7 @@ max:
     push edi
 
     mov edx, [ebp + 8]
-    mov ecx, [ebp + 4]
+    mov ecx, [ebp + 12]
 
     ; if a > b
     cmp ecx, edx
@@ -27,7 +27,7 @@ max:
     jmp done
 
     maxIsECX:
-    mov eax, ecx
+        mov eax, ecx
 
     done: 
         pop edi

@@ -1,41 +1,59 @@
-section .bss
-    character resb 0
-    replacement resb 0 
-    text resd 0
-    length resd 0
+global _replaceChar
+
 section .text
 
-    global _replaceChar
-
 _replaceChar:
-    push ebp		; set up stack frame for debugger
+
+    push ebp
 	mov ebp, esp
-	push ebx		; program must preserve ebp, ebx, esi, & edi
-	push esi
-	push edi
+    
 
-    sub esp, 20
+    sub esp, 4
 
+    push ebx		; program must preserve ebp, ebx, esi, & edi
+    push esi
+    push edi
+    ; ------------------- begin ---------------------- ;
     ; get the *text from stack
-    mov edx, [ebp + 16]
-    mov [text], edx
+    mov esi, [ebp + 8]
     
     ; get the (uint) length from stack
-    mov edx, [ebp + 12]
-    mov [length], edx
+    mov ecx, [ebp + 12]
     
     ; get the (char) character from stack
-    mov edx, [ebp + 8]
-    mov [character], edx
+    mov al, byte [ebp + 16]
 
     ; get the (char) replacement from stack
-    mov edx, [ebp + 4]
-    mov [replacement], edx
+    mov ah, byte [ebp + 20]
 
+    push ecx
+    do:
+        ; get the first char from esi
+        mov dl, [esi]
+        ; check if we found the character
+        cmp dl, al
+        ; if not then continue the loop
+        jne while
+        ; otherwise replace the char
+        mov byte [esi], ah
+        ; decrecment the counter and loop
+        ; move the char position forward while ecx != 0
+        while: inc esi
+            loop do
+    
+    pop ecx
+    ; point to the beginning of cstring
+    sub esi, ecx
+    ; return the pointer!
+    mov eax, esi
+
+    ; --------------------- end ---------------------- ;
     pop edi			    ; restore saved registers
 	pop esi
 	pop ebx
-	mov esp, ebp		; destroy stack frame before returning
+
+    add esp, 4
+	; mov esp, ebp		; destroy stack frame before returning
 	pop ebp
     
     ret

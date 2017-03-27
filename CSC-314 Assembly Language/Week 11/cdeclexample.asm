@@ -24,10 +24,10 @@ _start:
 
     ; push params on the stack
 
-    push [x]
-    push [y]
+    push dword [x]
+    push dword [y]
 
-    call something
+    call max
 
     add esp, 8
 
