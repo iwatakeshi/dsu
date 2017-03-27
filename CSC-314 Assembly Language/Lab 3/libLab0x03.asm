@@ -36,8 +36,8 @@ _replaceChar:
         jne while
         ; otherwise replace the char
         mov byte [esi], ah
-        ; decrecment the counter and loop
         ; move the char position forward while ecx != 0
+        ; then decrecment the counter and loop
         while: inc esi
             loop do
     
@@ -53,7 +53,6 @@ _replaceChar:
 	pop ebx
 
     add esp, 4
-	; mov esp, ebp		; destroy stack frame before returning
 	pop ebp
     
     ret
