@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <cstring>
 
-extern "C" char * _replaceChar(
+extern "C" int _replaceChar(
     const char *text, 
     unsigned int length, 
     char character, 
@@ -29,7 +29,7 @@ int main() {
     std::cin.ignore();
     std::getline(std::cin, text);
     auto result = _replaceChar(text.c_str(), std::strlen(text.c_str()), character, replacement);
-    std::cout << result << std::endl;
+    std::cout << "Replaced " << result << " '" << character << "'s in " << text.c_str() << std::endl;
     
     return 0;
 }

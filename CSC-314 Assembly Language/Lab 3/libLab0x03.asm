@@ -27,6 +27,7 @@ _replaceChar:
     mov ah, byte [ebp + 20]
 
     push ecx
+    xor ebx, ebx
     do:
         ; get the first char from esi
         mov dl, [esi]
@@ -36,6 +37,8 @@ _replaceChar:
         jne while
         ; otherwise replace the char
         mov byte [esi], ah
+        ; and keep track of the number of replacements
+        inc ebx
         ; move the char position forward while ecx != 0
         ; then decrecment the counter and loop
         while: inc esi
@@ -44,8 +47,9 @@ _replaceChar:
     pop ecx
     ; point to the beginning of cstring
     sub esi, ecx
-    ; return the pointer!
-    mov eax, esi
+    mov [ebp + 8], esi
+    ; return the number of replacements
+    mov eax, ebx
 
     ; --------------------- end ---------------------- ;
     pop edi			    ; restore saved registers

@@ -70,7 +70,7 @@ _start:
         ; restore stack pointer
         add esp, 4
 
-        mov ecx, eax
+        mov ecx, text
         mov edx, [length]
         call print
         while: jmp do
