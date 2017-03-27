@@ -15,4 +15,4 @@ libLab0x03.o: libLab0x03.asm
 	nasm -f elf -g -F dwarf libLab0x03.asm
 
 clean:
-	rm Lab0x03-main lab2p2 *.o -f
+	rm Lab0x03-main main lab2p2 *.o -f
