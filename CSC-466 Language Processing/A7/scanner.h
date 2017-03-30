@@ -91,7 +91,6 @@ namespace scanner {
     }
 
     Token scanToken() {
-        // printf("ch: %c line: %d col: %d \n", ch, line, column);
         if(std::isalpha(current())) { return scanLetter(); }
         else if(std::isdigit(current())) { return scanDigit(); }
         else if(isoperator(current())) { return scanOperator(); }
