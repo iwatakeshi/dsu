@@ -51,7 +51,7 @@ namespace scanner {
     void read() { while(std::getline(std::cin, input)) { stream.append(input + "\n"); }; }
 
     /* error handling */
-    void raise() { printf("scan error: unknown token '%c' on line %d column %d", current(), line, column); exit(1); }
+    void raise() { printf("scan error: unknown token '%c' on line %d column %d\n", current(), line, column); exit(1); }
     void raise(Token token) { printf("scan error: unknown token '%s' on line %d column %d\n", token.lexeme().c_str(), line, column); }
     
     /* scanners */
