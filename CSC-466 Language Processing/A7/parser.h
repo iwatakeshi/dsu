@@ -5,7 +5,6 @@
 #include <cstdio>
 #include "scanner.h"
 #include "token.h"
-#include "debug.h"
 using scanner::scan;
 
 namespace parser {

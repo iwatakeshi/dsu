@@ -62,12 +62,7 @@ class Token {
         int line() { return this->_line; }
         
         int column() { return this->_column; }
-
-        bool ended() {
-            return this->_kind == TokenKind::End || this->_kind == TokenKind::Error;
-        }
       
 };
-
 
 #endif
