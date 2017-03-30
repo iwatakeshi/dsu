@@ -5,5 +5,9 @@
     "command": "g++",
     "isShellCommand": true,
     "args": ["-g", "main.cpp"],
-    "showOutput": "always"
+    "showOutput": "always",
+    "osx": {
+        "command": "clang++",
+        "args": ["-std=c++11", "-o recdec"]
+    }
 }

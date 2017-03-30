@@ -1,6 +1,6 @@
 
 recdec:
-	g++ -g -o recdec main.cpp
+	g++ -g -Wno-c++11-extensions -o recdec main.cpp
 
 clean:
-	rm -r -f recdec *.dSYM *.o
+	rm -r -f recdec *.dSYM *.o *.out
