@@ -1,15 +1,14 @@
 #include <iostream>
 #include <string>
-#include <vector>
 #include "scanner.h"
 #include "parser.h"
 #include "token.h"
 
 int main() {
-    // Token current = scanner::scan();
-    // while(!current.ended()) {
-    //     std::cout << current.kindName() << ": "<< current.lexeme() << std::endl;
+    // Token current;
+    // while(!scanner::eof()) {
     //     current = scanner::scan();
+    //     std::cout << current.kindName() << ": "<< current.lexeme() << std::endl;
     // }
     // if(current.kind() == TokenKind::Error) {
     //     std::cout << current.kindName() << ": "<< current.lexeme() << std::endl;

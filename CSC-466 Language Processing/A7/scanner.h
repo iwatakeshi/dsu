@@ -3,7 +3,6 @@
 #include <iostream>
 #include <string>
 #include "token.h"
-#include "debug.h"
 
 namespace scanner {
 
@@ -12,6 +11,7 @@ namespace scanner {
     int position = -1;
     int line = 1;
     int column = 1;
+    bool _eof = false;
     std::string lexeme;
     std::string input;
     std::string stream;
@@ -45,7 +45,7 @@ namespace scanner {
     }
 
     /* state handling */
-    void reset() { position = -1; input = ""; stream = ""; line = 1; column = 1; }
+    void reset() { position = -1; input = ""; stream = ""; line = 1; column = 1; _eof = false; }
 
     /* io helpers */
     void read() { while(std::getline(std::cin, input)) { stream.append(input + "\n"); }; }
@@ -95,7 +95,7 @@ namespace scanner {
         else if(std::isdigit(current())) { return scanDigit(); }
         else if(isoperator(current())) { return scanOperator(); }
         else if(ispunctuation(current())) { return scanPunctuation(); }
-        else if(current() == EOF || current() == '\0') { return Token(TokenKind::End, "EOF", line, column); }
+        else if(current() == _eof || current() == '\0') { _eof = true; return Token(TokenKind::End, "EOF", line, column); }
         else { return Token(TokenKind::Error, "an unknown error occurred with '" + std::string(1, current()) + "'", line, column); }
     }
 
@@ -105,5 +105,6 @@ namespace scanner {
         while(std::isspace(current())) { next();}
         return scanToken();
     }
+    bool eof() { return _eof; }
 }
 #endif
