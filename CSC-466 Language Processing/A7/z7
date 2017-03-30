@@ -1,0 +1,7 @@
+program
+begin
+	while a <= b do
+		while b <= c do
+			while c <= 2 do
+				a = + 1 1
+end.

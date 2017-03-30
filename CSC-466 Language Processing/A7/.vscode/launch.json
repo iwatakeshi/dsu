@@ -5,7 +5,7 @@
             "name": "C++ Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceRoot}/a.out",
+            "program": "${workspaceRoot}/recdec",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceRoot}",
@@ -39,8 +39,8 @@
             "name": "C++ Launch with file",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceRoot}/a.out",
-            "args": ["<z1"],
+            "program": "${workspaceRoot}/recdec",
+            "args": ["<z5"],
             "stopAtEntry": false,
             "cwd": "${workspaceRoot}",
             "environment": [],
@@ -56,7 +56,10 @@
                 ]
             },
             "osx": {
-                "MIMode": "lldb"
+                "MIMode": "lldb",
+                "args": [
+                    "<z5"
+                ]
             },
             "windows": {
                 "MIMode": "gdb",

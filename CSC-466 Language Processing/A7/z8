@@ -1,0 +1,17 @@
+program
+begin 
+	if a <= 1 then
+	begin
+		begin
+			begin 
+				while c <= * + a 2 b do
+					a = + a 2
+			end
+		end;
+		b = * b b 
+	end
+	else
+	begin 
+		c = * a b
+	end 
+end.

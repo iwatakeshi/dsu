@@ -37,7 +37,8 @@ namespace parser {
     
     /* error handling */
     void raise(std::string expected) {
-        debugln("parse error: expected " + expected + " but found " + currentToken.lexeme());
+        printf("parse error: expected %s but found %s on line %d column %d\n", 
+        expected.c_str(), currentToken.lexeme().c_str(), currentToken.line(), currentToken.column());
         exit(1);
     }
 
@@ -114,7 +115,7 @@ namespace parser {
                     return;
                 } else raise("Reserved 'if', 'while', or 'begin'");
                 return;
-            default: raise("Variable or Reserved");
+            default: raise("Variable or Reserved ('if', 'while', or 'begin')");
             return;
         }
     }
@@ -165,7 +166,7 @@ namespace parser {
                 parseDigit();
                 return;
             default:
-                raise("Operator, Variable, or Digit");
+                raise("Operator ('+', '*'), Variable, or Digit");
                 return;
         }
     }

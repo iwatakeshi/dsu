@@ -29,6 +29,8 @@ std::string getKindName(TokenKind kind) {
 class Token {
     private: 
         TokenKind _kind;
+        int _line;
+        int _column;
         std::string _kindName;
         std::string _lexeme;
     public:
@@ -36,11 +38,15 @@ class Token {
             this->_kind = TokenKind::None;
             this->_kindName = getKindName(this->_kind);
             this->_lexeme = "";
+            this->_line = 1;
+            this->_column = 1;
         }
-        Token(TokenKind kind, std::string lexeme) {
+        Token(TokenKind kind, std::string lexeme, int line, int column) {
             this->_kind = kind;
             this->_kindName = getKindName(this->_kind);
             this->_lexeme = lexeme;
+            this->_line = line;
+            this->_column = column;
         }
 
         std::string lexeme() {
@@ -53,7 +59,10 @@ class Token {
         std::string kindName() {
             return this->_kindName;
         }
+        int line() { return this->_line; }
         
+        int column() { return this->_column; }
+
         bool ended() {
             return this->_kind == TokenKind::End || this->_kind == TokenKind::Error;
         }

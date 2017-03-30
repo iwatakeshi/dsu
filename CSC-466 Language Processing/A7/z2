@@ -1,5 +1,5 @@
 program
-begin
-a = + a a;
-b = + a b
-end .
+  begin
+    a = + a a;
+    b = + a b
+  end .
