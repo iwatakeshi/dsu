@@ -51,24 +51,25 @@ namespace scanner {
     void read() { while(std::getline(std::cin, input)) { stream.append(input + "\n"); }; }
 
     /* error handling */
-    void raise(Token token) { printf("scan error: %s on line %d column %d\n", token.lexeme().c_str(), line, column); }
+    void raise() { printf("scan error: unknown token '%c' on line %d column %d", current(), line, column); exit(1); }
+    void raise(Token token) { printf("scan error: unknown token '%s' on line %d column %d\n", token.lexeme().c_str(), line, column); }
     
     /* scanners */
     Token scanLetter() {
         lexeme = current();
         next();
-        if (((lexeme + current()) != "be") && lexeme[0] >= 'a' && lexeme[0] <= 'c') {
+        while(std::isalpha(current())) { lexeme += current(); next(); }
+        if(isReservedWord(lexeme)) return Token(TokenKind::Reserved, lexeme, line, column);
+        if (lexeme.length() == 1 && lexeme[0] >= 'a' && lexeme[0] <= 'c') 
             return Token(TokenKind::Variable, lexeme, line, column);
-        } else while(std::isalpha(current())) { lexeme += current(); next(); }
-        if (isReservedWord(lexeme)) return Token(TokenKind::Reserved, lexeme, line, column);
-        return Token(TokenKind::Error, "'" + lexeme + "'", line, column); 
+        return Token(TokenKind::Error, lexeme, line, column); 
     }
     
     Token scanDigit() {
         lexeme = current();
         next();
         if(isdigit(lexeme[0])) { return Token(TokenKind::Digit, lexeme, line, column); } 
-        return Token(TokenKind::Error, "'" + lexeme + "'", line, column);
+        return Token(TokenKind::Error, lexeme, line, column);
     }
 
     Token scanOperator() {
@@ -79,7 +80,7 @@ namespace scanner {
                 lexeme += current();
                 next();
                 return Token(TokenKind::Operator, lexeme, line, column);
-            } else return Token(TokenKind::Error, "'" + lexeme + "'", line, column);
+            } else return Token(TokenKind::Error, lexeme, line, column);
         }
         return Token(TokenKind::Operator, lexeme, line, column);
     }
@@ -96,7 +97,7 @@ namespace scanner {
         else if(isoperator(current())) { return scanOperator(); }
         else if(ispunctuation(current())) { return scanPunctuation(); }
         else if(current() == _eof || current() == '\0') { _eof = true; return Token(TokenKind::End, "EOF", line, column); }
-        else { return Token(TokenKind::Error, "an unknown error occurred with '" + std::string(1, current()) + "'", line, column); }
+        else { raise(); }
     }
 
     Token scan() {
