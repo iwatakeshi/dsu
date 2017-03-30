@@ -37,7 +37,7 @@ namespace parser {
     
     /* error handling */
     void raise(std::string expected) {
-        printf("parse error: expected %s but found %s on line %d column %d\n", 
+        printf("parse error: expected %s but found '%s' on line %d column %d\n", 
         expected.c_str(), currentToken.lexeme().c_str(), currentToken.line(), currentToken.column());
         exit(1);
     }
@@ -47,7 +47,7 @@ namespace parser {
         else raise(getKindName(kind));
     }
     void expect(TokenKind kind, std::string lexeme) {
-        if (match(kind)) accept();
+        if (match(kind, lexeme)) accept();
         else raise(getKindName(kind) + " '" + lexeme + "'");
     }
 
