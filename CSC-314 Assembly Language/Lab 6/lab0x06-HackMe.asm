@@ -52,7 +52,7 @@ _start:
     
   _userIdFound:    
     push dword [enteredUserId]
-    push dword [userMagic + 4*ecx]
+    push dword [userMagic + 4*ecx]  
     push dword [globalMagic]
     call _authenticate    
     add esp, 8

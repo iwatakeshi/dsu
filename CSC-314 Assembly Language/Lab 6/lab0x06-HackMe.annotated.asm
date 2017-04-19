@@ -50,11 +50,20 @@ _start:
     je  _userNotFound               ; then we must have not found the user
     jmp _findUserIdLoop             ; jump if ecx != users.length && user not found
     
-  _userIdFound:                     ; if we found the user
-    push dword [enteredUserId]      ; 
-    push dword [userMagic + 4*ecx]  ; 
+  _userIdFound:
+    ; ebp is 0x0 at this point
+    ; esp is 0xffffcff0
+    ; eip is 0x804821b
+    push dword [enteredUserId]      ;
+    ; esp is 0xffffcfec (-4 bytes)
+    ; eip is 0x8048211  (-6 bytes)
+    push dword [userMagic + 4*ecx]  ; ecx is the index of the userMagic array (data segment)
+    ; esp is 0xffffcfe8 (-4 bytes)
+    ; eip is 0x8048228 (-7 bytes)
     push dword [globalMagic]
-    call _authenticate    
+    ; esp is 0xffffcfe4 (-4 bytes)
+    ; eip is 0x804822e (-6 bytes)
+    call _authenticate              ; push the current (or after) instruction and jump    
     add esp, 8
     jmp _exit
     
@@ -69,38 +78,70 @@ _exit:
     int     80H    
 
 _authenticate:
-    push ebp
-    mov ebp, esp
+    ; ebp is still 0x0
+    ; esp is 0xffffcfe0 (-4 bytes from the call command)
+    ; eip is 0x804824e
+    ; setup stack frame (function prologue)
+    ; note:
+    ; these instructions save the frame pointer
+    ; on the stack, and they save stack memory for the local
+    ; function variables. sometimes the function prologue
+    ; will handle some stack alignment as well.
+    push ebp      ; save the frame pointer onto the stack.
+                  ; note: 
+                  ; ebp is used to reference local
+                  ; function variables in the current stack frame.
     
+    ; esp is 0xffffcfdc (-4 bytes)
+    ; ebp will be 0xffffcfdc
+    mov ebp, esp  ; point to the current frame.
+                  ; note: 
+                  ; esp is used to keep track of the address
+                  ; of the end of the stack, which is constantly changing as
+                  ; items are pushed into and popped off of it (FILO; first-in, last-out)
+    
+
     ; make space on stack for local variables:
     ; [ebp-4]  -- reserved
     ; [ebp-8]  -- modulated key we will compare against (we be globalMagic XOR userMagic)
     ; [ebp-28] -- plain text key entered by user
     sub esp, 28
     
+    ; esp is 0xffffcfc0 (-28 bytes)
+
     ; get derive modulated key from magic numbers
     mov eax, [ebp+8]  ; first magic number (should be the global magic number)
     xor eax, [ebp+12] ; second magic number (should be the user-specific magic number)
     mov [ebp-8], eax  ; saved derived modulated key to local variable
     
-    ; prompt the user for 16 caharcter key
+    ; prompt the user for 16 character 
     push getKeyPrompt
     call printf
     add esp, 4
+
+
+    ; esp is still 0xffffcfc0 (since we added 4 bytes)
     
     ; read the key entered by user
+    ; esi will be 0xffffcfdc
     mov esi, ebp
+    ; esi will be 0xffffcfc0
     sub esi, 28
     push esi     ; pointer to the buffer space we just made on the stack
     push getKeyFmt
     call scanf
     add esp, 8
     
+    ; ebp is still 0xffffcfdc
+    ; esp is still 0xffffcfc0 (but it now contains 'A' <repeats 200 or x times>...)
+
     ; modulate the plain text key 
     push dword [ebp+8]   ; globalMagic   -- NOTE: Parameters not in same order for _modulate as for _authenticate
     push dword [ebp+16]  ; user ID --       so the offsets will be different
+    ; eax is now 0xffffcfdc
     mov eax, ebp
-    sub eax, 28    ; 
+    ; eax is now 0xffffcfc0
+    sub eax, 28    ; !! eax points to the current location of esp (where our key of 'A's reside)
     push eax       ; pointer the the key code buffer on the stack
     call _modulate ; modulate the keycode, return value in EAX will be the modulated plain text key
     add esp, 12
@@ -136,6 +177,8 @@ _authenticate:
     
 
 _modulate:
+    ; ebp is still 0xffffcfdc
+    ; esp is still 0xffffcfc0 (but it now contains 'A' <repeats 200 or x times>...)
     push ebp,
     mov ebp, esp
     
