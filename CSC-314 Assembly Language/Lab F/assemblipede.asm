@@ -10,8 +10,9 @@ section .data
     instructionsMsg2 db "Controls: W - Forward, S - Back, A - Left, D - Right", 0x0A,0x00
     instructionsMsg3 db "Hit space to continue or Q to quit", 0x0A,0x00
     readModeStr db "r",0x00
+    searchChar db "0",0
     score dd 0
-    isMoving db 0
+    GAME_STATE_START dd 0
     currentChar db 0
     ;scanf formats
     oneIntFmt db "%d",0x00    ; format string for scanf reading one integer
@@ -62,6 +63,7 @@ extern fopen
 extern fclose
 extern getchar
 extern gets
+extern strstr
 
 ;; ncurse lib functions
 extern initscr
@@ -97,7 +99,7 @@ _start:
    ; loadlevel is purely internal to this program and does not need cdecl
    call _LoadLevel 
    mov dword[score], 0
-   mov dword[isMoving], 0
+   mov dword[GAME_STATE_START], 0
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Initialize ncurses stuff...
@@ -120,15 +122,9 @@ _GameLoop:
     ;; _DisplayLevel
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     call clear      ; ncurses: clear --  clears screen and puts print position in the top left corner
-    push dword [score];
-    push scoreFmt
-    call printw
-    add esp, 8
+    call _DisplayScore
 
-    push dword lvlBuffer  ; lvlBuffer should just contain one large multiline string...
-    call printw           ; ncurses: printw -- works just like printf, except printing starts from current print position on the ncurses screen
-                          ;                    here we are just using it to print entire lvlBuffer
-    add esp,4
+    call _DisplayLevel
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; _Update lvlBuffer based on player movement & game "AI"
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -136,6 +132,20 @@ _GameLoop:
 
     jmp _GameLoop
 
+
+_DisplayScore:
+    push dword [score];
+    push scoreFmt
+    call printw
+    add esp, 8
+    ret
+
+_DisplayLevel:
+    push dword lvlBuffer  ; lvlBuffer should just contain one large multiline string...
+    call printw           ; ncurses: printw -- works just like printf, except printing starts from current print position on the ncurses screen
+                          ;                    here we are just using it to print entire lvlBuffer
+    add esp,4
+    ret
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; _GameOver
 ; Ends the game
@@ -163,7 +173,6 @@ _exit:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 _GameTick:
-
     _getkey:
         call getch     ; the ncurses getch (allows us to not wait indefinitely -- google ncurses nodelay timeout
                    ; the single return character should be in 
@@ -184,25 +193,25 @@ _GameTick:
     _keyUp:
         mov dword [xStep],0
         mov dword [yStep],-1
-        mov dword [isMoving], 1
+        mov dword [GAME_STATE_START], 1
         jmp _continue
        
     _keyLeft:
         mov dword [xStep],-1
         mov dword [yStep],0
-        mov dword [isMoving], 1
+        mov dword [GAME_STATE_START], 1
         jmp _continue
     
     _keyDown:
         mov dword [xStep],0
         mov dword [yStep],1
-        mov dword [isMoving], 1
+        mov dword [GAME_STATE_START], 1
         jmp _continue
     
     _keyRight:
         mov dword [xStep],1
         mov dword [yStep],0
-        mov dword [isMoving], 1
+        mov dword [GAME_STATE_START], 1
         jmp _continue
 
     _pause:
@@ -256,8 +265,6 @@ _GameTick:
         imul ecx, [yStep]  ; multiply [ydelta] by -1,1, or 0, depending on whether we are moving up/down/neither
         add eax, ecx       ; add it to the head position address
 
-        cmp byte[isMoving], 0
-        je _dontEat
         ; check for collisions
         cmp byte[eax], 42      ; check '*'
         je _eatStar
@@ -268,48 +275,73 @@ _GameTick:
         cmp byte[eax], 43      ; check '+'
         je _GameOver
         cmp byte[eax], 111      ; check 'o' 
-        je _CheckSelfCollision
+        je _checkSelfCollision
         cmp byte[eax], 48       ; check '0'
-        je _Teleport
+        je _teleport
         cmp byte[eax], 32      ; check space
         je _dontEat
 
+        _checkSelfCollision:
+            cmp dword[GAME_STATE_START], 0        ; if we are moving then just quit
+            jne _GameOver
 
+        _teleport:
+            push eax
+            push esi
+            push edi
+            push searchChar    ; push '0'
+            push lvlBuffer
+            call strstr
+            add esp, 8
+            sub eax, lvlBuffer
+            add dword eax, 1
+            mov ecx, 200 ; TODO
+            pop edi
+            pop esi
+            pop eax
+
+            push ecx
+
+            mov edx, [yDelta]
+            add edx, ecx
+            ; get new location of head and put '@' there
+            add eax, [xStep]   ; add -1,1 or 0 to current address of head
+            mov ecx, edx  ; [yDelta] -- the number of bytes to wrap around to same position on next or previous line: lvlWidth+1 
+            imul ecx, [yStep]  ; multiply [ydelta] by -1,1, or 0, depending on whether we are moving up/down/neither
+            add eax, ecx       ; add it to the head position address
+
+            pop ecx
+
+            mov edx, [yDelta]
+            add edx, ecx
+            ; get new location of head and put '@' there
+            add ebx, [xStep]   ; add -1,1 or 0 to current address of head
+            mov ecx, edx
+            imul ecx, [yStep]  ; multiply [ydelta] by -1,1, or 0, depending on whether we are moving up/down/neither
+            add ebx, ecx       ; add it to the head position address
+            jmp _dontEat
         _eatStar:
             call _UpdateScore
-            dec dword [tailIndex]
+            call _UpdateBody
         _dontEat:
         mov byte [eax],'@' ; put the head in the new location
         mov [bodySegmentAddresses + 4* esi], eax ; save the new head address in bodySementAddressees[headIndex]
-    
     ret
 
 
 _UpdateScore:
-    cmp dword[isMoving], 0
+    cmp dword[GAME_STATE_START], 0
     je _UpdateScore.done
     inc dword[score]
     _UpdateScore.done:
     ret
 
 _UpdateBody:
-    cmp dword[isMoving],0
+    cmp dword[GAME_STATE_START],0
     je _UpdateBody.done
     dec dword [tailIndex]
+    inc dword [bodyLength]
     _UpdateBody.done:
-    ret
-
-_CheckSelfCollision:
-    cmp dword[isMoving], 0
-    je _CheckSelfCollision.done
-    jmp _GameOver
-    _CheckSelfCollision.done:
-    ret
-
-_Teleport:
-    ; mov ecx, [headIndex]
-    ; mov edx, [tailIndex]
-
     ret
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
