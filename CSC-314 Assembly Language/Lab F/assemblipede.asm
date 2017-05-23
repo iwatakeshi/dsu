@@ -6,14 +6,21 @@ section .data
     usageMsg db "Usage: Assemblipede levelFileName",0x0A,0x00
     openFileFailMsg db "Failed to open level file.",0x0A,0x00
     badFileFormatMsg db "Invalide File Format.",0x0A,0x00
+    badFileFormatMsg2 db "Invalide File Format. More than two portals found.",0x0A,0x00
     instructionsMsg1 db "Game paused" , 0x0a, 0x00
     instructionsMsg2 db "Controls: W - Forward, S - Back, A - Left, D - Right", 0x0A,0x00
     instructionsMsg3 db "Hit space to continue or Q to quit", 0x0A,0x00
+    gameOverMsg db "Game Over!", 0x0a, 0x00
     readModeStr db "r",0x00
-    searchChar db "0",0
     score dd 0
     GAME_STATE_START dd 0
+    GAME_STATE_ENDED dd 0
     currentChar db 0
+    headPosition dd 0
+    headPositionAddress dd 0
+    portalPosition dd 0
+    portalPosition1Address dd 0
+    portalPosition2Address dd 0
     ;scanf formats
     oneIntFmt db "%d",0x00    ; format string for scanf reading one integer
     twoIntFmt db "%d %d",0x00 ; format string for scanf reading two integers
@@ -151,7 +158,18 @@ _DisplayLevel:
 ; Ends the game
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 _GameOver:
-
+    call endwin
+    ;wrapup cdecl
+    mov     esp, ebp
+    pop     ebp
+    push gameOverMsg
+    call printf
+    
+    ;sys_exit
+    mov     eax, 1 ; sys_exit
+    xor     ebx, ebx
+    int     80H
+    
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 _exit:
     ;wrapup ncurses stuff...
@@ -165,6 +183,8 @@ _exit:
     mov     eax, 1 ; sys_exit
     xor     ebx, ebx
     int     80H
+
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -232,13 +252,14 @@ _GameTick:
     
 
     _continue:
-    
         ; fetch head & tail INDEXES into ESI & EDI
         mov esi, [headIndex]
         mov edi, [tailIndex]
+
         ; fetch head & tail ADDRESSES into EAX & EBX
         mov eax, [bodySegmentAddresses + 4*esi]
         mov ebx, [bodySegmentAddresses + 4*edi]
+
         ; replace current head with a body segment
         mov byte [eax], 'o'
         ; replace current tail with a space
@@ -264,6 +285,11 @@ _GameTick:
         mov ecx, [yDelta]  ; [yDelta] -- the number of bytes to wrap around to same position on next or previous line: lvlWidth+1 
         imul ecx, [yStep]  ; multiply [ydelta] by -1,1, or 0, depending on whether we are moving up/down/neither
         add eax, ecx       ; add it to the head position address
+        mov dword[headPositionAddress], eax
+
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ; Feature: Check for collisions with special characters ;
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
         ; check for collisions
         cmp byte[eax], 42      ; check '*'
@@ -286,46 +312,64 @@ _GameTick:
             jne _GameOver
 
         _teleport:
-            push eax
-            push esi
-            push edi
-            push searchChar    ; push '0'
-            push lvlBuffer
-            call strstr
-            add esp, 8
-            sub eax, lvlBuffer
-            add dword eax, 1
-            mov ecx, 200 ; TODO
-            pop edi
-            pop esi
-            pop eax
-
-            push ecx
-
-            mov edx, [yDelta]
-            add edx, ecx
+            call _getPortalPosition
+            ; save the new position
+            mov eax, [portalPosition]
+            ; reverse the directions
+            neg dword [xStep]
+            neg dword [yStep]
             ; get new location of head and put '@' there
             add eax, [xStep]   ; add -1,1 or 0 to current address of head
-            mov ecx, edx  ; [yDelta] -- the number of bytes to wrap around to same position on next or previous line: lvlWidth+1 
+            mov ecx, [yDelta]  ; [yDelta] -- the number of bytes to wrap around to same position on next or previous line: lvlWidth+1 
             imul ecx, [yStep]  ; multiply [ydelta] by -1,1, or 0, depending on whether we are moving up/down/neither
             add eax, ecx       ; add it to the head position address
-
-            pop ecx
-
-            mov edx, [yDelta]
-            add edx, ecx
-            ; get new location of head and put '@' there
-            add ebx, [xStep]   ; add -1,1 or 0 to current address of head
-            mov ecx, edx
-            imul ecx, [yStep]  ; multiply [ydelta] by -1,1, or 0, depending on whether we are moving up/down/neither
-            add ebx, ecx       ; add it to the head position address
             jmp _dontEat
         _eatStar:
             call _UpdateScore
             call _UpdateBody
         _dontEat:
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;                       END FEATURE                     ;
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         mov byte [eax],'@' ; put the head in the new location
         mov [bodySegmentAddresses + 4* esi], eax ; save the new head address in bodySementAddressees[headIndex]
+    
+    ret
+
+_getPortalPosition:
+    push eax
+    push ebx
+    push esi
+    push edi
+    
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ; compare the portals with the head address
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    
+    ; set the head address
+    mov ebx, [headPositionAddress]
+
+    ; compare with portal 1
+    mov eax, [portalPosition1Address]
+    cmp eax, ebx
+    je _setPortalPosition2
+
+    _setPortalPosition1:
+        mov eax, [portalPosition1Address]
+        mov [portalPosition], eax
+        jmp _getPortalPosition.done
+
+    _setPortalPosition2:
+        mov eax, [portalPosition2Address]
+        mov [portalPosition], eax
+
+    _getPortalPosition.done:
+
+    pop edi
+    pop esi
+    pop ebx
+    pop eax
+
     ret
 
 
@@ -416,7 +460,7 @@ _LoadLevelLoop:
     ; verify that line is the correct length, do not overflow the lvlBuffer
     ; if wrong length, jump to _badFileFormat
     ;;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        
+
     dec ebx
     jz _LoadInitialBody 
     add edi, esi  ;adjust edx to where next line will start in lvlBuffer
@@ -485,7 +529,50 @@ _DrawBodyLoop:
 
 
 _LoadLevelWrapup:    
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ; Feature: Find the teleportation portals in the lvlBuffer ;
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    push eax
+    push ebx
+    push ecx
+    push esi
+    xor ebx, ebx
+    xor ecx, ecx
+    
+    mov esi, lvlBuffer
+    ; get the portal positions
+    _getTeleportationPositions:
+        mov al, byte[esi]
+        cmp al, 48              ; compare with '0'
+        jne _getTeleportationPositions.continue
+        
+        _foundPortal:
+            cmp ebx, 0
+            je _addPortalOne
+            cmp ebx, 1
+            je _addPortalTwo
+            _addPortalOne:
+            mov dword [portalPosition1Address], esi
+            jmp _foundPortal.continue
+            _addPortalTwo:
+            mov dword [portalPosition2Address], esi
 
+            _foundPortal.continue:
+            cmp ebx, 1          ; do we have more than two '0'?
+            jg _badFileFormat2   ; report error
+            inc ebx             ; increment
+        _getTeleportationPositions.continue:
+            inc esi
+            inc ecx             ; increment our counter
+            cmp al, 0
+            jne _getTeleportationPositions
+    pop esi
+    pop ecx
+    pop ebx
+    pop eax
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;                       END FEATURE                     ;
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ret     ; internal non-cdecl routine, so nothing else to do but return
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -501,6 +588,11 @@ _openFileFail:
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 _badFileFormat:
     push badFileFormatMsg
+    call printf
+    jmp _exit
+
+_badFileFormat2:
+    push badFileFormatMsg2
     call printf
     jmp _exit
 

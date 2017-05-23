@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.json-tmLanguage": "json",
+        "*.ipp": "cpp"
+    }
+}
