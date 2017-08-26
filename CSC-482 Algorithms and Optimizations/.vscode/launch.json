@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "(lldb) Launch random",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceRoot}/homework/random.o",
+      "args": ["5", "5", "0", "10"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceRoot}",
+      "environment": [],
+      "externalConsole": true,
+      "MIMode": "lldb"
+    }
+  ]
+}
