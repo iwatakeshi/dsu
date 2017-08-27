@@ -4,41 +4,105 @@
 #include <stdbool.h>
 
 /*
-  Based on naive string matching
-  credits: 
-    * http://www.personal.kent.edu/~rmuhamma/Algorithms/MyAlgorithms/StringMatch/naiveStringMatch.htm
-    * https://en.wikipedia.org/wiki/String_searching_algorithm
+  skip
+  @description - Determines whether the character at the current position should be skipped
+  @return bool
 */
-void match(char* text, char* pattern, bool matchCase) {
-  int n = strlen(text), m = strlen(pattern);
+bool skip(int position, char * text) {
+  int i = 0;
+  while (i < position) {
+    // We've seen this character
+    if (text[i] == text[position]) return true;
+    i++;
+  }
+  return false;
+}
+
+/*
+  compare
+  @description - Determines whether two characters are equal by strictness.
+*/
+bool compare(char a, char b, bool strict) {
+  return strict ? a == b : tolower(a) == tolower(b);
+}
+
+/*
+  match
+  @description - Matches the characters within the two strings. 
+  It will return the farthest positinal match as well as number
+  of matches found. Note that duplicates are not counted when
+  matching characters. 
+  To elaborate, a string A with "COOL socks" and another string B 
+  with "boks" have a cross product of A x B =
+  {
+    (C, b), (C, o), (C, k), (C, s),
+    (O, b), (O, o), (O, k), (O, s),
+    (O, b), (O, o), (O, k), (O, s),
+    (L, b), (L, o), (L, k), (L, s),
+    (s, b), (s, o), (s, k), (s, s),
+    (o, b), (o, o), (o, k), (o, s),
+    (c, b), (c, o), (c, k), (c, s),
+    (k, b), (k, o), (k, k), (k, s),
+    (s, b), (s, o), (s, k), (s, s)
+  }
+
+  A relation R exists if x == y when both are case-sensitive and
+  (x, y) has not been matched.
+  Thus, R = 
+  {
+    (s, s), (o, o), (k, k)
+  }
+  |R| = 3
+
+  A relation S exists if x == y when both are case-insensitive and
+  (x, y) has not been matched.
+  Thus, S =
+  {
+    (O, o), (s, s), (o, o), (k, k)
+  }
+  |S| = 4
+
+*/
+void match(char* text, char* text2, bool strict) {
+  int n = strlen(text), m = strlen(text2);
   int index = -1;
   int matches = 0;
-  for (int s = 0; s <= n - m; s++) {
-    for (int i = 0; i < m; i++) {
-      char p = pattern[i], t = text[s + 1];
-      printf("pattern[i]: %c, text[s + i]: %c, equality: %d\n", p, t, p == t);
-      bool found = matchCase ? p == t : tolower(p) == tolower(t);
-      if (found) { 
-        matches++; 
-        if(index < 0) index = s;
+  int i = 0, j;
+  while (i < n) {
+    j = 0;
+    while (j < m) {
+      if (compare(text[i], text2[j], strict)) {
+        if (text[i] == '\n') break;
+        index = j;
+        if (skip(i, text)) break;
+        // printf("(%c, %c)\n", text[i], text2[j]);
+        matches++;
       }
+      j++;
     }
+    i++;
   }
-  if (matchCase) {
-    printf("Match found at position %d\n", index < 0 ? 0 : index);
-    printf("Number of matches found: %d\n", matches);
+
+  if (strict) {
+    printf("Positional Match: %d\n", index);
+    printf("Matches: %d\n", matches);
   } else {
-    printf("Match found at position %d (no-case)\n", index < 0 ? 0 : index);
-    printf("Number of matches found: %d (no-case)\n", matches);
+    printf("Positional Match: %d (no-case)\n", index);
+    printf("Matches: %d (no-case)\n", matches);
   }
 }
 
 int main(int argc, char* argv[]) {
-  if (argc < 3) {
-    printf("usage: match <text> <pattern>\n");
-    return 0;
-  }
-  match(argv[1], argv[2], false);
-  match(argv[1], argv[2], true);
+  const int bufferSize = 1000;
+  char text1[bufferSize], text2[bufferSize];
+
+  printf("Enter the first text: \n");
+  fgets(text1, bufferSize, stdin);
+
+  printf("Enter the second text: \n");
+  fgets(text2, bufferSize, stdin);
+
+  match(text1, text2, true);
+  match(text1, text2, false);
   return 0;
 }

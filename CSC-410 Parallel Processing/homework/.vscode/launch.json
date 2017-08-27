@@ -6,18 +6,18 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceRoot}/a1/match.o",
-      "args": ["HelO", "O"],
+      "args": ["< a1/test.text"],
       "stopAtEntry": false,
       "cwd": "${workspaceRoot}",
       "environment": [],
-      "externalConsole": false,
-      "MIMode": "gdb",
+      "externalConsole": true,
+      "MIMode": "lldb",
       "setupCommands": [
-          {
-              "description": "Enable pretty-printing for gdb",
-              "text": "-enable-pretty-printing",
-              "ignoreFailures": true
-          }
+          // {
+          //     "description": "Enable pretty-printing for gdb",
+          //     "text": "-enable-pretty-printing",
+          //     "ignoreFailures": true
+          // }
       ]
     }
   ]
