@@ -101,8 +101,12 @@ int main(int argc, char* argv[]) {
 
   printf("Enter the second text: \n");
   fgets(text2, bufferSize, stdin);
-
-  match(text1, text2, true);
-  match(text1, text2, false);
+  // Since A x B is not communitative, we'll have to standardize
+  // the way the input is processed. In this case, if |A| > |B|
+  // then A will be first. Otherwise, B is first.
+  char* a = strlen(text1) >= strlen(text2) ? text1 : text2;
+  char* b = strlen(text1) <= strlen(text2) ? text1 : text2;
+  match(a, b, true);
+  match(a, b, false);
   return 0;
 }
