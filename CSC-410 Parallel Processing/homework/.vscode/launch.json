@@ -6,7 +6,7 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceRoot}/a1/match.o",
-      "args": ["< a1/test.text"],
+      "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceRoot}",
       "environment": [],
