@@ -55,14 +55,14 @@ look_times = look_test(:, 2);
 sort_times = sort_test(:, 2);
 look_b_times = look_b_test(:, 2);
 
-% figure(1)
-plot(sizes, look_times, '-*');
+figure(1)
+loglog(sizes, look_times, '-*');
+title('look')
 
+figure(2)
+loglog(sizes, sort_times, '-*');
+title('sort')
 
-% figure(2)
-% loglog(sizes, sort_times, "marker", "*");
-% title('sort')
-
-% figure(3)
-% loglog(sizes, look_b_times, "marker", "*");
-% title('look -b')
+figure(3)
+loglog(sizes, look_b_times, '-*');
+title('look -b')
