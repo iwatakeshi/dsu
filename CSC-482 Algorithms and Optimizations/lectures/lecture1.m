@@ -13,7 +13,7 @@ look_test = [
   20480000 0.668 0.660 0.004
   40960000 1.340 1.328 0.008
   81920000 2.637 2.628 0.004
-]
+];
 
 sort_test = [
   10000 0.011 0.008 0.000
@@ -30,7 +30,7 @@ sort_test = [
   20480000 38.245 37.004 0.320
   40960000 81.135 78.676 0.616
   81920000 171.048 166.008 1.216
-]
+];
 
 look_b_test = [
   10000 0.000 0.000 0.000
@@ -47,16 +47,16 @@ look_b_test = [
   20480000 0.001 0.000 0.000
   40960000 0.001 0.000 0.000
   81920000 0.002 0.000 0.000
-]
+];
 
-sizes = look_test(:,1)
+sizes = look_test(:,1);
 
-look_times = look_test(:, 2:3)
-sort_times = sort_test(:, 2:3)
-look_b_times = look_b_test(:, 2:3)
+look_times = look_test(:, 2);
+sort_times = sort_test(:, 2);
+look_b_times = look_b_test(:, 2);
 
 % figure(1)
-loglog(sizes, look_times, "marker", "*");
+plot(sizes, look_times, '-*');
 
 
 % figure(2)
