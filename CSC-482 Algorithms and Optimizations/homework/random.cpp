@@ -91,16 +91,16 @@ int main (int argc, const char * argv[]) {
 
     while (rows--) {
       auto col = columns;
+      long n = rand() % max + 1;
       while (col--) {
-        long n = rand() % max + 1;
+        n = rand() % max + 1;
         if (!isOk(n, max)) break;
-        line += to_string(n);
-        if (rows >= 0 && col > 0) line += " ";
+        cout << n;
+        if (rows >= 0 && col > 0) cout << " ";
       }
-      if (rows > 0) line += " ";
-      line += "\n";
+      if (rows > 0) cout << " ";
+      cout << endl;
     }
-
-    cout << line << endl;
+    
     return 0;
 }
