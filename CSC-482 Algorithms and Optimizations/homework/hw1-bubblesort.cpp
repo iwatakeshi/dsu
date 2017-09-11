@@ -20,11 +20,17 @@ int main(int argc, char **argv) {
   }
   sort(&integers[0], integers.size());
   if (argc > 1 && (strcmp(argv[1], "-s") || strcmp(argv[1], "--stat"))) {
-    std::cout << "There were "<< comparisons << " comparisons made." << std::endl;  
+    std::cout << "comparisons: "<< comparisons << std::endl;  
   }
-  // for (auto i = integers.begin(); i != integers.end(); ++i) {
-  //   std::cout << *i << '\n';
-  // }
+  int columns = 0;
+  for (auto i = integers.begin(); i != integers.end(); ++i) {
+    std::cout << *i << ' ';
+    columns++;
+    if (columns == 5) {
+      std::cout << std::endl;
+      columns = 0;
+    }
+  }
   return 0;
 }
 

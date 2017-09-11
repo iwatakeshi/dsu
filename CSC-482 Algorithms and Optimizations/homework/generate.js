@@ -39,41 +39,14 @@ async function echo(message) {
   await exec(`echo ${message}`);
 }
 
-async function generate_dictionary() {
-  await exec(`${grep} > dictionary`, options);
-  console.log('Dictionary created');
+async function generate() {
+  for(let power = 0; power < 53; power++) {
+    let size = Math.pow(2, sequence[power]);
+    await exec(`./random.o ${size} 1 0 ${size}> random-${size}`);
+    await echo(`info: generated random-${size}.`)
+  }
 }
 
-async function generate_shuffled() {
-  let sequence = [1, 2, 3, 4, 5, 6, 7, 8 , 9, 10];
-  echo('info: generating a list of 100 million words (non-unique)');
-  await exec('cat dictionary > temp-words-A')
-  for(let i = 0; i < sequence.length; i++) {
-    await exec('cat temp-words-A >> temp-words-B', options)
-    if (!(await df())) {
-      console.log('error: low disk space.');
-      if (await wc('temp-words-A') < await wc('temp-words-B')) {
-        await mv('temp-words-A', 'words-100M')
-        await rm('temp-words-A');
-        break;
-      }
-      await mv('temp-words-B', 'words-100M')
-      await rm('temp-words-B');
-      break;
-    }
-    await exec('cat temp-words-B >> temp-words-A'), options;
-  }
-  await exec(`${head}100000000 temp-words-A > words-100M`, options)
-
-  await rm('temp-words-A', 'temp-words-B');
-
-  sequence.push(11, 12, 13);
-
-  for(let power = 0; power < sequence.length; power++) {
-    let size = Math.pow(100000 * 2, sequence[power]);
-
-    await exec(`${head}${size} words-100M | ${shuf} > shuffled-words-${size}`)
-    await echo(`info: generated shuffled-words-${size}.`)
-  }
-
-}
+(async function() {
+  await generate();
+})()
