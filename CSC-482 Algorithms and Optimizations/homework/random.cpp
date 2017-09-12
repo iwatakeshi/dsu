@@ -1,9 +1,5 @@
 #include <iostream>
-#include <string.h>
-#include <math.h>
-#include <stdlib.h>
 #include <random>
-
 using namespace std;
 
 int main (int argc, const char * argv[]) {
@@ -31,17 +27,11 @@ int main (int argc, const char * argv[]) {
     mt19937 mt(rd());
     uniform_int_distribution<> dist(min, max);
 
-    int i = 0, j = 0;
-    
-    while (i < rows) {
-      auto n = dist(mt);
-      while (++j < columns) {
-        n = dist(mt);
-        cout << n << " ";
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < columns; j++) {
+        cout << dist(mt) << " ";
       }
-      if (i != rows) cout << n << endl;
-      i++;
-      j = 0;
+      cout << '\n';
     }
     
     return 0;

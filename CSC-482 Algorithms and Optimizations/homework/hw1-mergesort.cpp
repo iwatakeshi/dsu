@@ -1,9 +1,10 @@
 #include <iostream>
-#include <string.h>
-#include <algorithm>
 #include <sstream>
 #include <vector>
+#include <fstream>
+#include <string.h>
 
+bool stat(char *str);
 void merge(int array[], int left, int center, int right);
 void sort(int array[], int left, int right);
 int comparisons = 0;
@@ -11,27 +12,57 @@ int comparisons = 0;
 int main(int argc, char **argv) {
   std::string input;
   std::vector<int> integers;
-  while (std::getline(std::cin, input)) {
-    std::stringstream inputstream(input);
+  bool show_stat = false;
+  bool read_file = false;
+  std::ifstream file;
+
+  // mergesort.o (-s || --stat)
+  if (argc > 1 && stat(argv[1])) {
+    show_stat = true;
+    if (argc > 2) {
+      read_file = true;
+      file.open(argv[2],std::ifstream::in);
+    }
+  } else if (argc > 1) {
+    read_file = true;
+    file.open(argv[1], std::ifstream::in);
+    if (argc > 2 && stat(argv[2])) {
+      show_stat = true;
+    }
+  }
+
+  while (std::getline(read_file ? file : std::cin, input)) {
+    std::stringstream line(input);
     int n;
-    while (inputstream >> n) {
+    while (line >> n) {
       integers.push_back(n);
     }
   }
+
   sort(&integers[0], 0, integers.size());
-  if (argc > 1 && (strcmp(argv[1], "-s") || strcmp(argv[1], "--stat"))) {
-    std::cout << "comparisons: "<< comparisons << std::endl;    
-  }
+  
   int columns = 0;
+  
   for (auto i = integers.begin(); i != integers.end(); ++i) {
     std::cout << *i << ' ';
     columns++;
     if (columns == 5) {
-      std::cout << std::endl;
+      std::cout << '\n';
       columns = 0;
     }
   }
+  
+  std::cout << '\n';
+
+  if (show_stat) {
+    std::cout << "comparisons: " << comparisons << '\n';    
+  } 
+
   return 0;
+}
+
+bool stat(char *str) {
+  return strcmp(str, "-s") == 0 || strcmp(str, "--stat") == 0;
 }
 
 void sort(int array[], int left, int right) {
@@ -49,27 +80,31 @@ void sort(int array[], int left, int right) {
 
 
 void merge(int array[], int left, int mid, int right) {
-  int n = left, m = mid + 1;
-  
-  int sorted[right - left + 1], k = 0;
 
-  for (int i = left; i <= right; i++) {
-    if (n > mid) {
-      sorted[k++] = array[m++];
-      comparisons++;
-    } else if (m > right) {
-      sorted[k++] = array[n++];
+  int n1 = mid - left + 1, n2 =  right - mid;
+  std::vector<int> a, b;
+
+  for (int i = 0; i < n1; i++) {
+      a.push_back(array[left + i]);
+    }
+  for (int j = 0; j < n2; j++) {
+      b.push_back(array[mid + 1 + j]);
+    }
+
+  int i = 0, j = 0, k = left;
+  while (i < n1 && j < n2) {
+    if (a.at(i) <= b.at(j)) {
+      array[k] = a.at(i++);
       comparisons++;
     }
-    else if (array[n] < array[m]) {
-      sorted[k++] = array[n++];
-      comparisons++;
-    } else {
-      sorted[k++] = array[m++];
-      comparisons++;
+    else {
+      array[k] = b.at(j++);
     }
+    k++;
   }
-  for(int i = 0; i < k; i++) {
-    array[left++] = sorted[i];
-  }
+
+  while (i < n1) { array[k++] = a.at(i++); }
+
+  while (j < n2) { array[k++] = b.at(j++); }
 }
+
