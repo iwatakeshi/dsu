@@ -53,11 +53,7 @@ sizes = bubble_test(:,1);
 
 bubble_times = bubble_test(:, 2);
 merge_times = merge_test(:, 2);
-
-figure(1)
-loglog(sizes, bubble_times, '-*');
-title('bubble sort')
-
-figure(2)
-loglog(sizes, merge_times, '-*');
-title('merge sort')
+loglog(sizes, bubble_times, '-*', sizes, merge_times, '-*');
+title('bubble sort vs merge sort');
+xlabel('sizes');
+ylabel('real time');

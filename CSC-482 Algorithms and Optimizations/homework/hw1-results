@@ -43,6 +43,8 @@
 [test-random] info: ./hw1-mergesort.o random-1048576, real: 2.309 user: 2.232 sys: 0.028
 [test-random] info: ./hw1-mergesort.o random-2097152, real: 4.905 user: 4.500 sys: 0.152
 [test-random] info: ./hw1-mergesort.o random-4194304, real: 9.392 user: 9.072 sys: 0.152
+
+
 [test-random] info: ./hw1-mergesort.o random-8388608, real: 18.759 user: 18.652 sys: 0.036
 [test-random] info: ./hw1-mergesort.o random-16777216, real: 39.144 user: 38.044 sys: 0.396
 [test-random] info: ./hw1-mergesort.o random-33554432, real: 81.541 user: 76.444 sys: 2.064
