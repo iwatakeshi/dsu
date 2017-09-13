@@ -88,6 +88,7 @@ bubble_comp = [
 merge_comp = [
     2 1
     4 3
+    8 9
     16 22
     32 67
     64 161
@@ -108,6 +109,7 @@ merge_comp = [
     2097152 20694984
 ];
 
+sizes = bubble_comp(:, 1);
 bubble_comps = bubble_comp(:, 2);
 merge_comps = merge_comp(:, 2);
 
