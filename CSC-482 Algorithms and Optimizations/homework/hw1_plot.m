@@ -21,7 +21,25 @@ bubble_test = [
     1048576 3531.714  3525.856  2.016
     2097152 14189.293 14171.008 5.700
     4194304 56500.826 56460.120 15.696
-]
+];
+
+bubble_test_small = [
+    2       0.008     0.000     0.000
+    4       0.001     0.000     0.000
+    8       0.002     0.000     0.000
+    16      0.002     0.000     0.000
+    32      0.002     0.000     0.000
+    64      0.002     0.000     0.000
+];
+
+merge_test_small = [
+    2       0.001 0.000 0.000
+    4       0.002 0.000 0.000
+    8       0.002 0.000 0.000
+    16      0.001 0.000 0.000
+    32      0.002 0.000 0.000
+    64      0.001 0.000 0.000
+];
 
 merge_test = [
     2       0.001 0.000 0.000
@@ -46,14 +64,23 @@ merge_test = [
     1048576 2.309 2.232 0.028
     2097152 4.905 4.500 0.152
     4194304 9.392 9.072 0.152
-]
+];
 
+
+sizes = bubble_test_small(:,1);
+
+bubble_times = bubble_test_small(:, 2);
+merge_times = merge_test_small(:, 2);
+figure(1);
+loglog(sizes, bubble_times, '-*', sizes, merge_times, '-*');
+title('bubble sort vs merge sort (small)');
+xlabel('sizes');
+ylabel('real time');
 
 sizes = bubble_test(:,1);
-
 bubble_times = bubble_test(:, 2);
 merge_times = merge_test(:, 2);
-figure(1);
+figure(2);
 loglog(sizes, bubble_times, '-*', sizes, merge_times, '-*');
 title('bubble sort vs merge sort');
 xlabel('sizes');
@@ -85,6 +112,15 @@ bubble_comp = [
     2097152 1099246372752
 ];
 
+bubble_comp_small = [
+    2 0
+    4 3
+    8 10
+    16 64
+    32 309
+    64 941
+];
+
 merge_comp = [
     2 1
     4 3
@@ -109,11 +145,30 @@ merge_comp = [
     2097152 20694984
 ];
 
+merge_comp_small = [
+    2 1
+    4 3
+    8 9
+    16 22
+    32 67
+    64 161
+];
+
+sizes = bubble_comp_small(:, 1);
+bubble_comps = bubble_comp_small(:, 2);
+merge_comps = merge_comp_small(:, 2);
+
+figure(3);
+loglog(sizes, bubble_comps, '-*', sizes, merge_comps, '-*');
+title('bubble sort vs merge sort (small)');
+xlabel('sizes');
+ylabel('comparisons');
+
 sizes = bubble_comp(:, 1);
 bubble_comps = bubble_comp(:, 2);
 merge_comps = merge_comp(:, 2);
 
-figure(2);
+figure(4);
 loglog(sizes, bubble_comps, '-*', sizes, merge_comps, '-*');
 title('bubble sort vs merge sort');
 xlabel('sizes');
