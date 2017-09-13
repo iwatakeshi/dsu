@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+
+touch random-comp;
+
+# test bubble sort
+for power in $(seq 1 21)
+  do
+    let size=2**$power;
+    echo -e "start: bubble-sort-$size" >> random-comp;
+    ./hw1-bubblesort.o -s -c random-$size >> random-comp;
+    echo -e "end: bubble-sort-$size \n" >> random-comp;
+    # cat random-comp;
+  done
+
+  # test merge sort
+for power in $(seq 1 21)
+  do
+    let size=2**$power;
+    echo -e "start: merge-sort-$size" >> random-comp;
+    ./hw1-mergesort.o -s -c random-$size >> random-comp;
+    echo -e "end: merge-sort-$size \n" >> random-comp;
+    # cat random-comp;
+  done
