@@ -53,7 +53,66 @@ sizes = bubble_test(:,1);
 
 bubble_times = bubble_test(:, 2);
 merge_times = merge_test(:, 2);
+figure(1);
 loglog(sizes, bubble_times, '-*', sizes, merge_times, '-*');
 title('bubble sort vs merge sort');
 xlabel('sizes');
 ylabel('real time');
+
+%-------------Comparisons-------------
+
+bubble_comp = [
+    2 0
+    4 3
+    8 10
+    16 64
+    32 309
+    64 941
+    128 3568
+    256 16391
+    512 63209
+    1024 261380
+    2048 1082009
+    4096 4205756
+    8192 16997812
+    16384 66922747
+    32768 269160773
+    65536 1075184452
+    131072 4284234677
+    262144 17185340618
+    524288 68744510279
+    1048576 274900081173
+    2097152 1099246372752
+];
+
+merge_comp = [
+    2 1
+    4 3
+    16 22
+    32 67
+    64 161
+    128 381
+    256 886
+    512 1978
+    1024 4480
+    2048 9983
+    4096 22022
+    8192 48084
+    16384 104382
+    32768 225193
+    65536 482772
+    131072 1030887
+    262144 2193376
+    524288 4649603
+    1048576 9822678
+    2097152 20694984
+];
+
+bubble_comps = bubble_comp(:, 2);
+merge_comps = merge_comp(:, 2);
+
+figure(2);
+loglog(sizes, bubble_comps, '-*', sizes, merge_comps, '-*');
+title('bubble sort vs merge sort');
+xlabel('sizes');
+ylabel('comparisons');

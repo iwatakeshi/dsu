@@ -1,0 +1,19 @@
+#!/bin/bash
+
+TIMEFORMAT="real: %3R user: %3U sys: %4S"
+
+# test bubble sort
+for power in $(seq 1 26)
+  do
+    let size=2**$power
+    time_output=$( { time ./hw1-bubblesort.o -s random-$size > /dev/null; } 2>&1)
+    echo "[test-random] info: ./hw1-bubblesort.o random-$size, $time_output"
+  done
+
+  # test merge sort
+for power in $(seq 1 26)
+  do
+    let size=2**$power
+    time_output=$( { time ./hw1-mergesort.o -s random-$size > /dev/null; } 2>&1)
+    echo "[test-random] info: ./hw1-mergesort.o random-$size, $time_output"
+  done
