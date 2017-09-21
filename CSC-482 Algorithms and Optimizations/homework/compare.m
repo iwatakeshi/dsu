@@ -1,4 +1,4 @@
-function [ n ]  = compare(n, f1, f2, varargin)
+function compare(n, f1, f2, varargin)
 %COMPARE Compares two functions with a given sets and displays a plot
 
 % Get the function names
