@@ -14,7 +14,8 @@ hw1-bubblesort: hw1-bubblesort.cpp
 	g++ -g -std=c++11 -g hw1-bubblesort.cpp -o hw1-bubblesort.o
 
 hw2-fibonacci: hw2-fibonacci.cpp
-	g++ -g -std=c++11 -g hw2-fibonacci.cpp -o hw2-fibonacci.o
+	g++ -g -std=c++11 -g hw2-fibonacci.cpp -O2 -o hw2-fibonacci.o
+
 
 
 clean:
