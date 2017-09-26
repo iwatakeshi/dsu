@@ -1,0 +1,440 @@
+[test-fibonacci] info: ./hw2-fibonacci.o 1, Fibonacci (recursive) time: 0ms
+real: 0.002 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 2, Fibonacci (recursive) time: 0ms
+real: 0.008 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 3, Fibonacci (recursive) time: 0ms
+real: 0.002 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 4, Fibonacci (recursive) time: 0ms
+real: 0.001 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 5, Fibonacci (recursive) time: 0ms
+real: 0.007 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 6, Fibonacci (recursive) time: 0ms
+real: 0.001 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 7, Fibonacci (recursive) time: 0ms
+real: 0.001 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 8, Fibonacci (recursive) time: 0ms
+real: 0.001 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 9, Fibonacci (recursive) time: 0ms
+real: 0.001 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 10, Fibonacci (recursive) time: 0ms
+real: 0.001 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 11, Fibonacci (recursive) time: 0ms
+real: 0.001 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 12, Fibonacci (recursive) time: 0ms
+real: 0.002 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 13, Fibonacci (recursive) time: 0ms
+real: 0.001 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 14, Fibonacci (recursive) time: 0ms
+real: 0.001 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 15, Fibonacci (recursive) time: 0ms
+real: 0.001 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 16, Fibonacci (recursive) time: 0ms
+real: 0.001 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 17, Fibonacci (recursive) time: 0ms
+real: 0.001 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 18, Fibonacci (recursive) time: 0ms
+real: 0.001 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 19, Fibonacci (recursive) time: 0ms
+real: 0.001 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 20, Fibonacci (recursive) time: 0ms
+real: 0.003 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 21, Fibonacci (recursive) time: 0ms
+real: 0.001 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 22, Fibonacci (recursive) time: 0ms
+real: 0.002 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 23, Fibonacci (recursive) time: 0ms
+real: 0.002 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 24, Fibonacci (recursive) time: 0ms
+real: 0.003 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 25, Fibonacci (recursive) time: 1ms
+real: 0.004 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 26, Fibonacci (recursive) time: 2ms
+real: 0.007 user: 0.000 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 27, Fibonacci (recursive) time: 4ms
+real: 0.006 user: 0.004 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 28, Fibonacci (recursive) time: 7ms
+real: 0.010 user: 0.004 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 29, Fibonacci (recursive) time: 13ms
+real: 0.014 user: 0.008 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 30, Fibonacci (recursive) time: 21ms
+real: 0.023 user: 0.016 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 31, Fibonacci (recursive) time: 33ms
+real: 0.035 user: 0.028 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 32, Fibonacci (recursive) time: 64ms
+real: 0.066 user: 0.048 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 33, Fibonacci (recursive) time: 79ms
+real: 0.082 user: 0.076 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 34, Fibonacci (recursive) time: 123ms
+real: 0.126 user: 0.120 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 35, Fibonacci (recursive) time: 199ms
+real: 0.201 user: 0.188 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 36, Fibonacci (recursive) time: 315ms
+real: 0.317 user: 0.308 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 37, Fibonacci (recursive) time: 514ms
+real: 0.515 user: 0.500 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o 38, Fibonacci (recursive) time: 819ms
+real: 0.821 user: 0.784 sys: 0.032
+[test-fibonacci] info: ./hw2-fibonacci.o 39, Fibonacci (recursive) time: 1324ms
+real: 1.326 user: 1.276 sys: 0.028
+[test-fibonacci] info: ./hw2-fibonacci.o 40, Fibonacci (recursive) time: 2144ms
+real: 2.147 user: 2.080 sys: 0.024
+[test-fibonacci] info: ./hw2-fibonacci.o 41, Fibonacci (recursive) time: 3501ms
+real: 3.503 user: 3.368 sys: 0.060
+[test-fibonacci] info: ./hw2-fibonacci.o 42, Fibonacci (recursive) time: 5567ms
+real: 5.570 user: 5.512 sys: 0.004
+[test-fibonacci] info: ./hw2-fibonacci.o 43, Fibonacci (recursive) time: 9054ms
+real: 9.056 user: 8.884 sys: 0.060
+[test-fibonacci] info: ./hw2-fibonacci.o 44, Fibonacci (recursive) time: 14616ms
+real: 14.618 user: 14.464 sys: 0.016
+[test-fibonacci] info: ./hw2-fibonacci.o 45, Fibonacci (recursive) time: 23411ms
+real: 23.413 user: 23.248 sys: 0.048
+[test-fibonacci] info: ./hw2-fibonacci.o 46, Fibonacci (recursive) time: 37889ms
+real: 37.891 user: 37.436 sys: 0.184
+[test-fibonacci] info: ./hw2-fibonacci.o 47, Fibonacci (recursive) time: 61402ms
+real: 61.404 user: 60.836 sys: 0.244
+[test-fibonacci] info: ./hw2-fibonacci.o 48, Fibonacci (recursive) time: 98952ms
+real: 98.956 user: 98.552 sys: 0.084
+[test-fibonacci] info: ./hw2-fibonacci.o 49, Fibonacci (recursive) time: 160636ms
+real: 160.638 user: 159.872 sys: 0.488
+[test-fibonacci] info: ./hw2-fibonacci.o 50, Fibonacci (recursive) time: 260094ms
+real: 260.097 user: 258.856 sys: 0.316
+[test-fibonacci] info: ./hw2-fibonacci.o 51, Fibonacci (recursive) time: 420805ms
+real: 420.806 user: 418.580 sys: 0.992
+[test-fibonacci] info: ./hw2-fibonacci.o 52, Fibonacci (recursive) time: 681264ms
+real: 681.265 user: 679.816 sys: 0.188
+[test-fibonacci] info: ./hw2-fibonacci.o 53, Fibonacci (recursive) time: 1097904ms
+real: 1097.907 user: 1096.556 sys: 0.144
+[test-fibonacci] info: ./hw2-fibonacci.o 54, Fibonacci (recursive) time: 1784808ms
+real: 1784.810 user: 1779.256 sys: 2.428
+[test-fibonacci] info: ./hw2-fibonacci.o 55, Fibonacci (recursive) time: 2891066ms
+real: 2891.068 user: 2887.672 sys: 1.972
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 1, Fibonacci (non-recursive) time: 8.62e-06ms
+real: 0.864 user: 0.760 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 2, Fibonacci (non-recursive) time: 8.29e-06ms
+real: 0.830 user: 0.808 sys: 0.008
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 3, Fibonacci (non-recursive) time: 3.522e-05ms
+real: 3.525 user: 3.508 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 4, Fibonacci (non-recursive) time: 4.734e-05ms
+real: 4.739 user: 4.496 sys: 0.148
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 5, Fibonacci (non-recursive) time: 5.711e-05ms
+real: 5.713 user: 5.568 sys: 0.044
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 6, Fibonacci (non-recursive) time: 8.058e-05ms
+real: 8.061 user: 7.832 sys: 0.100
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 7, Fibonacci (non-recursive) time: 8.967e-05ms
+real: 8.970 user: 8.608 sys: 0.196
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 8, Fibonacci (non-recursive) time: 9.918e-05ms
+real: 9.920 user: 9.752 sys: 0.052
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 9, Fibonacci (non-recursive) time: 0.00011113ms
+real: 11.116 user: 10.636 sys: 0.188
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 10, Fibonacci (non-recursive) time: 0.00012115ms
+real: 12.117 user: 11.876 sys: 0.072
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 11, Fibonacci (non-recursive) time: 0.00013199ms
+real: 13.202 user: 12.840 sys: 0.192
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 12, Fibonacci (non-recursive) time: 0.00014167ms
+real: 14.169 user: 13.932 sys: 0.124
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 13, Fibonacci (non-recursive) time: 0.0001525ms
+real: 15.254 user: 15.204 sys: 0.020
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 14, Fibonacci (non-recursive) time: 0.00016429ms
+real: 16.431 user: 16.116 sys: 0.140
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 15, Fibonacci (non-recursive) time: 0.00017384ms
+real: 17.387 user: 17.288 sys: 0.012
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 16, Fibonacci (non-recursive) time: 0.00018391ms
+real: 18.394 user: 18.152 sys: 0.116
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 17, Fibonacci (non-recursive) time: 0.00019682ms
+real: 19.686 user: 19.384 sys: 0.080
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 18, Fibonacci (non-recursive) time: 0.00020645ms
+real: 20.647 user: 20.304 sys: 0.156
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 19, Fibonacci (non-recursive) time: 0.00021699ms
+real: 21.701 user: 21.264 sys: 0.312
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 20, Fibonacci (non-recursive) time: 0.00022813ms
+real: 22.815 user: 22.496 sys: 0.144
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 21, Fibonacci (non-recursive) time: 0.00024011ms
+real: 24.013 user: 23.440 sys: 0.300
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 22, Fibonacci (non-recursive) time: 0.0002502ms
+real: 25.023 user: 24.672 sys: 0.188
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 23, Fibonacci (non-recursive) time: 0.00026068ms
+real: 26.070 user: 25.880 sys: 0.048
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 24, Fibonacci (non-recursive) time: 0.00027083ms
+real: 27.085 user: 26.404 sys: 0.468
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 25, Fibonacci (non-recursive) time: 0.00028106ms
+real: 28.108 user: 27.660 sys: 0.296
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 26, Fibonacci (non-recursive) time: 0.00029252ms
+real: 29.254 user: 28.892 sys: 0.116
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 27, Fibonacci (non-recursive) time: 0.00030449ms
+real: 30.451 user: 29.908 sys: 0.272
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 28, Fibonacci (non-recursive) time: 0.00031474ms
+real: 31.476 user: 31.324 sys: 0.060
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 29, Fibonacci (non-recursive) time: 0.00032516ms
+real: 32.517 user: 32.064 sys: 0.228
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 30, Fibonacci (non-recursive) time: 0.0003369ms
+real: 33.692 user: 33.004 sys: 0.412
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 31, Fibonacci (non-recursive) time: 0.00034462ms
+real: 34.464 user: 34.264 sys: 0.080
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 32, Fibonacci (non-recursive) time: 0.00035848ms
+real: 35.849 user: 35.500 sys: 0.160
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 33, Fibonacci (non-recursive) time: 0.0003684ms
+real: 36.842 user: 36.636 sys: 0.084
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 34, Fibonacci (non-recursive) time: 0.00037708ms
+real: 37.711 user: 37.500 sys: 0.108
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 35, Fibonacci (non-recursive) time: 0.00040297ms
+real: 40.300 user: 39.412 sys: 0.400
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 36, Fibonacci (non-recursive) time: 0.00040545ms
+real: 40.550 user: 40.012 sys: 0.256
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 37, Fibonacci (non-recursive) time: 0.00041304ms
+real: 41.306 user: 40.784 sys: 0.164
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 38, Fibonacci (non-recursive) time: 0.00042379ms
+real: 42.381 user: 42.120 sys: 0.092
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 39, Fibonacci (non-recursive) time: 0.00043391ms
+real: 43.394 user: 43.084 sys: 0.148
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 40, Fibonacci (non-recursive) time: 0.00044218ms
+real: 44.221 user: 44.176 sys: 0.004
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 41, Fibonacci (non-recursive) time: 0.00045494ms
+real: 45.497 user: 44.932 sys: 0.176
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 42, Fibonacci (non-recursive) time: 0.00046474ms
+real: 46.476 user: 46.248 sys: 0.072
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 43, Fibonacci (non-recursive) time: 0.00047593ms
+real: 47.595 user: 47.300 sys: 0.064
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 44, Fibonacci (non-recursive) time: 0.00048523ms
+real: 48.525 user: 48.424 sys: 0.024
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 45, Fibonacci (non-recursive) time: 0.0004966ms
+real: 49.661 user: 49.476 sys: 0.068
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 46, Fibonacci (non-recursive) time: 0.00051102ms
+real: 51.105 user: 50.644 sys: 0.084
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 47, Fibonacci (non-recursive) time: 0.00051859ms
+real: 51.862 user: 51.396 sys: 0.092
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 48, Fibonacci (non-recursive) time: 0.00052992ms
+real: 52.995 user: 52.648 sys: 0.060
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 49, Fibonacci (non-recursive) time: 0.00053905ms
+real: 53.907 user: 53.556 sys: 0.116
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 50, Fibonacci (non-recursive) time: 0.00055292ms
+real: 55.294 user: 54.828 sys: 0.164
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 51, Fibonacci (non-recursive) time: 0.00055989ms
+real: 55.991 user: 55.792 sys: 0.080
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 52, Fibonacci (non-recursive) time: 0.00057181ms
+real: 57.183 user: 56.968 sys: 0.036
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 53, Fibonacci (non-recursive) time: 0.00058394ms
+real: 58.397 user: 58.144 sys: 0.016
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 54, Fibonacci (non-recursive) time: 0.00059465ms
+real: 59.467 user: 59.332 sys: 0.016
+[test-fibonacci] info: ./hw2-fibonacci.o --looped 55, Fibonacci (non-recursive) time: 0.00061001ms
+real: 61.003 user: 60.676 sys: 0.204
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 1, Fibonacci (cached) time: 2.9e-05ms
+real: 2.902 user: 2.876 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 2, Fibonacci (cached) time: 2.848e-05ms
+real: 2.850 user: 2.824 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 3, Fibonacci (cached) time: 2.873e-05ms
+real: 2.875 user: 2.780 sys: 0.048
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 4, Fibonacci (cached) time: 2.866e-05ms
+real: 2.870 user: 2.756 sys: 0.068
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 5, Fibonacci (cached) time: 2.884e-05ms
+real: 2.889 user: 2.744 sys: 0.104
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 6, Fibonacci (cached) time: 2.881e-05ms
+real: 2.884 user: 2.844 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 7, Fibonacci (cached) time: 2.912e-05ms
+real: 2.917 user: 2.736 sys: 0.096
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 8, Fibonacci (cached) time: 2.944e-05ms
+real: 2.946 user: 2.756 sys: 0.096
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 9, Fibonacci (cached) time: 2.859e-05ms
+real: 2.862 user: 2.648 sys: 0.188
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 10, Fibonacci (cached) time: 2.875e-05ms
+real: 2.878 user: 2.756 sys: 0.056
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 11, Fibonacci (cached) time: 2.813e-05ms
+real: 2.816 user: 2.808 sys: 0.004
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 12, Fibonacci (cached) time: 2.898e-05ms
+real: 2.902 user: 2.840 sys: 0.016
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 13, Fibonacci (cached) time: 2.883e-05ms
+real: 2.886 user: 2.848 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 14, Fibonacci (cached) time: 2.835e-05ms
+real: 2.838 user: 2.808 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 15, Fibonacci (cached) time: 2.837e-05ms
+real: 2.840 user: 2.816 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 16, Fibonacci (cached) time: 3.036e-05ms
+real: 3.038 user: 2.800 sys: 0.076
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 17, Fibonacci (cached) time: 2.985e-05ms
+real: 2.988 user: 2.816 sys: 0.024
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 18, Fibonacci (cached) time: 2.928e-05ms
+real: 2.930 user: 2.720 sys: 0.092
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 19, Fibonacci (cached) time: 2.864e-05ms
+real: 2.866 user: 2.796 sys: 0.032
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 20, Fibonacci (cached) time: 3.021e-05ms
+real: 3.023 user: 2.816 sys: 0.084
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 21, Fibonacci (cached) time: 2.911e-05ms
+real: 2.913 user: 2.776 sys: 0.052
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 22, Fibonacci (cached) time: 2.868e-05ms
+real: 2.872 user: 2.764 sys: 0.056
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 23, Fibonacci (cached) time: 3.027e-05ms
+real: 3.029 user: 2.728 sys: 0.112
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 24, Fibonacci (cached) time: 2.889e-05ms
+real: 2.891 user: 2.736 sys: 0.120
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 25, Fibonacci (cached) time: 2.864e-05ms
+real: 2.867 user: 2.560 sys: 0.264
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 26, Fibonacci (cached) time: 2.969e-05ms
+real: 2.972 user: 2.796 sys: 0.040
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 27, Fibonacci (cached) time: 2.977e-05ms
+real: 2.980 user: 2.772 sys: 0.064
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 28, Fibonacci (cached) time: 2.981e-05ms
+real: 2.984 user: 2.732 sys: 0.132
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 29, Fibonacci (cached) time: 2.937e-05ms
+real: 2.939 user: 2.748 sys: 0.092
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 30, Fibonacci (cached) time: 2.889e-05ms
+real: 2.891 user: 2.812 sys: 0.032
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 31, Fibonacci (cached) time: 2.973e-05ms
+real: 2.976 user: 2.856 sys: 0.024
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 32, Fibonacci (cached) time: 2.933e-05ms
+real: 2.935 user: 2.804 sys: 0.028
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 33, Fibonacci (cached) time: 2.874e-05ms
+real: 2.877 user: 2.828 sys: 0.008
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 34, Fibonacci (cached) time: 2.906e-05ms
+real: 2.909 user: 2.772 sys: 0.056
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 35, Fibonacci (cached) time: 3.017e-05ms
+real: 3.020 user: 2.804 sys: 0.092
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 36, Fibonacci (cached) time: 2.935e-05ms
+real: 2.937 user: 2.776 sys: 0.076
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 37, Fibonacci (cached) time: 2.934e-05ms
+real: 2.935 user: 2.724 sys: 0.112
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 38, Fibonacci (cached) time: 2.978e-05ms
+real: 2.980 user: 2.756 sys: 0.068
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 39, Fibonacci (cached) time: 2.948e-05ms
+real: 2.950 user: 2.812 sys: 0.036
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 40, Fibonacci (cached) time: 2.855e-05ms
+real: 2.857 user: 2.800 sys: 0.024
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 41, Fibonacci (cached) time: 2.926e-05ms
+real: 2.928 user: 2.668 sys: 0.160
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 42, Fibonacci (cached) time: 2.89e-05ms
+real: 2.893 user: 2.804 sys: 0.032
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 43, Fibonacci (cached) time: 2.947e-05ms
+real: 2.951 user: 2.848 sys: 0.012
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 44, Fibonacci (cached) time: 2.942e-05ms
+real: 2.944 user: 2.696 sys: 0.124
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 45, Fibonacci (cached) time: 2.935e-05ms
+real: 2.938 user: 2.800 sys: 0.012
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 46, Fibonacci (cached) time: 2.908e-05ms
+real: 2.910 user: 2.768 sys: 0.096
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 47, Fibonacci (cached) time: 2.848e-05ms
+real: 2.850 user: 2.840 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 48, Fibonacci (cached) time: 2.892e-05ms
+real: 2.894 user: 2.808 sys: 0.028
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 49, Fibonacci (cached) time: 2.913e-05ms
+real: 2.916 user: 2.764 sys: 0.056
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 50, Fibonacci (cached) time: 2.969e-05ms
+real: 2.971 user: 2.888 sys: 0.032
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 51, Fibonacci (cached) time: 2.883e-05ms
+real: 2.885 user: 2.872 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 52, Fibonacci (cached) time: 2.902e-05ms
+real: 2.903 user: 2.788 sys: 0.036
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 53, Fibonacci (cached) time: 2.839e-05ms
+real: 2.843 user: 2.808 sys: 0.004
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 54, Fibonacci (cached) time: 2.972e-05ms
+real: 2.974 user: 2.700 sys: 0.172
+[test-fibonacci] info: ./hw2-fibonacci.o -cached 55, Fibonacci (cached) time: 2.907e-05ms
+real: 2.909 user: 2.804 sys: 0.004
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 1, Fibonacci (matrixed) time: 2.381e-05ms
+real: 2.382 user: 2.184 sys: 0.056
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 2, Fibonacci (matrixed) time: 2.286e-05ms
+real: 2.287 user: 2.220 sys: 0.024
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 3, Fibonacci (matrixed) time: 0.00019107ms
+real: 19.109 user: 18.600 sys: 0.260
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 4, Fibonacci (matrixed) time: 0.00030163ms
+real: 30.165 user: 29.752 sys: 0.224
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 5, Fibonacci (matrixed) time: 0.0003532ms
+real: 35.323 user: 35.180 sys: 0.056
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 6, Fibonacci (matrixed) time: 0.00048244ms
+real: 48.251 user: 48.092 sys: 0.036
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 7, Fibonacci (matrixed) time: 0.00049352ms
+real: 49.355 user: 48.360 sys: 0.864
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 8, Fibonacci (matrixed) time: 0.00058749ms
+real: 58.751 user: 57.708 sys: 0.988
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 9, Fibonacci (matrixed) time: 0.00051578ms
+real: 51.582 user: 50.968 sys: 0.340
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 10, Fibonacci (matrixed) time: 0.00065623ms
+real: 65.625 user: 64.336 sys: 0.616
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 11, Fibonacci (matrixed) time: 0.00064139ms
+real: 64.141 user: 63.448 sys: 0.444
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 12, Fibonacci (matrixed) time: 0.00075016ms
+real: 75.019 user: 74.772 sys: 0.164
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 13, Fibonacci (matrixed) time: 0.00064361ms
+real: 64.363 user: 63.940 sys: 0.112
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 14, Fibonacci (matrixed) time: 0.00075126ms
+real: 75.127 user: 74.856 sys: 0.116
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 15, Fibonacci (matrixed) time: 0.00075261ms
+real: 75.264 user: 74.476 sys: 0.364
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 16, Fibonacci (matrixed) time: 0.00084844ms
+real: 84.847 user: 84.264 sys: 0.320
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 17, Fibonacci (matrixed) time: 0.00067711ms
+real: 67.713 user: 67.576 sys: 0.012
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 18, Fibonacci (matrixed) time: 0.00080225ms
+real: 80.228 user: 79.788 sys: 0.264
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 19, Fibonacci (matrixed) time: 0.00080335ms
+real: 80.337 user: 79.972 sys: 0.100
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 20, Fibonacci (matrixed) time: 0.00093982ms
+real: 93.985 user: 93.592 sys: 0.240
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 21, Fibonacci (matrixed) time: 0.0007997ms
+real: 79.973 user: 79.784 sys: 0.032
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 22, Fibonacci (matrixed) time: 0.00093871ms
+real: 93.874 user: 93.736 sys: 0.020
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 23, Fibonacci (matrixed) time: 0.00094129ms
+real: 94.134 user: 94.004 sys: 0.032
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 24, Fibonacci (matrixed) time: 0.00101798ms
+real: 101.801 user: 101.480 sys: 0.168
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 25, Fibonacci (matrixed) time: 0.00079622ms
+real: 79.624 user: 78.408 sys: 1.084
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 26, Fibonacci (matrixed) time: 0.00093852ms
+real: 93.854 user: 93.192 sys: 0.412
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 27, Fibonacci (matrixed) time: 0.00093998ms
+real: 93.999 user: 93.084 sys: 0.292
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 28, Fibonacci (matrixed) time: 0.00102386ms
+real: 102.388 user: 101.412 sys: 0.340
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 29, Fibonacci (matrixed) time: 0.00096161ms
+real: 96.164 user: 95.992 sys: 0.064
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 30, Fibonacci (matrixed) time: 0.0010216ms
+real: 102.162 user: 101.872 sys: 0.144
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 31, Fibonacci (matrixed) time: 0.00102182ms
+real: 102.184 user: 102.080 sys: 0.028
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 32, Fibonacci (matrixed) time: 0.00111372ms
+real: 111.375 user: 111.284 sys: 0.028
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 33, Fibonacci (matrixed) time: 0.00084851ms
+real: 84.854 user: 84.748 sys: 0.036
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 34, Fibonacci (matrixed) time: 0.00097161ms
+real: 97.164 user: 97.084 sys: 0.012
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 35, Fibonacci (matrixed) time: 0.00097071ms
+real: 97.073 user: 96.976 sys: 0.020
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 36, Fibonacci (matrixed) time: 0.00110293ms
+real: 110.297 user: 110.196 sys: 0.032
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 37, Fibonacci (matrixed) time: 0.00097214ms
+real: 97.217 user: 97.148 sys: 0.028
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 38, Fibonacci (matrixed) time: 0.00111164ms
+real: 111.168 user: 111.056 sys: 0.036
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 39, Fibonacci (matrixed) time: 0.00110286ms
+real: 110.288 user: 110.004 sys: 0.088
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 40, Fibonacci (matrixed) time: 0.00120403ms
+real: 120.405 user: 120.316 sys: 0.024
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 41, Fibonacci (matrixed) time: 0.00096913ms
+real: 96.917 user: 96.832 sys: 0.040
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 42, Fibonacci (matrixed) time: 0.00110827ms
+real: 110.829 user: 110.752 sys: 0.024
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 43, Fibonacci (matrixed) time: 0.00111584ms
+real: 111.587 user: 111.224 sys: 0.108
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 44, Fibonacci (matrixed) time: 0.00124539ms
+real: 124.541 user: 122.128 sys: 1.704
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 45, Fibonacci (matrixed) time: 0.00115623ms
+real: 115.625 user: 114.300 sys: 1.064
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 46, Fibonacci (matrixed) time: 0.001225ms
+real: 122.504 user: 121.920 sys: 0.364
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 47, Fibonacci (matrixed) time: 0.00119251ms
+real: 119.253 user: 119.188 sys: 0.000
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 48, Fibonacci (matrixed) time: 0.0012961ms
+real: 129.612 user: 129.448 sys: 0.016
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 49, Fibonacci (matrixed) time: 0.00096405ms
+real: 96.408 user: 96.356 sys: 0.012
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 50, Fibonacci (matrixed) time: 0.00109558ms
+real: 109.562 user: 109.468 sys: 0.012
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 51, Fibonacci (matrixed) time: 0.0011003ms
+real: 110.032 user: 109.960 sys: 0.020
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 52, Fibonacci (matrixed) time: 0.00119845ms
+real: 119.848 user: 119.724 sys: 0.024
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 53, Fibonacci (matrixed) time: 0.00109894ms
+real: 109.896 user: 109.808 sys: 0.008
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 54, Fibonacci (matrixed) time: 0.00119764ms
+real: 119.767 user: 119.696 sys: 0.004
+[test-fibonacci] info: ./hw2-fibonacci.o --matrixed 55, Fibonacci (matrixed) time: 0.00119957ms
+real: 119.962 user: 119.840 sys: 0.040
