@@ -89,8 +89,8 @@ void start_fibonacci(cpp_int n, int flag, bool timed, bool silent) {
 void start_looped_fibonacci(cpp_int n, int flag, bool timed, bool silent, bool repeat) {
   cpp_int result = 0; int count = 1;
   auto start = Clock::now();
-  if(!repeat) looped_fibonacci(n);
-  else while(count++ < 100000001) looped_fibonacci(n);
+  if(repeat == false) result = looped_fibonacci(n);
+  else while(count++ < 100000001) result = looped_fibonacci(n);
   auto end = Clock::now();
   auto method = "Fibonacci (non-recursive)";
   if (timed) print_time(method, start, end, count);
@@ -99,8 +99,8 @@ void start_looped_fibonacci(cpp_int n, int flag, bool timed, bool silent, bool r
 void start_cached_fibonacci(cpp_int n, int flag, bool timed, bool silent, bool repeat) {
   cpp_int result = 0; int count = 1;
   auto start = Clock::now();
-  if(!repeat) cached_fibonacci(n);
-  else while(count++ < 100000001) cached_fibonacci(n);
+  if(!repeat) result = cached_fibonacci(n);
+  else while(count++ < 100000001) result = cached_fibonacci(n);
   auto end = Clock::now();
   auto method = "Fibonacci (cached)";
   if (timed) print_time(method, start, end, count);
@@ -109,8 +109,8 @@ void start_cached_fibonacci(cpp_int n, int flag, bool timed, bool silent, bool r
 void start_matrixed_fibonacci(cpp_int n, int flag, bool timed, bool silent, bool repeat) {
   cpp_int result = 0; int count = 1;
   auto start = Clock::now();
-  if(!repeat) matrixed_fibonacci(n);
-  else while(count++ < 100000001) matrixed_fibonacci(n);
+  if(!repeat) result = matrixed_fibonacci(n);
+  else while(count++ < 100000001) result = matrixed_fibonacci(n);
   auto end = Clock::now();
   auto method = "Fibonacci (matrixed)";
   if (timed) print_time(method, start, end, count);
