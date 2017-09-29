@@ -5,7 +5,7 @@
       "name": "Launch A1",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceRoot}/a1/match.o",
+      "program": "${workspaceRoot}/groupa1/a.out",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceRoot}",
