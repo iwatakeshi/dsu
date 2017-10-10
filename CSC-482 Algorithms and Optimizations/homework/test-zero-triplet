@@ -1,0 +1,10 @@
+#!/bin/bash
+
+TIMEFORMAT="real: %3R user: %3U sys: %4S"
+
+# test fibonacci (recursive) 
+for size in 1 2 4 8
+  do
+    time_output=$( { time ./hw5-zero-triplet.o hw5-data/$size"Kints".txt; } 2>&1)
+    echo "[test-zero-triplet] info: ./hw5-zero-triplet.o $size"Kints".txt, $time_output"
+  done
