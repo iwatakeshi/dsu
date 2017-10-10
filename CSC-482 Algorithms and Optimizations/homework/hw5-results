@@ -1,0 +1,8 @@
+[test-zero-triplet] info: ./hw5-zero-triplet.o 1Kints.txt, hw5-data/1Kints.txt
+real: 0.373 user: 0.372 sys: 0.000
+[test-zero-triplet] info: ./hw5-zero-triplet.o 2Kints.txt, hw5-data/2Kints.txt
+real: 2.980 user: 2.888 sys: 0.044
+[test-zero-triplet] info: ./hw5-zero-triplet.o 4Kints.txt, hw5-data/4Kints.txt
+real: 23.496 user: 23.472 sys: 0.000
+[test-zero-triplet] info: ./hw5-zero-triplet.o 8Kints.txt, hw5-data/8Kints.txt
+real: 185.760 user: 185.656 sys: 0.000
