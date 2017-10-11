@@ -1,10 +1,10 @@
 #include <algorithm>
+#include <boost/timer.hpp>
 #include <fstream>
 #include <iostream>
 #include <sstream>
-#include <string.h>
+#include <string>
 #include <vector>
-#include <boost/timer.hpp>
 
 int zerotriplet(int* A, int n) {
   int count = 0;
@@ -21,13 +21,19 @@ int zerotriplet(int* A, int n) {
 int zerotriplet_improved(int* A, int n) {
   int count = 0;
   for (int i = 0; i < n - 2; i++) {
-    auto a = A[i];
     auto start = i + 1;
     auto end = n - 1;
     while (start < end) {
-     if (A[i] + A[start] + A[end] == 0) count++;
-     else if (A[i] + A[start] + A[end] < 0) start++;
-     else end--;
+      if (A[i] + A[start] + A[end] == 0) {
+        count++;
+        if (A[start] == A[start + 1])
+          start++;
+        else
+          end--;
+      } else if (A[i] + A[start] + A[end] < 0)
+        start++;
+      else
+        end--;
     }
   }
   return count;
@@ -48,20 +54,22 @@ std::vector<int> readfile(const std::string& filename) {
 }
 
 int main(int argc, char* argv[]) {
-
   if (argc == 3) {
-    if (strcmp(argv[1], "-n") || strcmp(argv[1], "-naive")) {
-      std::vector<int> v = readfile(argv[2]);
+    std::vector<std::string> sargv(argv, argv + argc);
+    sargv.erase(sargv.begin());
+    auto flag = sargv.at(0);
+    std::vector<int> v = readfile(sargv.at(1));
+    if (flag == "-n" || flag == "-naive") {
       boost::timer t;
-      zerotriplet(&v[0], v.size());
-      std::cout << t.elapsed() << std::endl;
-    } else if (strcmp(argv[1], "-i") || strcmp(argv[1], "improved")) {
-      std::vector<int> v = readfile(argv[2]);
+      auto count = zerotriplet(&v[0], v.size());
+      std::cout << count << " " << t.elapsed() << std::endl;
+    } else if (flag == "-i" || flag == "-improved") {
       std::sort(v.begin(), v.end());
       boost::timer t;
-      zerotriplet_improved(&v[0], v.size());
-      std::cout << t.elapsed() << std::endl;
+      auto count = zerotriplet_improved(&v[0], v.size());
+      std::cout << count << " " << t.elapsed() << std::endl;
     }
   }
+
   return 0;
 }
