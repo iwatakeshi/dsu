@@ -3,7 +3,7 @@
 TIMEFORMAT="real: %3R user: %3U sys: %4S"
 
 # test zero triplet (n^3)
-for size in 1 2 4 8 16 32 64
+for size in 1 2 4 8 16 32
   do
     time_output=$( { time ./hw5-zero-triplet.o -n hw5-data/$size"Kints".txt; } 2>&1)
     echo "[test-zero-triplet] info: ./hw5-zero-triplet.o $size"Kints".txt, $time_output"
@@ -12,7 +12,7 @@ for size in 1 2 4 8 16 32 64
   echo " "
 
   # test zero triplet (n^2)
-for size in 1 2 4 8 16 32 64
+for size in 1 2 4 8 16 32
   do
     time_output=$( { time ./hw5-zero-triplet.o -i hw5-data/$size"Kints".txt; } 2>&1)
     echo "[test-zero-triplet] info: ./hw5-zero-triplet.o $size"Kints".txt, $time_output"

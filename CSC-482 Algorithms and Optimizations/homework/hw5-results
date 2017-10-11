@@ -1,8 +1,25 @@
-[test-zero-triplet] info: ./hw5-zero-triplet.o 1Kints.txt, hw5-data/1Kints.txt
-real: 0.373 user: 0.372 sys: 0.000
-[test-zero-triplet] info: ./hw5-zero-triplet.o 2Kints.txt, hw5-data/2Kints.txt
-real: 2.980 user: 2.888 sys: 0.044
-[test-zero-triplet] info: ./hw5-zero-triplet.o 4Kints.txt, hw5-data/4Kints.txt
-real: 23.496 user: 23.472 sys: 0.000
-[test-zero-triplet] info: ./hw5-zero-triplet.o 8Kints.txt, hw5-data/8Kints.txt
-real: 185.760 user: 185.656 sys: 0.000
+[test-zero-triplet] info: ./hw5-zero-triplet.o 1Kints.txt, 0.336962
+real: 0.388 user: 0.276 sys: 0.060
+[test-zero-triplet] info: ./hw5-zero-triplet.o 2Kints.txt, 2.74403
+real: 2.865 user: 2.740 sys: 0.004
+[test-zero-triplet] info: ./hw5-zero-triplet.o 4Kints.txt, 21.9145
+real: 22.160 user: 21.892 sys: 0.024
+[test-zero-triplet] info: ./hw5-zero-triplet.o 8Kints.txt, 173.1
+real: 174.317 user: 171.584 sys: 1.520
+[test-zero-triplet] info: ./hw5-zero-triplet.o 16Kints.txt, 1387.35
+real: 1398.092 user: 1373.212 sys: 14.144
+[test-zero-triplet] info: ./hw5-zero-triplet.o 32Kints.txt, 11119.2
+real: 11161.813 user: 11037.648 sys: 81.600
+
+[test-zero-triplet] info: ./hw5-zero-triplet.o 1Kints.txt, 70 0.00269
+real: 0.005 user: 0.004 sys: 0.000
+[test-zero-triplet] info: ./hw5-zero-triplet.o 2Kints.txt, 528 0.011959
+real: 0.015 user: 0.012 sys: 0.000
+[test-zero-triplet] info: ./hw5-zero-triplet.o 4Kints.txt, 4039 0.042832
+real: 0.047 user: 0.044 sys: 0.000
+[test-zero-triplet] info: ./hw5-zero-triplet.o 8Kints.txt, 32074 0.170507
+real: 0.179 user: 0.176 sys: 0.000
+[test-zero-triplet] info: ./hw5-zero-triplet.o 16Kints.txt, 192482 0.584651
+real: 0.598 user: 0.592 sys: 0.004
+[test-zero-triplet] info: ./hw5-zero-triplet.o 32Kints.txt, 898318 2.10087
+real: 2.155 user: 1.992 sys: 0.132
