@@ -1,11 +1,14 @@
-all: random hw1 h3
+all: random hw1 hw3 hw5 hw6
 
 random: random.cpp
 	g++ -g -std=c++11 -g random.cpp -o random.o
 
 hw1: hw1-mergesort hw1-bubblesort
-
 hw3: hw3-fibonacci
+hw5: hw5-zero-triplet
+hw6: hw6-quicksort
+
+
 
 hw1-mergesort: hw1-mergesort.cpp
 	g++ -g -std=c++11 hw1-mergesort.cpp -o hw1-mergesort.o
@@ -18,6 +21,9 @@ hw3-fibonacci: hw3-fibonacci.cpp
 
 hw5-zero-triplet: hw5-zero-triplet.cpp
 	g++ -g -std=c++11 -I ./boost_1_65_1 hw5-zero-triplet.cpp -o hw5-zero-triplet.o
+
+hw6-quicksort: hw6-quicksort.cpp
+	g++ -g -std=c++11 -Wno-writable-strings -I ./boost_1_65_1 hw6-quicksort.cpp -o hw6-quicksort.o
 
 clean:
 	rm -f ./*.o

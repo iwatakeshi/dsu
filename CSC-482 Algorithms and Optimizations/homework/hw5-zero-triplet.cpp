@@ -18,7 +18,7 @@ int zerotriplet(int* A, int n) {
   return count;
 }
 
-int zerotriplet_improved(int* A, int n) {
+int zerotriplet_enhanced(int* A, int n) {
   int count = 0;
   for (int i = 0; i < n - 2; i++) {
     auto start = i + 1;
@@ -63,10 +63,10 @@ int main(int argc, char* argv[]) {
       boost::timer t;
       auto count = zerotriplet(&v[0], v.size());
       std::cout << count << " " << t.elapsed() << std::endl;
-    } else if (flag == "-i" || flag == "-improved") {
+    } else if (flag == "-e" || flag == "-enhanced") {
       std::sort(v.begin(), v.end());
       boost::timer t;
-      auto count = zerotriplet_improved(&v[0], v.size());
+      auto count = zerotriplet_enhanced(&v[0], v.size());
       std::cout << count << " " << t.elapsed() << std::endl;
     }
   }
