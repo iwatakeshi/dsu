@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
     if (!silent) printf("Running QuickSort (Random)\n");
     quicksort(&S[0], 0, S.size() - 1, splitrand);
   } else {
-    if (!silent) printf("Running QuickSort (Random)\n");
+    if (!silent) printf("Running QuickSort\n");
     quicksort(&S[0], 0, S.size() - 1, split);
   }
 
