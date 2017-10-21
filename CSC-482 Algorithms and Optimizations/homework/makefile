@@ -1,7 +1,10 @@
 all: random hw1 hw3 hw5 hw6
 
-random: random.cpp
-	g++ -g -std=c++11 -g random.cpp -o random.o
+# random: random.cpp
+# 	g++ -g -std=c++11 -g random.cpp -o random.o
+
+gen: numgen.cpp
+	g++ -g -Wno-write-strings -I ./boost_1_65_1 -std=c++14 numgen.cpp -o numgen.o
 
 hw1: hw1-mergesort hw1-bubblesort
 hw3: hw3-fibonacci

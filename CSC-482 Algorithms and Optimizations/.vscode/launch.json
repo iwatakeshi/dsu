@@ -5,13 +5,13 @@
       "name": "(lldb) Launch random",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceRoot}/homework/hw6-quicksort.o",
-      "args": [],
+      "program": "${workspaceRoot}/homework/numgen.o",
+      "args": ["-s", "2"],
       "stopAtEntry": false,
       "cwd": "${workspaceRoot}",
       "environment": [],
       "externalConsole": true,
-      "MIMode": "lldb"
+      "MIMode": "gdb"
     }
   ]
 }

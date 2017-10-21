@@ -35,7 +35,8 @@ int main(int argc, char* argv[]) {
       break;
     }
   }
-
+  printf("Testing array: ");
+  printv(S);
   if (random) {
     if (!silent) printf("Running QuickSort (Random)\n");
     quicksort(&S[0], 0, S.size() - 1, splitrand);

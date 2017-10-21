@@ -5,6 +5,7 @@
  */
 #ifndef COMMANDER_H
 #define COMMANDER_H
+
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -39,7 +40,6 @@ static struct node* search_by_flag(struct node* head, char* flag, char* name);
 static void dispose(struct node* head);
 static void node_id_reset();
 static void node_id_copy_reset();
-static int node_count();
 static int node_count(struct node* head);
 
 /**
@@ -104,6 +104,7 @@ static int cmd_update(struct node* n, int argc, char* argv[], int index) {
     // make sure we don't go over argc
     if (index + 1 < argc) {
       if (n_copy != NULL) n_copy->value = argv[index + 1];
+      cmd_value_index = index + 1;
     }
   } else if (n->valuable && argv[index][0] != '-') {
     // Copy the value as long the value at the current
@@ -130,9 +131,13 @@ int cmd_parse(int argc, char* argv[]) {
         return cmd_update(n, argc, argv, i);
       }
 
-      if (argv[i][0] != '-') n = search_by_id(cmd_flags, i);
-      if (n != NULL && !(n->flagable) && n->valuable) {
-        return cmd_update(n, argc, argv, i);
+      if (argv[i][0] != '-') {
+        for(int k = 0; k < node_count(cmd_flags); k++) {
+          n = search_by_id(cmd_flags, k);
+          if (n != NULL && !(n->flagable) && n->valuable) {
+            return cmd_update(n, argc, argv, i);
+          }
+        }
       }
     } else
       break;

@@ -52,6 +52,9 @@
     "shared_mutex": "cpp",
     "thread": "cpp",
     "typeindex": "cpp",
-    "valarray": "cpp"
+    "valarray": "cpp",
+    "*.ipp": "cpp",
+    "scoped_allocator": "cpp",
+    "algorithm": "cpp"
   }
 }
