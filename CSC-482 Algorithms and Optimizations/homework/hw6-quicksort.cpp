@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
   char* filename;
   std::vector<int> S = { 2, 4, 1, 7, 29, 3, 54, 5 };
 
-  cmd_optv();
+  cmd_opt_value();
   cmd_opt("-s", "--silent", false);
   cmd_opt("-r", "--random", false);
 
