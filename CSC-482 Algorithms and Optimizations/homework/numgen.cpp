@@ -21,12 +21,12 @@ int main(int argc, char* argv[]) {
   cmd_opt_value();
   cmd_opt("-r", "--random", false);
   cmd_opt("-s", "--shuffle", true);
-  cmd_opt("-sr", "--shuffle-descending", true);
+  cmd_opt("-sd", "--shuffle-descending", true);
   cmd_opt("-l", "--list", false);
-  cmd_opt("-lr", "--list-descending", false);
+  cmd_opt("-ld", "--list-descending", false);
 
   while ((option = cmd_parse(argc, argv)) != -1) {
-    printf("option %d\n", option);
+    // printf("option %d\n", option);
     switch (option) {
     case 1: {
       n = parseint(argv[cmd_val_index()]);
@@ -61,7 +61,7 @@ int main(int argc, char* argv[]) {
     }
   }
   if (cmd_opt_index() == 0) {
-    printf("Usage: %s [ -r random | -s shuffle | -sr shuffled-descending | -l list | -lr list-descending ] number\n", argv[0]);
+    printf("Usage: %s [ -r random | -s shuffle | -sd shuffled-descending | -l list | -ld list-descending ] number\n", argv[0]);
   } else {
     if (randomized) {
       gen_random(n);
