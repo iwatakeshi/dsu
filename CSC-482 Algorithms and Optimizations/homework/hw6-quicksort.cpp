@@ -1,3 +1,4 @@
+#include "bench.h"
 #include "commander.h"
 #include <fstream>
 #include <functional>
@@ -7,6 +8,7 @@
 #include <stdlib.h>
 #include <string>
 #include <vector>
+#include <chrono>
 
 void quicksort(long long int*, int, int, std::function<int(long long int*, int, int)>);
 int split(long long int*, int, int);
@@ -16,7 +18,7 @@ void printv(std::vector<long long int>);
 int main(int argc, char* argv[]) {
 
   int option = 0;
-  bool silent = false, random = false, readfile = false;
+  bool silent = false, random = false, readfile = false, benchmark = false;;
   std::vector<long long int> S;
   std::string input;
   std::ifstream file;
@@ -24,7 +26,7 @@ int main(int argc, char* argv[]) {
   cmd_opt_value();
   cmd_opt("-s", "--silent", false);
   cmd_opt("-r", "--random", false);
-
+  cmd_opt("-b", "--benchmark", false);
   while ((option = cmd_parse(argc, argv)) != -1) {
     switch (option) {
       break;
@@ -37,6 +39,8 @@ int main(int argc, char* argv[]) {
     case 3:
       random = true;
       break;
+    case 4:
+      benchmark = true;
     default:
       break;
     }
@@ -51,14 +55,24 @@ int main(int argc, char* argv[]) {
     }
   }
 
-  printf("Input: \n");
-  printv(S);
+  
+  if (!silent) { 
+    printf("Input: \n");
+    printv(S);
+  }
   if (random) {
     if (!silent) printf("Running QuickSort (Random)\n");
-    if (S.size() > 1) quicksort(&S[0], 0, S.size() - 1, splitrand);
+    if (S.size() > 1) {
+      quicksort(&S[0], 0, S.size() - 1, splitrand);
+      // if (!silent) std::cout << t << std::endl;
+    }
   } else {
     if (!silent) printf("Running QuickSort\n");
-    if (S.size() > 1) quicksort(&S[0], 0, S.size() - 1, split);
+    if (S.size() > 1) {
+      auto start = bench::start();
+      quicksort(&S[0], 0, S.size() - 1, splitrand);
+      if (benchmark) std::cout << "Time(ms) : " << bench::measure(start, bench::end()) << std::endl;
+    }
   }
 
   if (!silent) printv(S);
