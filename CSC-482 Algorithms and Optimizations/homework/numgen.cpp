@@ -60,7 +60,7 @@ int main(int argc, char* argv[]) {
     }
   }
   if (cmd_opt_index() == 0) {
-    printf("Usage: ./numgen number [ -r random | -s shuffle [number] | -sd shuffled-descending [number] | -l list | -ld list-descending ]\n", argv[0]);
+    printf("Usage: %s number [ -r random | -s shuffle [number] | -sd shuffled-descending [number] | -l list | -ld list-descending ]\n", argv[0]);
   } else {
     if (randomized) {
       gen_random(n);
