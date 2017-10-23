@@ -1,20 +1,25 @@
 #include "commander.h"
+#include <fstream>
 #include <functional>
+#include <iostream>
+#include <sstream>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string>
 #include <vector>
 
-void quicksort(int*, int, int, std::function<int(int*, int, int)>);
-int split(int*, int, int);
-int splitrand(int*, int, int);
-void printv(std::vector<int>);
+void quicksort(long long int*, int, int, std::function<int(long long int*, int, int)>);
+int split(long long int*, int, int);
+int splitrand(long long int*, int, int);
+void printv(std::vector<long long int>);
 
 int main(int argc, char* argv[]) {
 
   int option = 0;
-  bool silent = false, random = false;
-  char* filename;
-  std::vector<int> S = { 2, 4, 1, 7, 29, 3, 54, 5 };
+  bool silent = false, random = false, readfile = false;
+  std::vector<long long int> S;
+  std::string input;
+  std::ifstream file;
 
   cmd_opt_value();
   cmd_opt("-s", "--silent", false);
@@ -22,9 +27,10 @@ int main(int argc, char* argv[]) {
 
   while ((option = cmd_parse(argc, argv)) != -1) {
     switch (option) {
-    case 1:
-      filename = argv[cmd_val_index()];
       break;
+    case 1:
+      readfile = true;
+      file.open(argv[cmd_val_index()], std::ifstream::in);
     case 2:
       silent = true;
       break;
@@ -35,14 +41,24 @@ int main(int argc, char* argv[]) {
       break;
     }
   }
-  printf("Testing array: ");
+
+  while (std::getline(readfile ? file : std::cin, input)) {
+    std::stringstream line(input);
+    long long int n;
+    while (line >> n) {
+      printf("%lld\n", n);
+      S.push_back(n);
+    }
+  }
+
+  printf("Input: \n");
   printv(S);
   if (random) {
     if (!silent) printf("Running QuickSort (Random)\n");
-    quicksort(&S[0], 0, S.size() - 1, splitrand);
+    if (S.size() > 1) quicksort(&S[0], 0, S.size() - 1, splitrand);
   } else {
     if (!silent) printf("Running QuickSort\n");
-    quicksort(&S[0], 0, S.size() - 1, split);
+    if (S.size() > 1) quicksort(&S[0], 0, S.size() - 1, split);
   }
 
   if (!silent) printv(S);
@@ -50,14 +66,14 @@ int main(int argc, char* argv[]) {
   return cmd_free();
 }
 
-void quicksort(int* S, int a, int b, std::function<int(int* S, int a, int b)> splitter) {
+void quicksort(long long int* S, int a, int b, std::function<int(long long int* S, int a, int b)> splitter) {
   if (a >= b) return;
   int index = splitter(S, a, b);
   quicksort(S, a, index - 1, splitter);
   quicksort(S, index + 1, b, splitter);
 }
 
-int split(int* S, int a, int b) {
+int split(long long int* S, int a, int b) {
   int pivot = S[b];
   int index = a;
   for (int i = a; i < b; i++) {
@@ -70,7 +86,7 @@ int split(int* S, int a, int b) {
   return index;
 }
 
-int splitrand(int* S, int a, int b) {
+int splitrand(long long int* S, int a, int b) {
   srand(time(NULL));
   int r = a + rand() % (b - a + 1);
   std::swap(S[r], S[b]);
@@ -86,10 +102,10 @@ int splitrand(int* S, int a, int b) {
   return index;
 }
 
-void printv(std::vector<int> S) {
+void printv(std::vector<long long int> S) {
   printf("[ ");
   for (auto a : S) {
-    printf("%d ", a);
+    printf("%lld ", a);
   }
   printf("]\n");
 }
