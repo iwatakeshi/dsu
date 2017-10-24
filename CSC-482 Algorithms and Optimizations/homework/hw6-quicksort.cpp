@@ -66,15 +66,15 @@ int main(int argc, char* argv[]) {
       boost::timer t;
       quicksort(&S[0], 0, S.size() - 1, splitrand);
       double elapsed_time = t.elapsed();
-      if (benchmark) std::cout << "Time(ms): " << elapsed_time << std::endl;
+      if (benchmark) std::cout << "Time(s): " << elapsed_time << " seconds" << std::endl;
     }
   } else {
     if (!silent) printf("Running QuickSort\n");
     if (S.size() > 1) {
       boost::timer t;
-      quicksort(&S[0], 0, S.size() - 1, splitrand);
+      quicksort(&S[0], 0, S.size() - 1, split);
       double elapsed_time = t.elapsed();
-      if (benchmark) std::cout << "Time(ms): " << elapsed_time << std::endl;
+      if (benchmark) std::cout << "Time: " << elapsed_time << " seconds" << std::endl;
     }
   }
 
