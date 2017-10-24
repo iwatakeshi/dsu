@@ -1,5 +1,6 @@
 
 #include "commander.h"
+#include <boost/timer/timer.hpp>
 #include <fstream>
 #include <functional>
 #include <iostream>
@@ -8,8 +9,10 @@
 #include <stdlib.h>
 #include <string>
 #include <vector>
-#include <boost/timer.hpp>
-// using namespace boost::timer;
+// using boost::timer::cpu_timer;
+// using boost::timer::cpu_times;
+// using boost::timer::nanosecond_type;
+using boost::timer::auto_cpu_timer;
 
 void quicksort(long long int*, int, int, std::function<int(long long int*, int, int)>);
 int split(long long int*, int, int);
@@ -19,7 +22,8 @@ void printv(std::vector<long long int>);
 int main(int argc, char* argv[]) {
 
   int option = 0;
-  bool silent = false, random = false, readfile = false, benchmark = false;;
+  bool silent = false, random = false, readfile = false, benchmark = false;
+  ;
   std::vector<long long int> S;
   std::string input;
   std::ifstream file;
@@ -55,26 +59,21 @@ int main(int argc, char* argv[]) {
     }
   }
 
-  
-  if (!silent) { 
+  if (!silent) {
     printf("Input: \n");
     printv(S);
   }
   if (random) {
     if (!silent) printf("Running QuickSort (Random)\n");
     if (S.size() > 1) {
-      boost::timer t;
+      auto_cpu_timer timer(3, "%w\n");
       quicksort(&S[0], 0, S.size() - 1, splitrand);
-      double elapsed_time = t.elapsed();
-      if (benchmark) std::cout << "Time(s): " << elapsed_time << " seconds" << std::endl;
     }
   } else {
     if (!silent) printf("Running QuickSort\n");
     if (S.size() > 1) {
-      boost::timer t;
+      auto_cpu_timer timer(3, "%w\n");
       quicksort(&S[0], 0, S.size() - 1, split);
-      double elapsed_time = t.elapsed();
-      if (benchmark) std::cout << "Time: " << elapsed_time << " seconds" << std::endl;
     }
   }
 

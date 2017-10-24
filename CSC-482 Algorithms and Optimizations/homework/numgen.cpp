@@ -81,8 +81,8 @@ void gen_random(long long int n) {
   std::mt19937 mt(rd());
   std::uniform_int_distribution<> dist(-n, n);
   for (int i = 0; i < n; i++) {
-    std::cerr << dist(mt) << " ";
-    std::cerr << '\n';
+    std::cout << dist(mt) << " ";
+    std::cout << '\n';
   }
 }
 
