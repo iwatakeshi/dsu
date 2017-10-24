@@ -98,10 +98,10 @@ void gen_shuffle(std::vector<long long int> &L, int shuffles) {
 }
 
 void gen_list(std::vector<long long int> &L, long long int n, bool descending) {
-  if (descending) {
-    for(int i = 1; i <= n; i++) L.insert(L.begin(), i);
+  if (!descending) {
+    for(int i = 1; i <= n; i++) L.push_back(i);
   } else {
-    for(int i = n; i >= 1; i--) L.insert(L.begin(), i);
+    for(int i = n; i >= 1; i--) L.push_back(i);
   }
 }
 
