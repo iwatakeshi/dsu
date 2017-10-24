@@ -1,4 +1,4 @@
-#include "bench.h"
+
 #include "commander.h"
 #include <fstream>
 #include <functional>
@@ -8,7 +8,8 @@
 #include <stdlib.h>
 #include <string>
 #include <vector>
-#include <chrono>
+#include <boost/timer.hpp>
+// using namespace boost::timer;
 
 void quicksort(long long int*, int, int, std::function<int(long long int*, int, int)>);
 int split(long long int*, int, int);
@@ -50,7 +51,6 @@ int main(int argc, char* argv[]) {
     std::stringstream line(input);
     long long int n;
     while (line >> n) {
-      printf("%lld\n", n);
       S.push_back(n);
     }
   }
@@ -63,15 +63,18 @@ int main(int argc, char* argv[]) {
   if (random) {
     if (!silent) printf("Running QuickSort (Random)\n");
     if (S.size() > 1) {
+      boost::timer t;
       quicksort(&S[0], 0, S.size() - 1, splitrand);
-      // if (!silent) std::cout << t << std::endl;
+      double elapsed_time = t.elapsed();
+      if (benchmark) std::cout << "Time(ms): " << elapsed_time << std::endl;
     }
   } else {
     if (!silent) printf("Running QuickSort\n");
     if (S.size() > 1) {
-      auto start = bench::start();
+      boost::timer t;
       quicksort(&S[0], 0, S.size() - 1, splitrand);
-      if (benchmark) std::cout << "Time(ms) : " << bench::measure(start, bench::end()) << std::endl;
+      double elapsed_time = t.elapsed();
+      if (benchmark) std::cout << "Time(ms): " << elapsed_time << std::endl;
     }
   }
 
