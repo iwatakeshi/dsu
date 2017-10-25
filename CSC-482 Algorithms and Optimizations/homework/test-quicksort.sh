@@ -8,11 +8,12 @@ echo $title >> quicksort-times.txt
 for trial in $(seq 1 10); do
   echo "Trial "$trial;
   echo "Trial "$trial >> quicksort-times.txt;
-  for power in $(seq 1 13); do
+  for power in $(seq 1 8); do
     let size=2**$power;
     let number=1000*$size;
     time_taken=$(./numgen.o $number -r | ./hw6-quicksort.o --silent --benchmark)
     echo -e "N:" $number, "\t"$time_taken >> quicksort-times.txt;
+    echo -e "N:" $number, "\ttime" $time_taken "\ttotal time" $total_time;
     total_time=$(bc <<< "scale=10;$total_time+$time_taken")
   done
 done
@@ -30,11 +31,12 @@ echo $title >> quicksort-times.txt
 for trial in $(seq 1 10); do
   echo "Trial "$trial;
   echo "Trial "$trial >> quicksort-times.txt;
-  for power in $(seq 1 13); do
+  for power in $(seq 1 8); do
     let size=2**$power;
     let number=1000*$size;
     time_taken=$(./numgen.o $number -r | ./hw6-quicksort.o --random --silent --benchmark)
     echo -e "N:" $number, "\t"$time_taken >> quicksort-times.txt;
+    echo -e "N:" $number, "\ttime" $time_taken "\ttotal time" $total_time;
     total_time=$(bc <<< "scale=10;$total_time+$time_taken")
   done
 done
@@ -53,11 +55,12 @@ echo $title >> quicksort-times.txt
 for trial in $(seq 1 10); do
   echo "Trial "$trial;
   echo "Trial "$trial >> quicksort-times.txt;
-  for power in $(seq 1 13); do
+  for power in $(seq 1 8); do
     let size=2**$power;
     let number=1000*$size;
     time_taken=$(./numgen.o $number -l | ./hw6-quicksort.o --silent --benchmark)
     echo -e "N:" $number, "\t"$time_taken >> quicksort-times.txt;
+    echo -e "N:" $number, "\ttime" $time_taken "\ttotal time" $total_time;
     total_time=$(bc <<< "scale=10;$total_time+$time_taken")
   done
 done
@@ -75,11 +78,12 @@ echo $title >> quicksort-times.txt
 for trial in $(seq 1 10); do
   echo "Trial "$trial;
   echo "Trial "$trial >> quicksort-times.txt;
-  for power in $(seq 1 13); do
+  for power in $(seq 1 8); do
     let size=2**$power;
     let number=1000*$size;
     time_taken=$(./numgen.o $number -l | ./hw6-quicksort.o --random --silent --benchmark)
     echo -e "N:" $number, "\t"$time_taken >> quicksort-times.txt;
+    echo -e "N:" $number, "\ttime" $time_taken "\ttotal time" $total_time;
     total_time=$(bc <<< "scale=10;$total_time+$time_taken")
   done
 done
@@ -97,11 +101,12 @@ echo $title >> quicksort-times.txt
 for trial in $(seq 1 10); do
   echo "Trial "$trial;
   echo "Trial "$trial >> quicksort-times.txt;
-  for power in $(seq 1 13); do
+  for power in $(seq 1 8); do
     let size=2**$power;
     let number=1000*$size;
     time_taken=$(./numgen.o $number -ld | ./hw6-quicksort.o --silent --benchmark)
     echo -e "N:" $number, "\t"$time_taken >> quicksort-times.txt;
+     echo -e "N:" $number, "\ttime" $time_taken "\ttotal time" $total_time;
     total_time=$(bc <<< "scale=10;$total_time+$time_taken")
   done
 done
@@ -119,11 +124,12 @@ echo $title >> quicksort-times.txt
 for trial in $(seq 1 10); do
   echo "Trial "$trial;
   echo "Trial "$trial >> quicksort-times.txt;
-  for power in $(seq 1 13); do
+  for power in $(seq 1 8); do
     let size=2**$power;
     let number=1000*$size;
     time_taken=$(./numgen.o $number -ld | ./hw6-quicksort.o --random --silent --benchmark)
     echo -e "N:" $number, "\t"$time_taken >> quicksort-times.txt;
+    echo -e "N:" $number, "\ttime" $time_taken "\ttotal time" $total_time;
     total_time=$(bc <<< "scale=10;$total_time+$time_taken")
   done
 done
@@ -141,13 +147,14 @@ echo $title >> quicksort-times.txt
 for trial in $(seq 1 10); do
   echo "Trial "$trial;
   echo "Trial "$trial >> quicksort-times.txt;
-  for power in $(seq 1 13); do
+  for power in $(seq 1 8); do
       let size=2**$power;
       let number=1000*$size;
       for p in $(seq -4 3); do
           shuffles=$(bc <<< "scale=4;((2^$p)*$number)");
           time_taken=$(./numgen.o $number -s ${shuffles%.*} | ./hw6-quicksort.o --silent --benchmark);
           echo -e "N:" $number, "\tS:" ${shuffles%.*}, "\t"$time_taken >> quicksort-times.txt;
+          echo -e "N:" $number, "\ttime" $time_taken "\ttotal time" $total_time;
           total_time=$(bc <<< "scale=10;$total_time+$time_taken")
         done
     done
@@ -166,13 +173,14 @@ echo $title >> quicksort-times.txt
 for trial in $(seq 1 10); do
   echo "Trial "$trial;
   echo "Trial "$trial >> quicksort-times.txt;
-  for power in $(seq 1 13); do
+  for power in $(seq 1 8); do
       let size=2**$power;
       let number=1000*$size;
       for p in $(seq -4 3); do
           shuffles=$(bc <<< "scale=4;((2^$p)*$number)");
           time_taken=$(./numgen.o $number -s ${shuffles%.*} | ./hw6-quicksort.o --random --silent --benchmark);
           echo -e "N:" $number, "\tS:" ${shuffles%.*}, "\t"$time_taken >> quicksort-times.txt;
+          echo -e "N:" $number, "\ttime" $time_taken "\ttotal time" $total_time;
           total_time=$(bc <<< "scale=10;$total_time+$time_taken")
         done
     done

@@ -3,10 +3,11 @@
 #include <random>
 #include <stdio.h>
 #include <vector>
+#include <numeric>
 
 void gen_random(long long int n);
-void gen_shuffle(std::vector<long long int> &L, int shuffles);
-void gen_list(std::vector<long long int> &L, long long int n, bool descending);
+void gen_shuffle(long long int n, int shuffles);
+void gen_list(long long int n, bool descending);
 bool isint(char*);
 long long int parseint(char *);
 void printv(std::vector<long long int> S);
@@ -16,7 +17,6 @@ int main(int argc, char* argv[]) {
   bool randomized = false, shuffled = false, listed = false, descending = false;
   long long int n = 0;
   long long int shuffles = 0;
-  std::vector<long long int> S;
   cmd_opt_value();
   cmd_opt("-r", "--random", false);
   cmd_opt("-s", "--shuffle", true);
@@ -65,12 +65,9 @@ int main(int argc, char* argv[]) {
     if (randomized) {
       gen_random(n);
     } else if(shuffled) {
-      gen_list(S, n, descending);
-      gen_shuffle(S, shuffles);
-      printv(S);
+      gen_shuffle(n, shuffles);
     } else if(listed) {
-      gen_list(S, n, descending);
-      printv(S);
+      gen_list(n, descending);
     }
   }
   return cmd_free();
@@ -86,22 +83,25 @@ void gen_random(long long int n) {
   }
 }
 
-void gen_shuffle(std::vector<long long int> &L, int shuffles) {
+void gen_shuffle(long long int n, int shuffles) {
+  std::vector<long long int> S(n);
+  std::iota (std::begin(S), std::end(S), 1);
   std::random_device rd;
   std::mt19937 mt(rd());
-  std::uniform_int_distribution<> dist(0, L.size() - 1);
+  std::uniform_int_distribution<> dist(0, n - 1);
   while (shuffles--) {
     long long int a = dist(mt);
     long long int b = dist(mt);
-    std::swap(L[a], L[b]);
+    std::swap(S[a], S[b]);
   }
+  printv(S);
 }
 
-void gen_list(std::vector<long long int> &L, long long int n, bool descending) {
+void gen_list(long long int n, bool descending) {
   if (!descending) {
-    for(int i = 1; i <= n; i++) L.push_back(i);
+    for(long long int i = 1; i <= n; i++) printf("%lld\n", i);
   } else {
-    for(int i = n; i >= 1; i--) L.push_back(i);
+    for(long long int i = n; i >= 1; i--) printf("%lld\n", i);
   }
 }
 

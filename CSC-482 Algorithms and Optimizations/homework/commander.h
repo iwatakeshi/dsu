@@ -115,8 +115,8 @@ static int cmd_update(struct node* n, int argc, char* argv[], int index) {
   } else
     // Just set it the index to argv[0]
     cmd_value_index = 0;
-  
-  // Remove the node so we won't have 
+
+  // Remove the node so we won't have
   // an endless loop.
   cmd_flags = remove_any(cmd_flags, n);
   // Return the option id
@@ -132,7 +132,7 @@ int cmd_parse(int argc, char* argv[]) {
       }
 
       if (argv[i][0] != '-') {
-        for(int k = 0; k < node_count(cmd_flags); k++) {
+        for (int k = 0; k < node_count(cmd_flags); k++) {
           n = search_by_id(cmd_flags, k);
           if (n != NULL && !(n->flagable) && n->valuable) {
             return cmd_update(n, argc, argv, i);
@@ -149,8 +149,6 @@ int cmd_parse(int argc, char* argv[]) {
   node_id_copy_reset();
   return -1;
 }
-
-
 
 /**
  * Linked List

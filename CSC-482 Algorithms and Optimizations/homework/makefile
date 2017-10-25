@@ -26,7 +26,7 @@ hw5-zero-triplet: hw5-zero-triplet.cpp
 	g++ -g -std=c++11 -I ./boost_1_65_1 hw5-zero-triplet.cpp -o hw5-zero-triplet.o
 
 hw6-quicksort: hw6-quicksort.cpp
-	g++ -g -std=c++14 -Wno-write-strings -I ./boost_1_65_1 hw6-quicksort.cpp -o hw6-quicksort.o -lboost_timer
+	g++ -g -std=c++14 -Wno-write-strings -I ./boost_1_65_1 hw6-quicksort.cpp -o hw6-quicksort.o -lboost_timer -lboost_system
 
 clean:
 	rm -f ./*.o

@@ -1,31 +1,31 @@
-
 #include "commander.h"
+#include <boost/chrono.hpp>
 #include <boost/timer/timer.hpp>
+#include <cmath>
 #include <fstream>
 #include <functional>
 #include <iostream>
+#include <numeric>
 #include <sstream>
 #include <stdio.h>
-#include <stdlib.h>
 #include <string>
 #include <vector>
-// using boost::timer::cpu_timer;
-// using boost::timer::cpu_times;
-// using boost::timer::nanosecond_type;
-using boost::timer::auto_cpu_timer;
+#include <random>
 
-void quicksort(long long int*, int, int, std::function<int(long long int*, int, int)>);
-int split(long long int*, int, int);
-int splitrand(long long int*, int, int);
-void printv(std::vector<long long int>);
+// typedef long long long long;
+std::random_device rd;
+std::mt19937 gen(rd());
+
+void quicksort(std::vector<long long>&, long long, long long);
+void quicksort_rand(std::vector<long long>&, long long, long long);
+long long split(std::vector<long long>&, long long, long long);
+long long split_rand(std::vector<long long>&, long long, long long);
+void printv(std::vector<long long>);
 
 int main(int argc, char* argv[]) {
 
   int option = 0;
   bool silent = false, random = false, readfile = false, benchmark = false;
-  ;
-  std::vector<long long int> S;
-  std::string input;
   std::ifstream file;
 
   cmd_opt_value();
@@ -34,10 +34,10 @@ int main(int argc, char* argv[]) {
   cmd_opt("-b", "--benchmark", false);
   while ((option = cmd_parse(argc, argv)) != -1) {
     switch (option) {
-      break;
     case 1:
       readfile = true;
       file.open(argv[cmd_val_index()], std::ifstream::in);
+      break;
     case 2:
       silent = true;
       break;
@@ -46,16 +46,23 @@ int main(int argc, char* argv[]) {
       break;
     case 4:
       benchmark = true;
+      break;
+    case 5:
+      break;
     default:
       break;
     }
   }
 
+  std::vector<long long> S;
+  std::string input;
+  long long length = 0;
   while (std::getline(readfile ? file : std::cin, input)) {
     std::stringstream line(input);
-    long long int n;
+    long long n;
     while (line >> n) {
       S.push_back(n);
+      length++;
     }
   }
 
@@ -65,16 +72,12 @@ int main(int argc, char* argv[]) {
   }
   if (random) {
     if (!silent) printf("Running QuickSort (Random)\n");
-    if (S.size() > 1) {
-      auto_cpu_timer timer(3, "%w\n");
-      quicksort(&S[0], 0, S.size() - 1, splitrand);
-    }
+    boost::timer::auto_cpu_timer timer("%w\n");
+    quicksort_rand(S, 0, length - 1);
   } else {
     if (!silent) printf("Running QuickSort\n");
-    if (S.size() > 1) {
-      auto_cpu_timer timer(3, "%w\n");
-      quicksort(&S[0], 0, S.size() - 1, split);
-    }
+    boost::timer::auto_cpu_timer timer("%w\n");
+    quicksort(S, 0, length - 1);
   }
 
   if (!silent) printv(S);
@@ -82,43 +85,46 @@ int main(int argc, char* argv[]) {
   return cmd_free();
 }
 
-void quicksort(long long int* S, int a, int b, std::function<int(long long int* S, int a, int b)> splitter) {
+/* Quicksort functions */
+
+void quicksort(std::vector<long long>& S, long long a, long long b) {
   if (a >= b) return;
-  int index = splitter(S, a, b);
-  quicksort(S, a, index - 1, splitter);
-  quicksort(S, index + 1, b, splitter);
+  long long left = split(S, a, b);
+  quicksort(S, a, left - 1);
+  quicksort(S, left + 1, b);
 }
 
-int split(long long int* S, int a, int b) {
-  int pivot = S[b];
-  int index = a;
-  for (int i = a; i < b; i++) {
-    if (S[i] <= pivot) {
-      std::swap(S[i], S[index]);
-      index++;
-    }
+void quicksort_rand(std::vector<long long>& S, long long a, long long b) {
+  if (a >= b) return;
+  long long left = split_rand(S, a, b);
+  quicksort_rand(S, a, left - 1);
+  quicksort_rand(S, left + 1, b);
+}
+
+/* Split functions */
+
+long long split(std::vector<long long>& S, long long a, long long b) {
+  long long p = S[b];
+  long long l = a;
+  long long r = b - 1;
+  while (l <= r) {
+    while (l <= r && S[l] <= p)
+      l++;
+    while (r >= l && S[r] >= p)
+      r--;
+    if (l < r) std::swap(S[l], S[r]);
   }
-  std::swap(S[index], S[b]);
-  return index;
+  std::swap(S[l], S[b]);
+  return l;
 }
 
-int splitrand(long long int* S, int a, int b) {
-  srand(time(NULL));
-  int r = a + rand() % (b - a + 1);
-  std::swap(S[r], S[b]);
-  int pivot = S[b];
-  int index = a;
-  for (int i = a; i < b; i++) {
-    if (S[i] <= pivot) {
-      std::swap(S[i], S[index]);
-      index++;
-    }
-  }
-  std::swap(S[index], S[b]);
-  return index;
+long long split_rand(std::vector<long long>& S, long long a, long long b) {
+  std::uniform_int_distribution<long long> dist(a, b);
+  std::swap(S[dist(gen)], S[b]);
+  return split(S, a, b);
 }
 
-void printv(std::vector<long long int> S) {
+void printv(std::vector<long long> S) {
   printf("[ ");
   for (auto a : S) {
     printf("%lld ", a);
