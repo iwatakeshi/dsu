@@ -30,8 +30,6 @@ qs_random_random = [
 
 qs_random_random_avg = sum(qs_random_random(1:8, 2:11), 2) ./ 10;
 
-plot(qs_random(:,1), qs_random_avg, '-o', qs_random_random(:,1), qs_random_random_avg, '-o');
-
 % Quicksort (N: Ascending) 
 
 qs_ascending = [
@@ -63,8 +61,6 @@ qs_ascending_random = [
 ];
 
 qs_ascending_random_avg = sum(qs_ascending_random(1:8, 2:11), 2) ./ 10;
-
-plot(qs_ascending(:,1), qs_ascending_avg, '-o', qs_ascending_random(:,1), qs_ascending_random_avg, '-o');
 
 % Quicksort (N: Descending)
 
@@ -98,8 +94,6 @@ qs_descending_random = [
 
 qs_descending_random_avg = sum(qs_descending_random(1:8, 2:11), 2) ./ 10;
 
-plot(qs_descending(:,1), qs_descending_avg, '-o', qs_descending_random(:,1), qs_descending_random_avg, '-o');
-
 % Quicksort (N: Shuffle)
 
 qs_shuffle = [
@@ -132,30 +126,41 @@ qs_shuffle_random = [
 
 qs_shuffle_random_avg = sum(qs_shuffle_random(1:8, 2:11), 2) ./ 10;
 
-plot(qs_shuffle(:,1), qs_shuffle_avg, qs_shuffle_random(:,1), qs_shuffle_random_avg);
 
-% plot all non-random quicksorts
-figure(1);
+% (A) plot all non-random quicksorts
+figure();
 plot(qs_random(:,1), qs_random_avg, '-o', ...
   qs_ascending(:,1), qs_ascending_avg, '-o', ...
-  qs_descending(:,1), qs_descending_avg);
+  qs_descending(:,1), qs_descending_avg, '-o');
 
-title('Quicksort');
+title('Quicksort (Last)');
 xlabel('Size (N)');
-ylabel('Time (T)');
+ylabel('Time (seconds)');
 legend('Random', 'Ascending', 'Descending', 'Location', 'southeast');
 set(gca, 'xtick', qs_random(:,1));
 set(gca, 'xscale', 'log');
 
-% plot all random quicksorts
-figure(2);
+% (B) plot all random quicksorts
+figure();
 hFit = plot(qs_random_random(:,1), qs_random_random_avg, '-o', ...
   qs_ascending_random(:,1), qs_ascending_random_avg, '-o', ...
   qs_descending_random(:,1), qs_descending_random_avg, '-o');
 
 title('Quicksort (Random)');
 xlabel('Size (N)');
-ylabel('Time (T)');
+ylabel('Time (seconds)');
 legend('Random', 'Ascending', 'Descending', 'Location', 'southeast');
 set(gca, 'xtick', qs_random_random(:,1));
 set(gca, 'xscale', 'log');
+
+% (C) plot quicksort with shuffled data
+figure();
+plot(qs_shuffle(:,1), qs_shuffle_avg, '-o', ...
+  qs_shuffle_random(:,1), qs_shuffle_random_avg, '-o');
+title('Quicksort (Last vs Random)');
+xlabel('Shuffles (S)');
+ylabel('Time (seconds)');
+legend('Last', 'Random', 'Location', 'southeast');
+set(gca, 'xtick', qs_shuffle(:,1));
+set(gca, 'xscale', 'log');
+
