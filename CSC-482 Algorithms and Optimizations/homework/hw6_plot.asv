@@ -135,27 +135,20 @@ qs_shuffle_random_avg = sum(qs_shuffle_random(1:8, 2:11), 2) ./ 10;
 plot(qs_shuffle(:,1), qs_shuffle_avg, qs_shuffle_random(:,1), qs_shuffle_random_avg);
 
 % plot all non-random quicksorts
-figure(1);
-plot(qs_random(:,1), qs_random_avg, '-o', ...
-  qs_ascending(:,1), qs_ascending_avg, '-o', ...
-  qs_descending(:,1), qs_descending_avg);
-
-title('Quicksort');
-xlabel('Size (N)');
-ylabel('Time (T)');
-legend('Random', 'Ascending', 'Descending', 'Location', 'southeast');
-set(gca, 'xtick', qs_random(:,1));
-set(gca, 'xscale', 'log');
+% plot(qs_random(:,1), qs_random_avg, '-o', ...
+%   qs_ascending(:,1), qs_ascending_avg, '-o', ...
+%   qs_descending(:,1), qs_descending_avg, '-o', ...
+%   qs_shuffle(:,1), qs_shuffle_avg, '-o');
 
 % plot all random quicksorts
-figure(2);
+% figure('Units', 'pixels');
 hFit = plot(qs_random_random(:,1), qs_random_random_avg, '-o', ...
   qs_ascending_random(:,1), qs_ascending_random_avg, '-o', ...
-  qs_descending_random(:,1), qs_descending_random_avg, '-o');
+  qs_descending_random(:,1), qs_descending_random_avg, '-o', ...
+  qs_shuffle_random(:,1), qs_shuffle_random_avg, '-o');
 
 title('Quicksort (Random)');
-xlabel('Size (N)');
-ylabel('Time (T)');
-legend('Random', 'Ascending', 'Descending', 'Location', 'southeast');
-set(gca, 'xtick', qs_random_random(:,1));
-set(gca, 'xscale', 'log');
+xlabel('Data (N)')
+
+% set(gca,'XTick',0:2048000);
+% set(gca,'YTick',0:1000);
