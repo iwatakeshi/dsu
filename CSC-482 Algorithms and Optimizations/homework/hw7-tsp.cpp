@@ -25,7 +25,7 @@ class TSP {
   Graph graph;
   TSP(Graph* graph) {
     this->graph = *graph;
-    char letters[26] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+    char letters[26] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
     std::copy(std::begin(letters), std::end(letters), std::begin(alpha));
   };
   // A non-recursive approach in order to avoid confusion
@@ -84,7 +84,22 @@ class TSP {
   }
 };
 
-int main() {
+int main(int argc, char* argv[]) {
+  //   // Expect N
+  //   cmd_opt_value();
+  //   cmd_opt("-b", "--benchmark", false);
+  //   int option;
+  //   int N = 0;
+  //   while ((option = cmd_parse(argc, argv)) != -1) {
+  //     switch (option) {
+  //     case 1:
+  //       N = atoi(argv[cmd_val_index()]);
+  //       break;
+  //     default:
+  //       break;
+  //     }
+  //   }
+  //   printf("N: %d\n", N);
   clock_t start, stop;
   srand(time(0));
 
@@ -107,7 +122,6 @@ int main() {
   // freem(G, n);
   return 0;
 }
-
 
 // void sortedges(Edge* edges[], int n) {
 //   for (int i = 0; i < n - 1; i++) {
@@ -177,42 +191,4 @@ int main() {
 //   }
 
 //   return solution;
-// }
-
-// int main(int argc, char* argv[]) {
-//   // Expect N
-//   cmd_opt_value();
-//   cmd_opt("-b", "--benchmark", false);
-//   int option;
-//   int N = 0;
-//   while ((option = cmd_parse(argc, argv)) != -1) {
-//     switch (option) {
-//     case 1:
-//       N = atoi(argv[cmd_val_index()]);
-//       break;
-//     default:
-//       break;
-//     }
-//   }
-//   printf("N: %d\n", N);
-//   std::vector<std::vector<long long>> M(N, std::vector<long long>(N, 0));
-
-//   std::random_device rd;
-//   std::mt19937 mt(rd());
-//   std::uniform_int_distribution<> dist(0, 1);
-
-//   for (int i = 0; i < N; i++) {
-//     for (int j = 0; j < N; j++) {
-//       M[i][j] = dist(mt);
-//     }
-//   }
-
-//   for (int i = 0; i < N; i++) {
-//     for (int j = 0; j < N; j++) {
-//       printf("%lld ", M[i][j]);
-//     }
-//     printf("\n");
-//   }
-
-//   return cmd_free();
 // }
