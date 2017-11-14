@@ -55,6 +55,7 @@
     "valarray": "cpp",
     "*.ipp": "cpp",
     "scoped_allocator": "cpp",
-    "algorithm": "cpp"
+    "algorithm": "cpp",
+    "rope": "cpp"
   }
 }
