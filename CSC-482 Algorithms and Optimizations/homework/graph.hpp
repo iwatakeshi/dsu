@@ -54,6 +54,10 @@ class Graph {
     return edges;
   }
 
+  int ** adjacency_matrix() {
+    return graph;
+  }
+
   // Graph& operator=(Graph& other) {
   //   _size = other.size();
   //   Graph temp(_size);
