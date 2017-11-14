@@ -13,9 +13,9 @@ class Graph {
   public:
   Graph(){};
 
-  Graph(int n) {
-    _size = n;
-    graph = (int**)callocm(n, n, sizeof(int*), sizeof(int));
+  Graph(int size) {
+    _size = size;
+    graph = (int**)callocm(size, size, sizeof(int*), sizeof(int));
   };
   
   void print() {
@@ -32,10 +32,10 @@ class Graph {
       graph[w][v] = weight;
     }
   }
-  int getEdgeWeight(int v, int w) {
+  int getEdgeWeight(const int v, const int w) {
     return graph[v][w];
   }
-  bool hasEdge(int v, int w) {
+  bool hasEdge(const int v, const int w) {
     return graph[v][w] > 0;
   }
   void removeEdge(int v, int w) {
@@ -44,7 +44,7 @@ class Graph {
   std::vector<Edge> getEdges() {
     std::vector<Edge> edges;
     for (int i = 0; i < _size; i++) {
-      for (int j = 0; _size; j++) {
+      for (int j = 0; j < _size; j++) {
         if (hasEdge(i, j)) {
           Edge edge(i, j, graph[i][j]);
           edges.push_back(edge);
