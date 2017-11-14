@@ -89,16 +89,16 @@ int main(int argc, char* argv[]) {
 
 void quicksort(std::vector<long long>& S, long long a, long long b) {
   if (a >= b) return;
-  long long left = split(S, a, b);
-  quicksort(S, a, left - 1);
-  quicksort(S, left + 1, b);
+  long long p = split(S, a, b);
+  quicksort(S, a, p - 1);
+  quicksort(S, p + 1, b);
 }
 
 void quicksort_rand(std::vector<long long>& S, long long a, long long b) {
   if (a >= b) return;
-  long long left = split_rand(S, a, b);
-  quicksort_rand(S, a, left - 1);
-  quicksort_rand(S, left + 1, b);
+  long long p = split_rand(S, a, b);
+  quicksort_rand(S, a, p - 1);
+  quicksort_rand(S, p + 1, b);
 }
 
 /* Split functions */

@@ -127,13 +127,13 @@ qs_shuffle_random = [
 qs_shuffle_random_avg = sum(qs_shuffle_random(1:8, 2:11), 2) ./ 10;
 
 
-% (A) plot all non-random quicksorts
+% (A) plot all deterministic quicksorts
 figure();
 plot(qs_random(:,1), qs_random_avg, '-o', ...
   qs_ascending(:,1), qs_ascending_avg, '-o', ...
   qs_descending(:,1), qs_descending_avg, '-o');
 
-title('Quicksort (Last)');
+title('Quicksort (Deterministic)');
 xlabel('Size (N)');
 ylabel('Time (seconds)');
 legend('Random', 'Ascending', 'Descending', 'Location', 'southeast');
@@ -157,7 +157,7 @@ set(gca, 'xscale', 'log');
 figure();
 plot(qs_shuffle(:,1), qs_shuffle_avg, '-o', ...
   qs_shuffle_random(:,1), qs_shuffle_random_avg, '-o');
-title('Quicksort (Last vs Random)');
+title('Quicksort (Deterministic vs Random)');
 xlabel('Shuffles (S)');
 ylabel('Time (seconds)');
 legend('Last', 'Random', 'Location', 'southeast');
