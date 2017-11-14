@@ -1,3 +1,5 @@
+#ifndef MATRIX_H
+#define MATRIX_H
 /*
   Author: Takeshi Iwana
   License: MIT
@@ -145,3 +147,5 @@ void freem(long long** a, unsigned int n) {
   }
   free(a);
 }
+
+#endif
