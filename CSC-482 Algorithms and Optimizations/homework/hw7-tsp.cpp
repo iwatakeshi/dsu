@@ -14,6 +14,7 @@
 #include <ctime>
 #include <iostream>
 #include <vector>
+#include <stack>
 
 using namespace std;
 
@@ -30,7 +31,7 @@ class DisjointSet {
     rank = new int[size];
     // Initially, all vertices are in
     // different sets and have rank 0.
-    for (int i = 0; i <= size; i++) {
+    for (int i = 0; i < size; i++) {
       rank[i] = 0;
       //every element is parent of itself
       parent[i] = i;
@@ -38,6 +39,10 @@ class DisjointSet {
   };
 
   int find(int p) {
+    // for(int i = 0; i < _size; i++) {
+    //   printf("%d ", parent[i]);
+    // }
+    // printf("\n");
     while (p != parent[p]) {
       parent[p] = parent[parent[p]]; // path compression by halving
       p = parent[p];
@@ -90,7 +95,6 @@ class TSP {
     int best_distance = std::numeric_limits<int>::max();
     std::vector<int> best_tour;
     std::vector<int> tour(graph.size());
-    graph.print();
     // Create tour
     for (int i = 0; i < tour.size(); i++) {
       tour[i] = i;
@@ -134,11 +138,16 @@ class TSP {
    *  1. does not cause a vertex to have degree three or more
    *  2. does not form a cycle, unless the number of selected edges equals the number of vertices in the graph.
    */
-  // A greedy approach using Kruskal's Algorithm
   void greedy() {
     int best_distance = 0;
-    vector<int> mst;
-    auto edges = Edge::toQueue(graph.getEdges());
+    bool visited[graph.size()];
+    vector<Edge> mst;
+    vector<int> tour;
+    vector<int> adj[graph.size()];
+    stack<int> to_visit;
+    to_visit.push(0);
+
+    auto edges = graph.getEdges();
     // Comparator
     auto comparator = [](Edge s, Edge t) { return s.weight() < t.weight(); };
     // Sort the edges
@@ -149,32 +158,50 @@ class TSP {
     // }
 
     // Create a disjoint set
-    DisjointSet ds(graph.size());
+    DisjointSet forest(graph.size());
     // mst.push_back(0);
-    // Iterate through all sorted edges
-    while (!edges.empty() && mst.size() < graph.size() - 1) {
-      Edge e = edges.front();
-      int v = e.either();
-      int w = e.other(v);
-      edges.pop_front();
-      if (!ds.connected(v, w)) {
-        // printf("connected\n");
-        ds.join(v, w);
-        mst.push_back(v);
-        mst.push_back(w);
-        best_distance += e.weight();
+    
+    int cost = 0;
+    for(int i = 0; best_distance < graph.size() - 1; i++) {
+      int v = edges[i].either();
+      int w = edges[i].other(v);
+      if (!forest.connected(v, w)) {
+        mst.push_back(edges[i]);
+        forest.join(v, w);
+        best_distance++;
+        cost += edges[i].weight();
+        // printf("(%d, %d):%d\n", v, w, edges[i].weight());
       }
     }
 
-    printf("Tour:\n");
-    for (int i = 0; i < mst.size(); i++) {
-      printf("%c ", alpha[mst[i]]);
-      if (i != mst.size() - 1) {
-        printf("--> ");
+    for(int i = 0; i < mst.size(); i++) {
+      int v = mst[i].either();
+      int w = mst[i].other(v);
+      adj[v].push_back(w);
+      adj[w].push_back(v);
+    }
+
+    printf("Tour: ");
+    // Use BFS to find the shortest path within minimum spanning tree
+    while(!to_visit.empty()) {
+      int top = to_visit.top();
+      to_visit.pop();
+      visited[top] = true;
+      tour.push_back(top);
+      for (int i = 0; i < adj[top].size(); i++) {
+        int current = adj[top][i];
+        if (visited[current] == false) {
+          to_visit.push(current);
+        }
       }
     }
+    tour.push_back(0);
+    for (int i = 0; i < tour.size(); i++) {
+      printf("%c ", alpha[tour[i]]);
+      if (i < tour.size() - 1) printf("--> ");
+    }
     printf("\n");
-    printf("Weight: %d\n", best_distance);
+    printf("Weight: %d\n", cost);
   }
 };
 
@@ -197,22 +224,23 @@ int main(int argc, char* argv[]) {
   clock_t start, stop;
   srand(time(0));
 
-  int n = 4, low = 1, high = 10, root = 0;
+  int n = 12, low = 1, high = 10, root = 0;
 
   Graph graph(n);
 
   graph.randomize(low, high);
-  // graph.print();
+  graph.print();
 
   TSP tsp(&graph);
+  printf("\nBrute:\n");
+  start = clock();
   tsp.brute();
-  printf("\nGreedy (Kruskal's Algorithm):\n");
+  stop = clock();
+  printf("Time: %f\n", (stop - start)/ (double)CLOCKS_PER_SEC);
+  printf("\nGreedy:\n");
+  start = clock();
   tsp.greedy();
-
-  // // start = clock();
-  // greedySolution = TSPGreedy(n, root, G);
-  // // stop = clock();
-  // printsol(n, root, greedySolution, (stop - start) / (double)CLOCKS_PER_SEC);
-  // freem(G, n);
+  stop = clock();
+  printf("Time: %f\n", (stop - start)/ (double)CLOCKS_PER_SEC);
   return 0;
 }
