@@ -105,10 +105,10 @@ class TSP {
 
   tuple<int, vector<int>> montecarlo() {
     int distance = 0;
-    vector<int> tour(graph.size());
+    vector<int> tour(graph.size() - 1);
     iota(tour.begin(), tour.end(), 1);
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-    auto uniform_shuffle = [](vector<int> &tour, unsigned seed) {
+    auto uniform_shuffle = [](vector<int>& tour, unsigned seed) {
       shuffle(tour.begin(), tour.end(), std::default_random_engine(seed));
     };
 
@@ -127,9 +127,7 @@ class TSP {
     }
     printf("\n");
 
-    
-
-    for(int i = 0; i < tour.size() - 1; i++) {
+    for (int i = 0; i < tour.size() - 1; i++) {
       distance += graph.edgeWeight(tour[i], tour[i + 1]);
     }
 

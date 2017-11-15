@@ -5,6 +5,7 @@
   License: MIT
 */
 #include <cstdlib>
+#include <stdio.h>
 
 /* Matrix helper functions */
 
