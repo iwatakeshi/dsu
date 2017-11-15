@@ -105,9 +105,9 @@ class TSP {
     while (std::next_permutation(tour.begin() + 1, tour.end())) {
 
       // Calculate the distance
-      int current_distance = graph.getEdgeWeight(tour[0], tour[tour.size() - 1]);
+      int current_distance = graph.edgeWeight(tour[0], tour[tour.size() - 1]);
       for (int i = 1; i < tour.size(); i++) {
-        current_distance += graph.getEdgeWeight(tour[i - 1], tour[i]);
+        current_distance += graph.edgeWeight(tour[i - 1], tour[i]);
       }
 
       // Set the best distance and tour when found
@@ -132,6 +132,8 @@ class TSP {
   }
 
   void greedy() {
+    graph.print();
+
     int distance = 0;
     std::vector<int> visited;
     std::vector<int> tour;
@@ -139,35 +141,43 @@ class TSP {
     int current = 0;
     int next;
     tour.push_back(current);
-    graph.print();
-    int size = graph.size();
 
-    for (int i = 0; i < size; i++) {
-      // The vertex has been visited
-      visited.push_back(current);
+    int size = graph.size();
+    visited.push_back(current);
+
+    // Repeat until all vertices are visisted
+    while (visited.size() != size) {
       int min = std::numeric_limits<int>::max();
-      // Find nearest vertex
+      // Find nearest vertex (loop over vertices)
       for (int j = 0; j < size; j++) {
-        if (j != current && std::find(visited.begin(), visited.end(), j) == visited.end()) {
-          auto edge_weight = graph.getEdgeWeight(current, j);
-          // Vertex has not been visited and it is not the current one
-          if (min >= edge_weight) {
-            min = edge_weight;
+        // printf("current: %c, j: %c\n", alpha[current], alpha[j]);
+        // Vertex not visited
+        if (std::find(visited.begin(), visited.end(), j) == visited.end()) {
+          auto weight = graph.edgeWeight(current, j);
+          if (min > weight) {
+            // printf("(Not Visited) current: %c, j: %c, weight: %d\n", alpha[current], alpha[j], weight);
+            min = weight;
             next = j;
           }
         }
       }
-      // Add the vertex to the tour
-      tour.push_back(next);
-      // Calculate the distance
-      distance += graph.getEdgeWeight(current, next);
-      // Set the current vertex
+
+      // Get the weight of the current -> next
+      distance += graph.edgeWeight(current, next);
       current = next;
+      // The vertex has been visited
+      visited.push_back(current);
+      // Add the vertex to the tour
+      tour.push_back(current);
     }
+    // Get the final distance from last -> home
+    distance += graph.edgeWeight(tour[tour.size() - 1], 0);
+    // Add 0 as the final destination
+    tour.push_back(0);
 
     printf("\nTour: ");
     for (int i = 0; i < tour.size(); i++) {
-      printf("%d ", tour[i]);
+      printf("%c ", alpha[tour[i]]);
       if (i != tour.size() - 1) {
         printf("--> ");
       }

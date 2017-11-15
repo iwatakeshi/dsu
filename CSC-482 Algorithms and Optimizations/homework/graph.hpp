@@ -32,7 +32,7 @@ class Graph {
       graph[w][v] = weight;
     }
   }
-  int getEdgeWeight(const int v, const int w) {
+  int edgeWeight(const int v, const int w) {
     return graph[v][w];
   }
   bool hasEdge(const int v, const int w) {
