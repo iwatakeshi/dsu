@@ -173,35 +173,36 @@ class TSP {
         // printf("(%d, %d):%d\n", v, w, edges[i].weight());
       }
     }
+    Graph g(mst);
+    g.print();
+    // for(int i = 0; i < mst.size(); i++) {
+    //   int v = mst[i].either();
+    //   int w = mst[i].other(v);
+    //   adj[v].push_back(w);
+    //   adj[w].push_back(v);
+    // }
 
-    for(int i = 0; i < mst.size(); i++) {
-      int v = mst[i].either();
-      int w = mst[i].other(v);
-      adj[v].push_back(w);
-      adj[w].push_back(v);
-    }
-
-    printf("Tour: ");
-    // Use BFS to find the shortest path within minimum spanning tree
-    while(!to_visit.empty()) {
-      int top = to_visit.top();
-      to_visit.pop();
-      visited[top] = true;
-      tour.push_back(top);
-      for (int i = 0; i < adj[top].size(); i++) {
-        int current = adj[top][i];
-        if (visited[current] == false) {
-          to_visit.push(current);
-        }
-      }
-    }
-    tour.push_back(0);
-    for (int i = 0; i < tour.size(); i++) {
-      printf("%c ", alpha[tour[i]]);
-      if (i < tour.size() - 1) printf("--> ");
-    }
-    printf("\n");
-    printf("Weight: %d\n", cost);
+    // printf("Tour: ");
+    // // Use BFS to find the shortest path within minimum spanning tree
+    // while(!to_visit.empty()) {
+    //   int top = to_visit.top();
+    //   to_visit.pop();
+    //   visited[top] = true;
+    //   tour.push_back(top);
+    //   for (int i = 0; i < adj[top].size(); i++) {
+    //     int current = adj[top][i];
+    //     if (visited[current] == false) {
+    //       to_visit.push(current);
+    //     }
+    //   }
+    // }
+    // tour.push_back(0);
+    // for (int i = 0; i < tour.size(); i++) {
+    //   printf("%c ", alpha[tour[i]]);
+    //   if (i < tour.size() - 1) printf("--> ");
+    // }
+    // printf("\n");
+    // printf("Weight: %d\n", cost);
   }
 };
 
@@ -224,7 +225,7 @@ int main(int argc, char* argv[]) {
   clock_t start, stop;
   srand(time(0));
 
-  int n = 12, low = 1, high = 10, root = 0;
+  int n = 4, low = 1, high = 10, root = 0;
 
   Graph graph(n);
 
