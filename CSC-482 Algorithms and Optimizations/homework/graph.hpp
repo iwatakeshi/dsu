@@ -17,6 +17,10 @@ class Graph {
     _size = size;
     graph = (int**)callocm(size, size, sizeof(int*), sizeof(int));
   };
+  Graph(int ** graph, int size) {
+    _size = size;
+    this->graph = graph;
+  }
   
   void print() {
     printm(graph, _size, _size);

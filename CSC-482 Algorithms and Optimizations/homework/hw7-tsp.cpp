@@ -27,7 +27,6 @@ class TSP {
 
   // A non-recursive approach in order to avoid confusion
   tuple<int, vector<int>> brute() {
-    graph.print();
     int best_distance = numeric_limits<int>::max();
     vector<int> best_tour;
     vector<int> tour(graph.size());
@@ -58,8 +57,6 @@ class TSP {
   }
 
   tuple<int, vector<int>> greedy() {
-    graph.print();
-
     int distance = 0;
     std::vector<int> visited;
     std::vector<int> tour;
@@ -76,12 +73,10 @@ class TSP {
       int min = std::numeric_limits<int>::max();
       // Find nearest vertex (loop over vertices)
       for (int j = 0; j < size; j++) {
-        // printf("current: %c, j: %c\n", alpha[current], alpha[j]);
         // Vertex not visited
         if (std::find(visited.begin(), visited.end(), j) == visited.end()) {
           auto weight = graph.edgeWeight(current, j);
           if (min > weight) {
-            // printf("(Not Visited) current: %c, j: %c, weight: %d\n", alpha[current], alpha[j], weight);
             min = weight;
             next = j;
           }
@@ -103,35 +98,46 @@ class TSP {
     return make_tuple(distance, tour);
   }
 
-  tuple<int, vector<int>> montecarlo() {
-    int distance = 0;
-    vector<int> tour(graph.size() - 1);
+  tuple<int, vector<int>> montecarlo(const int k) {
+    int best_distance = std::numeric_limits<int>::max();
+    vector<int> tour(graph.size() - 1), best_tour;
     iota(tour.begin(), tour.end(), 1);
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    /* Shuffles the vector */
     auto uniform_shuffle = [](vector<int>& tour, unsigned seed) {
       shuffle(tour.begin(), tour.end(), std::default_random_engine(seed));
     };
+    /* Calculate the tour's distance (total weight)*/
+    auto tour_distance = [](Graph &graph, vector<int>& tour) {
+      int distance = 0;
+      // Calculate the weight from 0 --> next
+      distance += graph.edgeWeight(0, tour[0]);
+      // Calculate the weight from next --> 0 (final edge)
+      distance += graph.edgeWeight(tour[tour.size() - 1], 0);
 
-    printf("Before:\n");
+      // Calculate the weight
+      for (int i = 0; i < tour.size() - 1; i++) {
+        distance += graph.edgeWeight(tour[i], tour[i + 1]);
+      }
+      return distance;
+    };
 
-    for (auto i : tour) {
-      printf("%d ", i);
+    int counter = 0;
+    while (counter++ < k) {
+      // Shuffle the tour
+      uniform_shuffle(tour, seed);
+      // Get the distance
+      int distance = tour_distance(graph, tour);
+      if (best_distance > distance) {
+        best_distance = distance;
+        best_tour = tour;
+      }
     }
-    printf("\n");
-    uniform_shuffle(tour, seed);
-    tour.insert(tour.begin(), 0);
-    tour.push_back(0);
-    printf("After:\n");
-    for (auto i : tour) {
-      printf("%d ", i);
-    }
-    printf("\n");
-
-    for (int i = 0; i < tour.size() - 1; i++) {
-      distance += graph.edgeWeight(tour[i], tour[i + 1]);
-    }
-
-    return make_tuple(distance, tour);
+    // Insert the source
+    best_tour.insert(best_tour.begin(), 0);
+    // Insert the destination
+    best_tour.push_back(0);
+    return make_tuple(best_distance, best_tour);
   }
 
   static void print(tuple<int, vector<int>> solution) {
@@ -180,20 +186,24 @@ int main(int argc, char* argv[]) {
   graph.print();
 
   TSP tsp(&graph);
+
   printf("\nBrute:\n");
   start = clock();
   TSP::print(tsp.brute());
   stop = clock();
   printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
+
   printf("\nGreedy:\n");
   start = clock();
   TSP::print(tsp.greedy());
   stop = clock();
   printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
 
+  printf("\nMonte Carlo:\n");
   start = clock();
-  TSP::print(tsp.montecarlo());
+  int iterations = 10;
+  TSP::print(tsp.montecarlo(iterations));
   stop = clock();
-  printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
+  printf("Time: %f\n",((stop - start) / (double)CLOCKS_PER_SEC) / iterations);
   return 0;
 }
