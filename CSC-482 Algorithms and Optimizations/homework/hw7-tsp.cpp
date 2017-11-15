@@ -13,8 +13,8 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-#include <vector>
 #include <stack>
+#include <vector>
 
 using namespace std;
 
@@ -89,9 +89,10 @@ class TSP {
     };
     std::copy(std::begin(letters), std::end(letters), std::begin(alpha));
   };
- 
+
   // A non-recursive approach in order to avoid confusion
   void brute() {
+    graph.print();
     int best_distance = std::numeric_limits<int>::max();
     std::vector<int> best_tour;
     std::vector<int> tour(graph.size());
@@ -130,79 +131,49 @@ class TSP {
     printf("Weight: %d\n", best_distance);
   }
 
-   /**
-   * Based on Kruskal's algorithm. It only gives a suboptimal solution in general.
-   * Works for complete graphs. May not work for a graph that is not complete.
-   * As in Kruskal's algorithm, first sort the edges in the increasing order of weights.
-   * Starting with the least cost edge, look at the edges one by one and select an edge only if the edge, together with already selected edges,
-   *  1. does not cause a vertex to have degree three or more
-   *  2. does not form a cycle, unless the number of selected edges equals the number of vertices in the graph.
-   */
   void greedy() {
-    int best_distance = 0;
-    bool visited[graph.size()];
-    vector<Edge> mst;
-    vector<int> tour;
-    vector<int> adj[graph.size()];
-    stack<int> to_visit;
-    to_visit.push(0);
+    int distance = 0;
+    std::vector<int> visited;
+    std::vector<int> tour;
+    // Current vertex will start from vertex 0
+    int current = 0;
+    int next;
+    tour.push_back(current);
+    graph.print();
+    int size = graph.size();
 
-    auto edges = graph.getEdges();
-    // Comparator
-    auto comparator = [](Edge s, Edge t) { return s.weight() < t.weight(); };
-    // Sort the edges
-    std::sort(edges.begin(), edges.end(), comparator);
+    for (int i = 0; i < size; i++) {
+      // The vertex has been visited
+      visited.push_back(current);
+      int min = std::numeric_limits<int>::max();
+      // Find nearest vertex
+      for (int j = 0; j < size; j++) {
+        if (j != current && std::find(visited.begin(), visited.end(), j) == visited.end()) {
+          auto edge_weight = graph.getEdgeWeight(current, j);
+          // Vertex has not been visited and it is not the current one
+          if (min >= edge_weight) {
+            min = edge_weight;
+            next = j;
+          }
+        }
+      }
+      // Add the vertex to the tour
+      tour.push_back(next);
+      // Calculate the distance
+      distance += graph.getEdgeWeight(current, next);
+      // Set the current vertex
+      current = next;
+    }
 
-    // for (auto edge : edges) {
-    //   printf("edge [%d, %d], weight %d\n", edge.either(), edge.other(), edge.weight());
-    // }
-
-    // Create a disjoint set
-    DisjointSet forest(graph.size());
-    // mst.push_back(0);
-    
-    int cost = 0;
-    for(int i = 0; best_distance < graph.size() - 1; i++) {
-      int v = edges[i].either();
-      int w = edges[i].other(v);
-      if (!forest.connected(v, w)) {
-        mst.push_back(edges[i]);
-        forest.join(v, w);
-        best_distance++;
-        cost += edges[i].weight();
-        // printf("(%d, %d):%d\n", v, w, edges[i].weight());
+    printf("\nTour: ");
+    for (int i = 0; i < tour.size(); i++) {
+      printf("%d ", tour[i]);
+      if (i != tour.size() - 1) {
+        printf("--> ");
       }
     }
-    Graph g(mst);
-    g.print();
-    // for(int i = 0; i < mst.size(); i++) {
-    //   int v = mst[i].either();
-    //   int w = mst[i].other(v);
-    //   adj[v].push_back(w);
-    //   adj[w].push_back(v);
-    // }
-
-    // printf("Tour: ");
-    // // Use BFS to find the shortest path within minimum spanning tree
-    // while(!to_visit.empty()) {
-    //   int top = to_visit.top();
-    //   to_visit.pop();
-    //   visited[top] = true;
-    //   tour.push_back(top);
-    //   for (int i = 0; i < adj[top].size(); i++) {
-    //     int current = adj[top][i];
-    //     if (visited[current] == false) {
-    //       to_visit.push(current);
-    //     }
-    //   }
-    // }
-    // tour.push_back(0);
-    // for (int i = 0; i < tour.size(); i++) {
-    //   printf("%c ", alpha[tour[i]]);
-    //   if (i < tour.size() - 1) printf("--> ");
-    // }
-    // printf("\n");
-    // printf("Weight: %d\n", cost);
+    printf("\n");
+    printf("Weight: %d\n", distance);
   }
 };
 
@@ -237,11 +208,11 @@ int main(int argc, char* argv[]) {
   start = clock();
   tsp.brute();
   stop = clock();
-  printf("Time: %f\n", (stop - start)/ (double)CLOCKS_PER_SEC);
+  printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
   printf("\nGreedy:\n");
   start = clock();
   tsp.greedy();
   stop = clock();
-  printf("Time: %f\n", (stop - start)/ (double)CLOCKS_PER_SEC);
+  printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
   return 0;
 }

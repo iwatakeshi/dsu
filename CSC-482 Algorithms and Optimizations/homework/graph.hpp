@@ -17,17 +17,6 @@ class Graph {
     _size = size;
     graph = (int**)callocm(size, size, sizeof(int*), sizeof(int));
   };
-
-  Graph(std::vector<Edge> tree) {
-    _size = tree.size();
-    graph = (int**)callocm(_size, _size, sizeof(int*), sizeof(int));
-    for(int i = 0; i < tree.size(); i++) {
-      int v = tree[i].either();
-      int w = tree[i].other(v);
-      graph[v][w] = tree[i].weight();
-      graph[w][v] = tree[i].weight();
-    }
-  }
   
   void print() {
     printm(graph, _size, _size);
