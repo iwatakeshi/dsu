@@ -42,6 +42,24 @@ void zerom(long long** a, unsigned int n, unsigned int m) {
   }
 }
 
+void seqm(int** a, unsigned int n, unsigned int m) {
+  int k = 1;
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      a[i][j] = k++;
+    }
+  }
+}
+
+void seqm(long long** a, unsigned int n, unsigned int m) {
+  int k = 1;
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      a[i][j] = k++;
+    }
+  }
+}
+
 void randm(int** a, int n, int m, int h) {
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < n; j++) {
@@ -74,9 +92,29 @@ void randm(int** a, unsigned int n, int m, int l, int h) {
   }
 }
 
+void symseqm(int** a, unsigned int n, unsigned int m) {
+  int k = 1;
+  for (int i = 0; i < n; i++) {
+    for (int j = i + 1; j < m; j++) {
+      a[i][j] = k++;
+      a[j][i] = a[i][j];
+    }
+  }
+}
+
+void symseqm(long long** a, unsigned int n, unsigned int m) {
+  int k = 1;
+  for (int i = 0; i < n; i++) {
+    for (int j = i + 1; j < m; j++) {
+      a[i][j] = k++;
+      a[j][i] = a[i][j];
+    }
+  }
+}
+
 void symrandm(int ** a, int n, int m, int h) {
   for (int i = 0; i < n; i++) {
-    for (int j = i + 1; j < n; j++) {
+    for (int j = i + 1; j < m; j++) {
       a[i][j] = rand() % h;
       a[j][i] = a[i][j];
     }
@@ -85,7 +123,7 @@ void symrandm(int ** a, int n, int m, int h) {
 
 void symrandm(long long ** a, int n, int m, int h) {
   for (int i = 0; i < n; i++) {
-    for (int j = i + 1; j < n; j++) {
+    for (int j = i + 1; j < m; j++) {
       a[i][j] = rand() % h;
       a[j][i] = a[i][j];
     }
@@ -94,7 +132,7 @@ void symrandm(long long ** a, int n, int m, int h) {
 
 void symrandm(int ** a, int n, int m, int l, int h) {
   for (int i = 0; i < n; i++) {
-    for (int j = i + 1; j < n; j++) {
+    for (int j = i + 1; j < m; j++) {
       a[i][j] = rand() % (1 + h - l) + l;
       a[j][i] = a[i][j];
     }
@@ -103,7 +141,7 @@ void symrandm(int ** a, int n, int m, int l, int h) {
 
 void symrandm(long long ** a, int n, int m, int l, int h) {
   for (int i = 0; i < n; i++) {
-    for (int j = i + 1; j < n; j++) {
+    for (int j = i + 1; j < m; j++) {
       a[i][j] = rand() % (1 + h - l) + l;
       a[j][i] = a[i][j];
     }

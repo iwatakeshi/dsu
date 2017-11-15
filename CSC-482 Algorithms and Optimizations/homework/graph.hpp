@@ -22,6 +22,10 @@ class Graph {
     printm(graph, _size, _size);
   }
 
+  void fill() {
+    symseqm(graph, _size, _size);
+  }
+
   void randomize(int low, int high) {
     symrandm(graph, _size, _size, low, high);
   }

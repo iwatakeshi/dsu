@@ -1,101 +1,36 @@
 // #include "commander.h"
 // #include <numeric>
 // #include <random>
-#include <stdio.h>
-// #include <stdlib.h>
-// #include <vector>
-
 #include "edge.hpp"
 #include "graph.hpp"
 #include "matrix.hpp"
 #include <algorithm>
+#include <chrono>
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-#include <stack>
+#include <numeric>
+#include <random>
+#include <stdio.h>
+#include <tuple>
 #include <vector>
 
 using namespace std;
 
-class DisjointSet {
-  private:
-  int* parent;
-  int* rank;
-  int _size;
-
-  public:
-  DisjointSet(int size) {
-    _size = size;
-    parent = new int[size];
-    rank = new int[size];
-    // Initially, all vertices are in
-    // different sets and have rank 0.
-    for (int i = 0; i < size; i++) {
-      rank[i] = 0;
-      //every element is parent of itself
-      parent[i] = i;
-    }
-  };
-
-  int find(int p) {
-    // for(int i = 0; i < _size; i++) {
-    //   printf("%d ", parent[i]);
-    // }
-    // printf("\n");
-    while (p != parent[p]) {
-      parent[p] = parent[parent[p]]; // path compression by halving
-      p = parent[p];
-    }
-    return p;
-  }
-
-  bool connected(int p, int q) {
-    return find(p) == find(q);
-  }
-
-  void join(int p, int q) {
-    int x = find(p);
-    int y = find(q);
-    if (x == y) return;
-    // make root of smaller rank point to root of larger rank
-    if (rank[x] < rank[y])
-      parent[x] = y;
-    else if (rank[x] > rank[y])
-      parent[y] = x;
-    else {
-      parent[y] = x;
-      rank[x]++;
-    }
-    _size--;
-  }
-
-  int size() {
-    return _size;
-  }
-};
-
 class TSP {
-  private:
-  char alpha[26];
-
   public:
   Graph graph;
   TSP(Graph* graph) {
     this->graph = *graph;
-    char letters[26] = {
-      'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-      'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
-    };
-    std::copy(std::begin(letters), std::end(letters), std::begin(alpha));
   };
 
   // A non-recursive approach in order to avoid confusion
-  void brute() {
+  tuple<int, vector<int>> brute() {
     graph.print();
-    int best_distance = std::numeric_limits<int>::max();
-    std::vector<int> best_tour;
-    std::vector<int> tour(graph.size());
+    int best_distance = numeric_limits<int>::max();
+    vector<int> best_tour;
+    vector<int> tour(graph.size());
     // Create tour
     for (int i = 0; i < tour.size(); i++) {
       tour[i] = i;
@@ -119,19 +54,10 @@ class TSP {
 
     // Add the final destination
     best_tour.push_back(0);
-
-    printf("Tour: ");
-    for (int i = 0; i < best_tour.size(); i++) {
-      printf("%c ", alpha[best_tour[i]]);
-      if (i < best_tour.size() - 1) {
-        printf("--> ");
-      }
-    }
-    printf("\n");
-    printf("Weight: %d\n", best_distance);
+    return make_tuple(best_distance, best_tour);
   }
 
-  void greedy() {
+  tuple<int, vector<int>> greedy() {
     graph.print();
 
     int distance = 0;
@@ -174,10 +100,52 @@ class TSP {
     distance += graph.edgeWeight(tour[tour.size() - 1], 0);
     // Add 0 as the final destination
     tour.push_back(0);
+    return make_tuple(distance, tour);
+  }
 
-    printf("\nTour: ");
+  tuple<int, vector<int>> montecarlo() {
+    int distance = 0;
+    vector<int> tour(graph.size());
+    iota(tour.begin(), tour.end(), 1);
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    auto uniform_shuffle = [](vector<int> &tour, unsigned seed) {
+      shuffle(tour.begin(), tour.end(), std::default_random_engine(seed));
+    };
+
+    printf("Before:\n");
+
+    for (auto i : tour) {
+      printf("%d ", i);
+    }
+    printf("\n");
+    uniform_shuffle(tour, seed);
+    tour.insert(tour.begin(), 0);
+    tour.push_back(0);
+    printf("After:\n");
+    for (auto i : tour) {
+      printf("%d ", i);
+    }
+    printf("\n");
+
+    
+
+    for(int i = 0; i < tour.size() - 1; i++) {
+      distance += graph.edgeWeight(tour[i], tour[i + 1]);
+    }
+
+    return make_tuple(distance, tour);
+  }
+
+  static void print(tuple<int, vector<int>> solution) {
+    auto distance = std::get<0>(solution);
+    auto tour = std::get<1>(solution);
+    char letters[26] = {
+      'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+      'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+    };
+    printf("Tour: ");
     for (int i = 0; i < tour.size(); i++) {
-      printf("%c ", alpha[tour[i]]);
+      printf("%c ", letters[tour[i]]);
       if (i != tour.size() - 1) {
         printf("--> ");
       }
@@ -216,12 +184,17 @@ int main(int argc, char* argv[]) {
   TSP tsp(&graph);
   printf("\nBrute:\n");
   start = clock();
-  tsp.brute();
+  TSP::print(tsp.brute());
   stop = clock();
   printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
   printf("\nGreedy:\n");
   start = clock();
-  tsp.greedy();
+  TSP::print(tsp.greedy());
+  stop = clock();
+  printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
+
+  start = clock();
+  TSP::print(tsp.montecarlo());
   stop = clock();
   printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
   return 0;
