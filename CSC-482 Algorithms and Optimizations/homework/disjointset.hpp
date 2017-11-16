@@ -21,10 +21,6 @@ class DisjointSet {
   };
 
   int find(int p) {
-    // for(int i = 0; i < _size; i++) {
-    //   printf("%d ", parent[i]);
-    // }
-    // printf("\n");
     while (p != parent[p]) {
       parent[p] = parent[parent[p]]; // path compression by halving
       p = parent[p];
@@ -36,7 +32,7 @@ class DisjointSet {
     return find(p) == find(q);
   }
 
-  void join(int p, int q) {
+  void merge(int p, int q) {
     int x = find(p);
     int y = find(q);
     if (x == y) return;

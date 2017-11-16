@@ -1,9 +1,11 @@
 #ifndef EDGE_H
 #define EDGE_H
 #include <deque>
+#include <functional>
+#include <queue>
 #include <vector>
 
-class Edge {
+  class Edge {
   private:
   int _weight;
   int _v;
@@ -23,13 +25,37 @@ class Edge {
     _v = edge.either();
     _w = edge.other();
   };
-  
-  static std::deque<Edge> toQueue(std::vector<Edge> edges) {
+
+  bool operator<(const Edge& edge) {
+    return _weight < edge.weight();
+  }
+
+  bool operator>(const Edge& edge) {
+    return _weight > edge.weight();
+  }
+
+  friend bool operator<(const Edge& a, const Edge& b) {
+    return a.weight() < b.weight();
+  }
+
+  friend bool operator>(const Edge& a, const Edge& b) {
+    return a.weight() > b.weight();
+  }
+
+  static std::priority_queue<Edge> to_priority_queue(std::vector<Edge> edges) {
+    std::priority_queue<Edge> q;
+    for (const auto& edge : edges)
+      q.push(edge);
+    return q;
+  }
+
+  static std::deque<Edge> to_deque(std::vector<Edge> edges) {
     std::deque<Edge> q;
     for (const auto& edge : edges)
       q.push_back(edge);
     return q;
   }
+
   int either() const {
     return _v;
   }
@@ -45,4 +71,6 @@ class Edge {
     return _weight;
   }
 };
+
+
 #endif
