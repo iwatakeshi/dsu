@@ -154,19 +154,20 @@ class TSP {
     int cost_from_start_to_n = 0;
     int cost_from_n_to_target = 0;
     int f_value = 0;
-    Edge current;
-    std::set<Edge> openlist;
+    int current;
+    std::set<int> openlist;
+    // Stores nodes that have been considered or visited
+    std::set<int> closedlist;
     // Add the start vertex s to the open list
-    openlist.insert(Edge(0, 0, 0));
+    openlist.insert(0);
 
-    // while(!openlist.empty()) {
-    //   current = *openlist.begin();
-    //   for(auto edge : openlist) {
-    //     if (edge <= current) {
-    //       current = edge;
-    //     }
-    //   }
-    // }
+    while(!openlist.empty()) {
+      current = *openlist.begin();
+      for(auto node : openlist) {
+        
+      }
+      break;
+    }
 
     std::vector<int> tour;
     // printf("Weight: %d\n", mst.distance());

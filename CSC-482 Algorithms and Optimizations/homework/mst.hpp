@@ -12,7 +12,8 @@
 //   Kruskal,
 // };
 
-using MSTGenerator = std::function<std::tuple<int, std::vector<Edge>>(Graph)>;
+// Note to self: Use "Graph&" and not "Graph" or else compiler throws a fit! 
+using MSTGenerator = std::function<std::tuple<int, std::vector<Edge>>(Graph&)>;
 
 class MST {
   private:
@@ -20,7 +21,6 @@ class MST {
   std::vector<Edge> _tree;
   std::vector<std::vector<int>> _adjmatrix;
   Graph _graph;
-
   public:
   MST(Graph graph) {
     _graph = graph;
@@ -37,9 +37,7 @@ class MST {
   }
 
   std::tuple<int, std::vector<Edge>> generate(MSTGenerator generator) {
-
-    // auto algorithm = std::bind(generator, std::placeholders::_1);
-    std::tuple<int, std::vector<Edge>> solution = generator(_graph);
+    auto solution = generator(_graph);
     std::tie(_distance, _tree) = solution;
 
     return solution;
@@ -51,7 +49,7 @@ class MST {
       auto edge = _tree[i];
       int v = edge.either();
       int w = edge.other(v);
-      printf("%d, %d\n", v, w);
+      // printf("%d, %d\n", v, w);
       _adjmatrix[v].push_back(w);
       _adjmatrix[w].push_back(v);
     }
@@ -75,7 +73,7 @@ class MST {
 
 class MSTAlgorithms {
   public:
-  static std::tuple<int, std::vector<Edge>> kruskal(Graph graph) {
+  static auto kruskal(Graph graph) {
     // Get the edges of the graph
     std::vector<Edge> edges = graph.edges();
     // Sort the edges
