@@ -8,10 +8,11 @@
 #include <tuple>
 #include <vector>
 
-typedef std::tuple<int, std::vector<Edge>> mst_tuple;
-enum MSTGenerator {
-  Kruskal,
-};
+// enum MSTGenerator {
+//   Kruskal,
+// };
+
+using MSTGenerator = std::function<std::tuple<int, std::vector<Edge>>(Graph)>;
 
 class MST {
   private:
@@ -35,26 +36,46 @@ class MST {
     return _tree;
   }
 
-  mst_tuple generate(MSTGenerator generator) {
+  std::tuple<int, std::vector<Edge>> generate(MSTGenerator generator) {
 
-    mst_tuple solution;
-    switch (generator) {
-    case MSTGenerator::Kruskal:
-      solution = MST::kruskal(_graph);
-      std::tie(_distance, _tree) = solution;
-      break;
-    default:
-      solution = MST::kruskal(_graph);
-      std::tie(_distance, _tree) = solution;
-      break;
-    }
-
-    std::cout << _distance << std::endl;
+    // auto algorithm = std::bind(generator, std::placeholders::_1);
+    std::tuple<int, std::vector<Edge>> solution = generator(_graph);
+    std::tie(_distance, _tree) = solution;
 
     return solution;
   }
 
-  static mst_tuple kruskal(Graph graph) {
+  std::vector<std::vector<int>> to_adjacency_matrix() {
+    _adjmatrix.resize(_tree.size() * 2);
+    for (int i = 0; i < _tree.size(); i++) {
+      auto edge = _tree[i];
+      int v = edge.either();
+      int w = edge.other(v);
+      printf("%d, %d\n", v, w);
+      _adjmatrix[v].push_back(w);
+      _adjmatrix[w].push_back(v);
+    }
+
+    return _adjmatrix;
+  }
+
+  std::vector<int> to_odd_degree_vertices() {
+    if (_adjmatrix.size() == 0) {
+      to_adjacency_matrix();
+    }
+    std::vector<int> odd_v;
+    for (int i = 0; i < _adjmatrix.size(); i++) {
+      if ((_adjmatrix[i].size() % 2) != 0) {
+        odd_v.push_back(i);
+      }
+    }
+    return odd_v;
+  }
+};
+
+class MSTAlgorithms {
+  public:
+  static std::tuple<int, std::vector<Edge>> kruskal(Graph graph) {
     // Get the edges of the graph
     std::vector<Edge> edges = graph.edges();
     // Sort the edges
@@ -81,34 +102,6 @@ class MST {
       }
     }
     return std::make_tuple(distance, T);
-  }
-
-  std::vector<std::vector<int>> to_adjacency_matrix() {
-    _adjmatrix.resize(_tree.size() * 2);
-    printf("m size %ld, tree size %ld\n", _adjmatrix.size(), _tree.size());
-    for (int i = 0; i < _tree.size(); i++) {
-      auto edge = _tree[i];
-      int v = edge.either();
-      int w = edge.other(v);
-      printf("%d, %d\n", v, w);
-      _adjmatrix[v].push_back(w);
-      _adjmatrix[w].push_back(v);
-    }
-    
-    return _adjmatrix;
-  }
-
-  std::vector<int> to_odd_degree_vertices() {
-    if (_adjmatrix.size() == 0) {
-      to_adjacency_matrix();
-    }
-    std::vector<int> odd_v;
-    for (int i = 0; i < _adjmatrix.size(); i++) {
-      if ((_adjmatrix[i].size() % 2) != 0) {
-        odd_v.push_back(i);
-      }
-    }
-    return odd_v;
   }
 };
 

@@ -12,9 +12,11 @@
 #include <iostream>
 #include <numeric>
 #include <random>
+#include <set>
 #include <stdio.h>
 #include <tuple>
 #include <vector>
+#include <functional>
 
 class TSP {
   public:
@@ -138,13 +140,36 @@ class TSP {
     return make_tuple(best_distance, best_tour);
   }
 
-
-  std::tuple<int, std::vector<int>> double_mst() {
+  std::tuple<int, std::vector<int>> a_star() {
     MST mst(graph);
-    mst.generate(MSTGenerator::Kruskal);
+    mst.generate(MSTAlgorithms::kruskal);
+    // auto tree = mst.tree();
+    // std::vector<std::vector<int>> adj(graph.size());
+    // for(int i = 0; i < tree.size(); i++) {
+    //   int v = tree[i].either();
+    //   int w = tree[i].other(v);
+    //   adj[v].push_back(w);
+    //   adj[w].push_back(v);
+    // }
+    int cost_from_start_to_n = 0;
+    int cost_from_n_to_target = 0;
+    int f_value = 0;
+    Edge current;
+    std::set<Edge> openlist;
+    // Add the start vertex s to the open list
+    openlist.insert(Edge(0, 0, 0));
+
+    // while(!openlist.empty()) {
+    //   current = *openlist.begin();
+    //   for(auto edge : openlist) {
+    //     if (edge <= current) {
+    //       current = edge;
+    //     }
+    //   }
+    // }
 
     std::vector<int> tour;
-    printf("Weight: %d\n", mst.distance());
+    // printf("Weight: %d\n", mst.distance());
     return std::make_tuple(0, tour);
   }
 
@@ -220,7 +245,7 @@ int main(int argc, char* argv[]) {
 
   printf("\nChristo (Heuristic):\n");
   start = clock();
-  tsp.double_mst();
+  tsp.a_star();
   stop = clock();
   // TSP::print(solution2);
   printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);

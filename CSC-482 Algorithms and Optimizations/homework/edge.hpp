@@ -23,23 +23,39 @@
   Edge(const Edge& edge) {
     _weight = edge.weight();
     _v = edge.either();
-    _w = edge.other();
+    _w = edge.other(_v);
   };
 
   bool operator<(const Edge& edge) {
     return _weight < edge.weight();
   }
 
+  bool operator<=(const Edge& edge) {
+    return _weight <= edge.weight();
+  }
+
   bool operator>(const Edge& edge) {
     return _weight > edge.weight();
+  }
+
+  bool operator>=(const Edge& edge) {
+    return _weight >= edge.weight();
   }
 
   friend bool operator<(const Edge& a, const Edge& b) {
     return a.weight() < b.weight();
   }
 
+  friend bool operator<=(const Edge& a, const Edge& b) {
+    return a.weight() <= b.weight();
+  }
+
   friend bool operator>(const Edge& a, const Edge& b) {
     return a.weight() > b.weight();
+  }
+
+  friend bool operator>=(const Edge& a, const Edge& b) {
+    return a.weight() >= b.weight();
   }
 
   static std::priority_queue<Edge> to_priority_queue(std::vector<Edge> edges) {
