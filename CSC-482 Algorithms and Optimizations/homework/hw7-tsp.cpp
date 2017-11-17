@@ -1,6 +1,7 @@
 // #include "commander.h"
 // #include <numeric>
 // #include <random>
+// #include "ant.hpp"
 #include "edge.hpp"
 #include "graph.hpp"
 #include "mst.hpp"
@@ -9,6 +10,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
+#include <functional>
 #include <iostream>
 #include <numeric>
 #include <random>
@@ -16,7 +18,6 @@
 #include <stdio.h>
 #include <tuple>
 #include <vector>
-#include <functional>
 
 class TSP {
   public:
@@ -139,40 +140,120 @@ class TSP {
     best_tour.push_back(0);
     return make_tuple(best_distance, best_tour);
   }
+  // std::tuple<int, std::vector<int>> ant(int iterations, AntParameters param) {
 
-  std::tuple<int, std::vector<int>> a_star() {
-    MST mst(graph);
-    mst.generate(MSTAlgorithms::kruskal);
-    // auto tree = mst.tree();
-    // std::vector<std::vector<int>> adj(graph.size());
-    // for(int i = 0; i < tree.size(); i++) {
-    //   int v = tree[i].either();
-    //   int w = tree[i].other(v);
-    //   adj[v].push_back(w);
-    //   adj[w].push_back(v);
-    // }
-    int cost_from_start_to_n = 0;
-    int cost_from_n_to_target = 0;
-    int f_value = 0;
-    int current;
-    std::set<int> openlist;
-    // Stores nodes that have been considered or visited
-    std::set<int> closedlist;
-    // Add the start vertex s to the open list
-    openlist.insert(0);
+  //   int town_size = graph.size();
+  //   int ant_size = (int)(town_size * param.ant_multiplier);
+  //   int position = 0;
+    
+  //   std::vector<int> best_tour;
+  //   int best_distance = std::numeric_limits<int>::max();
 
-    while(!openlist.empty()) {
-      current = *openlist.begin();
-      for(auto node : openlist) {
-        
-      }
-      break;
-    }
+  //   std::vector<Ant> ants (ant_size);
+  //   std::vector<std::vector<int>> trails(town_size);
+  //   for (int i = 0; i < town_size; i++) {
+  //     trails[i].reserve(town_size);
+  //   }
 
-    std::vector<int> tour;
-    // printf("Weight: %d\n", mst.distance());
-    return std::make_tuple(0, tour);
-  }
+  //   for(int i = 0; i < ant_size; i++) {
+  //     ants[i] = Ant(graph, trails);
+  //   }
+  //   std::uniform_int_distribution<int> idist(0, graph.size());
+
+  //   auto setup_ants = [ants, position, __ant_rgen, idist, ant_size]() mutable {
+  //     position = -1;
+  //     for(int i = 0; i < ant_size; i++) {
+  //       ants[i].forget();
+  //       ants[i].visit(idist(__ant_rgen), position);
+  //     }
+  //     position++;
+  //   };
+
+  //   auto move_ants = [ants, param, position, this]() mutable {
+  //     while (position < graph.size() - 1) {
+  //       for (auto& ant : ants) {
+  //         ant.visit(Ant::select_next_town(ant, param, position), position);
+  //       }
+  //     }
+  //   };
+
+  //   auto update_trails = [trails, ants, param, this]() mutable {
+  //     auto Q = (int)param.Q;
+  //     auto size = graph.size();
+      
+  //     for(int i = 0; i < size; i++) {
+  //       for (int j = 0; j < size; j++) {
+  //         trails[i][j] *= (int) param.evaporation;
+  //       }
+  //     }
+  //     for (auto ant : ants) {
+  //       double contrib = Q / ant.distance();
+  //       for (int i = 0; i < size - 1; i++) {
+  //         trails[ant.tour(i)][ant.tour(i + 1)] += (int) contrib;
+  //       }
+  //       trails[ant.tour(size - 1)][ant.tour(0)] += (int) contrib;
+  //     }
+  //   };
+
+  //   auto update_best_tour = [ants, best_distance, best_tour, param]() mutable {
+  //     for (auto& ant : ants) {
+  //       if (ant.distance() < best_distance) {
+  //         best_distance = ant.distance();
+  //         best_tour = ant.tour();
+  //       }
+  //     }
+  //   };
+
+  //   for (int i = 0; i < town_size; i++) {
+  //     for (int j = 0; j < town_size; j++) {
+  //       trails[i][j] = (int)param.c;
+  //     }
+  //   }
+
+  //   int it = 0;
+
+  //   while (it < iterations) {
+  //     setup_ants();
+  //     move_ants();
+  //     update_trails();
+  //     update_best_tour();
+  //     it++;
+  //   }
+  //   return std::make_tuple(best_distance, best_tour);
+  // }
+  // std::tuple<int, std::vector<int>> a_star() {
+  //   MST mst(graph);
+  //   mst.generate(MSTAlgorithms::kruskal);
+  //   // auto tree = mst.tree();
+  //   // std::vector<std::vector<int>> adj(graph.size());
+  //   // for(int i = 0; i < tree.size(); i++) {
+  //   //   int v = tree[i].either();
+  //   //   int w = tree[i].other(v);
+  //   //   adj[v].push_back(w);
+  //   //   adj[w].push_back(v);
+  //   // }
+  //   int cost_from_start_to_n = 0;
+  //   int cost_from_n_to_target = 0;
+  //   int f_value = 0;
+  //   int current;
+  //   std::set<int> openlist;
+  //   // Stores nodes that have been considered or visited
+  //   std::set<int> closedlist;
+  //   // Add the start vertex s to the open list
+  //   openlist.insert(0);
+
+  //   while(!openlist.empty()) {
+  //     current = *openlist.begin();
+  //     for(auto node : openlist) {
+  //       if (graph.edgeWeight(current, node))
+  //     }
+  //     break;
+  //   }
+
+  //   std::vector<int> tour;
+  //   // printf("Weight: %d\n", mst.distance());
+  //   return std::make_tuple(0, tour);
+  // }
 
   static void
   print(std::tuple<int, std::vector<int>> solution) {
@@ -246,7 +327,7 @@ int main(int argc, char* argv[]) {
 
   printf("\nChristo (Heuristic):\n");
   start = clock();
-  tsp.a_star();
+  // tsp.a_star();
   stop = clock();
   // TSP::print(solution2);
   printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
