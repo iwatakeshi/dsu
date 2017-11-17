@@ -11,6 +11,7 @@
 
 class Graph {
   private:
+  std::vector<Edge> _edges;
   std::vector<std::vector<int>> graph;
   int _size;
 
@@ -59,6 +60,15 @@ class Graph {
         graph[j][i] = graph[i][j];
       }
     }
+
+    for (int i = 0; i < _size; i++) {
+      for (int j = 0; j < _size; j++) {
+        if (hasEdge(i, j)) {
+          Edge edge(i, j, graph[i][j]);
+          _edges.push_back(edge);
+        }
+      }
+    }
   }
 
   void addEdge(int v, int w, int weight) {
@@ -76,16 +86,14 @@ class Graph {
   void removeEdge(int v, int w) {
     graph[v][w] = 0;
   }
-  std::vector<Edge> edges() {
-    std::vector<Edge> _edges;
-    for (int i = 0; i < _size; i++) {
-      for (int j = 0; j < _size; j++) {
-        if (hasEdge(i, j)) {
-          Edge edge(i, j, graph[i][j]);
-          _edges.push_back(edge);
-        }
-      }
+
+  std::vector<Edge> adjacent(int v) {
+    if (v > 0 && v < _size) {
+      return _edges[v];
     }
+  }
+
+  std::vector<Edge> edges() {
     return _edges;
   }
 

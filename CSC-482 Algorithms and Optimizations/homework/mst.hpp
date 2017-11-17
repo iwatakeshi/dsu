@@ -101,6 +101,14 @@ class MSTAlgorithms {
     }
     return std::make_tuple(distance, T);
   }
+
+  static auto prim(Graph graph) {
+
+    std::vector<bool> marked(graph.size(), false);
+    std::vector<Edge> edges = graph.edges();
+
+  }
+
 };
 
 #endif
