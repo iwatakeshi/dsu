@@ -48,7 +48,7 @@ class Graph {
     }
   };
 
-  Graph(unsigned size, int low, int high)
+  Graph(const unsigned size, const unsigned low, const unsigned high)
       : Graph(size) {
     randomize(low, high);
   }
@@ -84,7 +84,7 @@ class Graph {
   /**
    * Generates random numbers for the adjacency matrices
    */
-  void randomize(int low, int high) {
+  void randomize(unsigned low, unsigned high) {
     for (int i = 0; i < size_; i++) {
       auto edge = Edge(i, i, 0);
       edges_.push_back(edge);
@@ -108,7 +108,7 @@ class Graph {
   /**
    * Returns the edge at the specified row and column
    */
-  Edge get_edge(unsigned row, unsigned column) {
+  Edge get_edge(const unsigned row, const unsigned column) {
     if (row < size_ && column < size_) {
       return edge_matrix_[row][column];
     }
@@ -118,7 +118,7 @@ class Graph {
   /**
    * Set the edge's weight at the specified row and column
    */
-  void set_edge_weight(unsigned row, unsigned column, unsigned weight) {
+  void set_edge_weight(const unsigned row, const unsigned column, const unsigned weight) {
     if (row < size_ && column < size_) {
       adjacency_matrix_[row][column] = weight;
     }

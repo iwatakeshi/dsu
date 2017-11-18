@@ -77,7 +77,7 @@ class MST {
 class MSTAlgorithms {
 
   public:
-  static auto kruskal(Graph graph) {
+  static auto kruskal(Graph &graph) {
     // Get the edges of the graph
     std::vector<Edge> edges = graph.edges();
     // Sort the edges
@@ -105,7 +105,7 @@ class MSTAlgorithms {
     return std::make_tuple(distance, T);
   }
 
-  static auto lazy_prim(Graph graph) {
+  static auto lazy_prim(Graph &graph) {
     auto edges = graph.edges();
     std::vector<Edge> T;
     bool* marked = new bool[graph.size()]();
