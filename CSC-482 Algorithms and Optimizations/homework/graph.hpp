@@ -109,7 +109,7 @@ class Graph {
    * Returns the edge at the specified row and column
    */
   Edge get_edge(unsigned row, unsigned column) {
-    if (row >= 0 && row < size_ && column >= 0 && column < size_) {
+    if (row < size_ && column < size_) {
       return edge_matrix_[row][column];
     }
     throw std::out_of_range("Index is out of range.");
@@ -119,7 +119,7 @@ class Graph {
    * Set the edge's weight at the specified row and column
    */
   void set_edge_weight(unsigned row, unsigned column, unsigned weight) {
-    if (row >= 0 && row < size_ && column >= 0 && column < size_) {
+    if (row < size_ && column < size_) {
       adjacency_matrix_[row][column] = weight;
     }
     throw std::out_of_range("Index is out of range.");
@@ -139,8 +139,8 @@ class Graph {
   /**
    * Adds an edge to the matrix
    */
-  void add_edge(int v, int w, int weight) {
-    if ((v >= 0 && v < size_) && (w >= 0 && w < size_) && weight >= 0 && !contains(v, w)) {
+  void add_edge(const unsigned v, const unsigned w, const unsigned weight) {
+    if ((v < size_) && (w < size_) && !contains(v, w)) {
       adjacency_matrix_[v][w] = weight;
       adjacency_matrix_[w][v] = weight;
       simple_adjacency_matrix_[v].push_back(w);
@@ -151,15 +151,18 @@ class Graph {
   /**
    * Determines whether an edge exists
    */
-  bool contains(const int v, const int w) {
+  bool contains(const unsigned v, const unsigned w) {
+    if (v > size_ && w > size_) {
+      throw std::out_of_range("Index is out of range.");
+    }
     return adjacency_matrix_[v][w] > 0;
   }
 
   /**
    * Removes an edges from the graph
    */
-  void remove(int v, int w) {
-
+  void remove(unsigned v, unsigned w) {
+    if (contains(v, w))
     adjacency_matrix_[v][w] = 0;
 
     for (auto column : edge_matrix_) {
@@ -183,15 +186,15 @@ class Graph {
   /**
    * Returns an adjacent edge
    */
-  std::vector<Edge> adjacent_edge(int v) {
-    if (v >= 0 && v < size_) {
+  std::vector<Edge> adjacent_edge(unsigned v) {
+    if (v < size_) {
       return edge_matrix_[v];
     }
     throw std::out_of_range("Index is out of range.");
   }
 
   std::vector<int> adjacent_vertex(int v) {
-    if (v >= 0 && v < size_) {
+    if (v < size_) {
       return simple_adjacency_matrix_[v];
     }
     throw std::out_of_range("Index is out of range.");
