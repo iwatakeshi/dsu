@@ -245,7 +245,7 @@ int main(int argc, char* argv[]) {
   clock_t start, stop;
   srand(time(0));
 
-  int n = 12, low = 1, high = 4, root = 0;
+  int n = 5, low = 1, high = 4, root = 0;
 
   Graph graph(n, low, high);
   graph.print();

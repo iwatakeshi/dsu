@@ -41,9 +41,6 @@ class Graph {
       adjacency_matrix_[i].resize(size);
       edge_matrix_[i].resize(size);
       simple_adjacency_matrix_.resize(size);
-    }
-
-    for (int i = 0; i < size; i++) {
       vertices_.push_back(i);
       for (int j = 0; j < size; j++) {
         adjacency_matrix_[i][j] = 0;
@@ -89,6 +86,11 @@ class Graph {
    */
   void randomize(int low, int high) {
     for (int i = 0; i < size_; i++) {
+      auto edge = Edge(i, i, 0);
+      edges_.push_back(edge);
+      edge_matrix_[i][i] = edge;
+      simple_adjacency_matrix_[i].push_back(i);
+      simple_adjacency_matrix_[i].push_back(i);
       for (int j = i + 1; j < size_; j++) {
         auto num = rand() % (1 + high - low) + low;
         auto edge = Edge(i, j, num);
@@ -101,20 +103,6 @@ class Graph {
         simple_adjacency_matrix_[j].push_back(i);
       }
     }
-
-    for (int i = 0; i < size_; i++) {
-      for (int j = 0; j < size_; j++) {
-        if (i == j) {
-          auto edge = Edge(i, j, 0);
-          edges_.push_back(edge);
-          edge_matrix_[i][j] = edge;
-          simple_adjacency_matrix_[i].push_back(j);
-          simple_adjacency_matrix_[j].push_back(i);
-        }
-      }
-    }
-
-    
   }
 
   /**
@@ -212,7 +200,7 @@ class Graph {
   // std::vector<std::vector<int>> adjacent_vertices() {
   //   std::vector<std::vector<int>> adj;
   // }
-  
+
   /**
    * Returns an adjacency matrix
    */
