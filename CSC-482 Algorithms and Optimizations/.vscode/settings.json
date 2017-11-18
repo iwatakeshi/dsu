@@ -56,6 +56,7 @@
     "*.ipp": "cpp",
     "scoped_allocator": "cpp",
     "algorithm": "cpp",
-    "rope": "cpp"
+    "rope": "cpp",
+    "cinttypes": "cpp"
   }
 }

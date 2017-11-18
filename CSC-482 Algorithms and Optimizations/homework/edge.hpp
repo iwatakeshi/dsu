@@ -4,6 +4,8 @@
 #include <functional>
 #include <queue>
 #include <vector>
+#include <set>
+#include <stdexcept>
 
   class Edge {
   private:
@@ -21,9 +23,9 @@
     _weight = weight;
   };
   Edge(const Edge& edge) {
-    _weight = edge.weight();
-    _v = edge.either();
-    _w = edge.other(_v);
+    _weight = edge._weight;
+    _v = edge._v;
+    _w = edge._w;
   };
 
   bool operator<(const Edge& edge) {
@@ -72,6 +74,14 @@
     return q;
   }
 
+  static std::set<Edge> to_set(std::vector<Edge> edges) {
+    std::set<Edge> s;
+    for(const auto& edge : edges) {
+      s.insert(edge);
+    }
+    return s;
+  }
+
   int either() const {
     return _v;
   }
@@ -81,7 +91,10 @@
   int other(int v) const {
     if (v == _v) return _w;
     if (v == _w) return _v;
-    return -1;
+    throw std::out_of_range("Index is out of range.");
+  }
+  void set_weight(unsigned weight) {
+    _weight = weight;
   }
   int weight() const {
     return _weight;
