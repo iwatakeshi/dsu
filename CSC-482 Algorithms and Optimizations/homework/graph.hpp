@@ -17,12 +17,12 @@ class Graph {
   std::vector<Edge> edges_;
   // The vertices of a graph
   std::vector<int> vertices_;
-  // The adjacency matrix representation of the graph
-  std::vector<std::vector<int>> adjacency_matrix_;
+  // The adjacency matrix representation of the costs in the graph
+  std::vector<std::vector<int>> cost_matrix_;
   // The adjacency matrix representation of the edges
   std::vector<std::vector<Edge>> edge_matrix_;
   // The adjacency matrix representation of the graph in the form of a list
-  std::vector<std::vector<int>> simple_adjacency_matrix_;
+  std::vector<std::vector<int>> adjacency_matrix_;
 
   // Size of the graph
   int size_;
@@ -34,16 +34,16 @@ class Graph {
     // Size of the graph
     size_ = size;
 
-    adjacency_matrix_.resize(size);
+    cost_matrix_.resize(size);
     edge_matrix_.resize(size);
-    simple_adjacency_matrix_.resize(size);
+    adjacency_matrix_.resize(size);
     for (int i = 0; i < size; i++) {
-      adjacency_matrix_[i].resize(size);
+      cost_matrix_[i].resize(size);
       edge_matrix_[i].resize(size);
-      simple_adjacency_matrix_.resize(size);
+      adjacency_matrix_.resize(size);
       vertices_.push_back(i);
       for (int j = 0; j < size; j++) {
-        adjacency_matrix_[i][j] = 0;
+        cost_matrix_[i][j] = 0;
       }
     }
   };
@@ -55,7 +55,7 @@ class Graph {
 
   Graph(const Graph& other) {
     size_ = other.size_;
-    adjacency_matrix_ = other.adjacency_matrix_;
+    cost_matrix_ = other.cost_matrix_;
     edge_matrix_ = other.edge_matrix_;
     vertices_ = other.vertices_;
     edges_ = other.edges_;
@@ -63,7 +63,7 @@ class Graph {
 
   Graph(Graph& other) {
     size_ = other.size_;
-    adjacency_matrix_ = other.adjacency_matrix_;
+    cost_matrix_ = other.cost_matrix_;
     edge_matrix_ = other.edge_matrix_;
     vertices_ = other.vertices_;
     edges_ = other.edges_;
@@ -74,7 +74,7 @@ class Graph {
    */
   Graph& operator=(Graph& other) {
     size_ = other.size_;
-    adjacency_matrix_ = other.adjacency_matrix_;
+    cost_matrix_ = other.cost_matrix_;
     edge_matrix_ = other.edge_matrix_;
     vertices_ = other.vertices_;
     edges_ = other.edges_;
@@ -89,18 +89,18 @@ class Graph {
       auto edge = Edge(i, i, 0);
       edges_.push_back(edge);
       edge_matrix_[i][i] = edge;
-      simple_adjacency_matrix_[i].push_back(i);
-      simple_adjacency_matrix_[i].push_back(i);
+      adjacency_matrix_[i].push_back(i);
+      adjacency_matrix_[i].push_back(i);
       for (int j = i + 1; j < size_; j++) {
         auto num = rand() % (1 + high - low) + low;
         auto edge = Edge(i, j, num);
         edges_.push_back(edge);
         edge_matrix_[i][j] = edge;
         edge_matrix_[j][i] = edge;
-        adjacency_matrix_[i][j] = num;
-        adjacency_matrix_[j][i] = num;
-        simple_adjacency_matrix_[i].push_back(j);
-        simple_adjacency_matrix_[j].push_back(i);
+        cost_matrix_[i][j] = num;
+        cost_matrix_[j][i] = num;
+        adjacency_matrix_[i].push_back(j);
+        adjacency_matrix_[j].push_back(i);
       }
     }
   }
@@ -120,7 +120,7 @@ class Graph {
    */
   void set_edge_weight(const unsigned row, const unsigned column, const unsigned weight) {
     if (row < size_ && column < size_) {
-      adjacency_matrix_[row][column] = weight;
+      cost_matrix_[row][column] = weight;
     }
     throw std::out_of_range("Index is out of range.");
   }
@@ -131,7 +131,7 @@ class Graph {
   void print() {
     for (int i = 0; i < size_; i++) {
       for (int j = 0; j < size_; j++) {
-        printf(" %2d", adjacency_matrix_[i][j]);
+        printf(" %2d", cost_matrix_[i][j]);
       }
       printf("\n");
     }
@@ -141,10 +141,10 @@ class Graph {
    */
   void add_edge(const unsigned v, const unsigned w, const unsigned weight) {
     if ((v < size_) && (w < size_) && !contains(v, w)) {
-      adjacency_matrix_[v][w] = weight;
-      adjacency_matrix_[w][v] = weight;
-      simple_adjacency_matrix_[v].push_back(w);
-      simple_adjacency_matrix_[w].push_back(v);
+      cost_matrix_[v][w] = weight;
+      cost_matrix_[w][v] = weight;
+      adjacency_matrix_[v].push_back(w);
+      adjacency_matrix_[w].push_back(v);
       edges_.push_back(Edge(v, w, weight));
     }
   }
@@ -155,7 +155,7 @@ class Graph {
     if (v > size_ && w > size_) {
       throw std::out_of_range("Index is out of range.");
     }
-    return adjacency_matrix_[v][w] > 0;
+    return cost_matrix_[v][w] > 0;
   }
 
   /**
@@ -163,7 +163,7 @@ class Graph {
    */
   void remove(unsigned v, unsigned w) {
     if (contains(v, w))
-    adjacency_matrix_[v][w] = 0;
+      cost_matrix_[v][w] = 0;
 
     for (auto column : edge_matrix_) {
       auto it = std::find_if(column.begin(), column.end(), [&](const Edge& edge) mutable {
@@ -195,7 +195,7 @@ class Graph {
 
   std::vector<int> adjacent_vertex(int v) {
     if (v < size_) {
-      return simple_adjacency_matrix_[v];
+      return adjacency_matrix_[v];
     }
     throw std::out_of_range("Index is out of range.");
   }
@@ -207,15 +207,15 @@ class Graph {
   /**
    * Returns an adjacency matrix
    */
-  std::vector<std::vector<int>> simple_adjacency_matrix() {
-    return simple_adjacency_matrix_;
+  std::vector<std::vector<int>> adjacency_matrix() {
+    return adjacency_matrix_;
   }
 
   /**
-   * Returns an adjacency matrix
+   * Returns a cost matrix
    */
-  std::vector<std::vector<int>> adjacency_matrix() {
-    return adjacency_matrix_;
+  std::vector<std::vector<int>> cost_matrix() {
+    return cost_matrix_;
   }
 
   /**
@@ -275,8 +275,8 @@ class Graph {
   //     distance = std::numeric_limits<int>::max();
   //     for (; it != end; ++it) {
   //       // auto d = graph[*first][*it];
-  //       if (adjacency_matrix_[*first][*it] < distance) {
-  //         distance = adjacency_matrix_[*first][*it];
+  //       if (cost_matrix_[*first][*it] < distance) {
+  //         distance = cost_matrix_[*first][*it];
   //         closest = *it;
   //         temp = it;
   //       }

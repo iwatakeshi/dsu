@@ -16,28 +16,39 @@ using MSTGenerator = std::function<std::tuple<int, std::vector<Edge>>(Graph&)>;
 
 class MST {
   private:
-  int _distance = 0;
-  std::vector<Edge> _tree;
-  Graph _graph;
+  int distance_ = 0;
+  std::vector<Edge> tree_;
+  Graph graph_;
 
   public:
+  MST(){};
   MST(Graph &graph) {
-    _graph = graph;
+    graph_ = graph;
   }
+  /**
+   * Assignment Operator
+   */
+  MST& operator=(MST& other) {
+    distance_ = other.distance_;
+    tree_ = other.tree_;
+    graph_ = other.graph_;
+    return *this;
+  }
+
   ~MST() {
   }
 
   int distance() {
-    return _distance;
+    return distance_;
   }
 
   std::vector<Edge> tree() {
-    return _tree;
+    return tree_;
   }
 
   std::tuple<int, std::vector<Edge>> generate(MSTGenerator generator) {
-    auto solution = generator(_graph);
-    std::tie(_distance, _tree) = solution;
+    auto solution = generator(graph_);
+    std::tie(distance_, tree_) = solution;
 
     return solution;
   }
@@ -56,8 +67,8 @@ class MST {
   // }
 
   Graph to_graph() {
-    Graph mst(_graph.size());
-    for (auto edge : _tree) {
+    Graph mst(graph_.size());
+    for (auto edge : tree_) {
       mst.add_edge(edge.either(), edge.other(), edge.weight());
     }
     return mst;
@@ -65,12 +76,12 @@ class MST {
 
   void print() {
     printf("Minimum Spanning Tree:\n");
-    for (auto e : _tree) {
+    for (auto e : tree_) {
       auto v = e.either();
       auto w = e.other(v);
       printf("<%d, %d>\n", v, w);
     }
-    printf("Distance: %d\n", _distance);
+    printf("Distance: %d\n", distance_);
   }
 };
 
