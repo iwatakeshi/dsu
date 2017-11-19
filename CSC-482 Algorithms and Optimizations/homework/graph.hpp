@@ -55,6 +55,7 @@ class Graph {
 
   Graph(const Graph& other) {
     size_ = other.size_;
+    adjacency_matrix_ = other.adjacency_matrix_;
     cost_matrix_ = other.cost_matrix_;
     edge_matrix_ = other.edge_matrix_;
     vertices_ = other.vertices_;
@@ -63,6 +64,7 @@ class Graph {
 
   Graph(Graph& other) {
     size_ = other.size_;
+    adjacency_matrix_ = other.adjacency_matrix_;
     cost_matrix_ = other.cost_matrix_;
     edge_matrix_ = other.edge_matrix_;
     vertices_ = other.vertices_;
@@ -74,6 +76,7 @@ class Graph {
    */
   Graph& operator=(Graph& other) {
     size_ = other.size_;
+    adjacency_matrix_ = other.adjacency_matrix_;
     cost_matrix_ = other.cost_matrix_;
     edge_matrix_ = other.edge_matrix_;
     vertices_ = other.vertices_;
@@ -195,6 +198,12 @@ class Graph {
 
   std::vector<int> adjacent_vertex(int v) {
     if (v < size_) {
+      // for(auto i : adjacency_matrix_) {
+      //   for (auto e : i) {
+      //     printf("%d ", e);
+      //   }
+      // }
+      // printf("\n");
       return adjacency_matrix_[v];
     }
     throw std::out_of_range("Index is out of range.");

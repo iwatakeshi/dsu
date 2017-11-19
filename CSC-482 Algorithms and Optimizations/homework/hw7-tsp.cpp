@@ -260,8 +260,8 @@ class TSP {
         if (closed_set.find(w) != closed_set.end()) continue;
 
         // Discover a new node
-        if (open_set.find(w) != open_set.end()) open_set.insert(w);
-
+        if (open_set.find(w) != open_set.end() || open_set.empty()) open_set.insert(w);
+        printf("size %ld \n", open_set.size());
         // Generate a graph
         Graph g(closed_set.size());
         for (auto s : closed_set) {
@@ -269,9 +269,10 @@ class TSP {
             g.add_edge(s, t, graph.get_edge(s, t).weight());
           }
         }
+        g.print();
         MST t(g);
         t.generate(MSTAlgorithms::kruskal);
-
+        t.print();
 
         auto tentative_score = g_map[current] + graph.get_edge(current, w).weight();
         if (tentative_score >= g_map[w]) continue;
@@ -279,26 +280,11 @@ class TSP {
         g_map[w] = tentative_score;
         f_map[w] = g_map[w] + t.distance() + graph.get_edge(w, 0).weight();
       }
-
-      for (auto v : closed_set) {
-        printf("%d ", v);
+    }
+    for (auto v : came_from) {
+        printf("%d: %d \n", v.first, v.second);
       }
       printf("\n");
-
-      // for (auto v : open_set) {
-      //   if (f_map[v] <= f_map[current]) {
-      //     current = v;
-      //   }
-      // }
-
-      // for (auto v : open_set) {
-      //   auto distance = graph.get_edge(current, v).weight();
-      //   if (best_distance > distance) {
-      //     best_distance = distance;
-      //     current = v;
-      //   }
-      // }
-    }
   }
 
   static void
@@ -340,7 +326,7 @@ int main(int argc, char* argv[]) {
   clock_t start, stop;
   srand(time(0));
 
-  int n = 5, low = 1, high = 4, root = 0;
+  int n = 10, low = 1, high = 4, root = 0;
 
   Graph graph(n, low, high);
   graph.print();
