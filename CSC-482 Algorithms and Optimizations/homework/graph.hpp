@@ -253,6 +253,16 @@ class Graph {
     return size_ * size_;
   }
 
+  /**
+   * Returns the density of the graph
+   * https://en.wikipedia.org/wiki/Dense_graph
+   */
+  double density() {
+    auto esize = edges_.size();
+    auto vsize = vertices_.size();
+    return (2 * esize) / (vsize * (vsize - 1));
+  }
+
   // std::vector<std::vector<int>> find_perfect_matching(std::vector<std::vector<int>> adj_matrix, std::vector<int> odd_degree_vertices) {
   //   int closest, distance;
   //   std::vector<int>::iterator temp, first;
