@@ -164,8 +164,8 @@ class MSTAlgorithms {
         if (marked[v] == false && key[v] < min) {
           min = key[v], min_index = v;
         }
-        return min_index;
       }
+      return min_index;
     };
 
     for (int i = 0; i < vsize; i++) {

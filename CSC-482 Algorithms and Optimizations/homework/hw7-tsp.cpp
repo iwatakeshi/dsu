@@ -275,7 +275,7 @@ class TSP {
         g.print();
 
         MST t(g);
-        t.generate(MSTAlgorithms::prim);
+        t.generate(MSTAlgorithms::kruskal);
         t.print();
 
         auto tentative_score = g_map[current] + graph.get_edge(current, w).weight();
