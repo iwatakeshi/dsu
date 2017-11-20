@@ -230,6 +230,10 @@ class TSP {
       return closed_set.size() == graph.vertices().size() && v == start;
     };
 
+    auto path_exists = [](std::set<int> &set, int v) {
+      return set.find(v) != set.end();
+    };
+
     // Set the map's default value to max (could have used infinity)
     for (int i = 0; i < graph.vertices().size(); i++) {
       auto max = std::numeric_limits<int>::max();
@@ -260,15 +264,20 @@ class TSP {
         if (closed_set.find(w) != closed_set.end()) continue;
 
         // Discover a new node
-        if (open_set.find(w) != open_set.end() || open_set.empty()) open_set.insert(w);
+        if (!path_exists(open_set, w) || open_set.empty()) open_set.insert(w);
         printf("size %ld \n", open_set.size());
         // Generate a graph
         Graph g(closed_set.size());
-        for (auto s : closed_set) {
-          for (auto t : closed_set) {
-            g.add_edge(s, t, graph.get_edge(s, t).weight());
+        for (int i = 0; i < closed_set.size(); i++) {
+          for (int j = i + 1; j < closed_set.size(); j++) {
+            g.set_edge_weight(i, j, graph.get_edge(i, j).weight());
           }
         }
+        // for (auto s : closed_set) {
+        //   for (auto t : closed_set) {
+        //     g.add_edge(s, t, graph.get_edge(s, t).weight());
+        //   }
+        // }
         g.print();
         MST t(g);
         t.generate(MSTAlgorithms::kruskal);

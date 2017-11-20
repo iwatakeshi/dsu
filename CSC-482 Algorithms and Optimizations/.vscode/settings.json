@@ -1,5 +1,6 @@
 {
   "files.associations": {
+    ".clang-format": "yaml",
     "ostream": "cpp",
     "array": "cpp",
     "*.tcc": "cpp",
@@ -57,6 +58,8 @@
     "scoped_allocator": "cpp",
     "algorithm": "cpp",
     "rope": "cpp",
-    "cinttypes": "cpp"
+    "cinttypes": "cpp",
+    "forward_list": "cpp",
+    "list": "cpp"
   }
 }
