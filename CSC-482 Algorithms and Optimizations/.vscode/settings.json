@@ -60,6 +60,7 @@
     "rope": "cpp",
     "cinttypes": "cpp",
     "forward_list": "cpp",
-    "list": "cpp"
+    "list": "cpp",
+    "*.gen": "cpp"
   }
 }

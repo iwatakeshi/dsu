@@ -22,6 +22,7 @@
 #include <stdio.h>
 #include <tuple>
 #include <vector>
+#include <queue>
 
 class TSP {
   public:
@@ -209,8 +210,12 @@ class TSP {
   }
 
   auto a_star() {
+    auto compare = [](std::tuple<int, int> lhs, std::tuple<int, int> rhs) {
+      return std::get<1>(lhs) > std::get<1>(rhs);
+    };
+    std::priority_queue<std::tuple<int, int>, std::vector<int>, decltype(compare)> open_queue(compare);
     // The set of vertices already evaluated
-    std::set<int> open_set;
+    std::set<std::tuple<int, int>> open_set;
     // The set of currently discovered vertices that are not evaluated yet.
     // Initially, only the start node is known.
     std::set<int> closed_set;
@@ -223,68 +228,92 @@ class TSP {
     // The cost of going from start to start is zero.
     std::map<int, int> f_map;
     // The starting point
-    int start = 0;
+    auto start = std::make_tuple(0, 0);
 
     // Determines if we have reached our goal
     auto is_goal_state = [&](int v) {
-      return closed_set.size() == graph.vertices().size() && v == start;
+      return closed_set.size() == graph.size();
     };
 
     auto has = [](std::set<int>& set, int v) {
       return set.find(v) != set.end() && set.size() > 0;
     };
 
-    // Set the map's default value to max (could have used infinity)
-    for (int i = 0; i < graph.vertices().size(); i++) {
-      auto max = std::numeric_limits<int>::max();
-      g_map[i] = max;
-      f_map[i] = max;
-    }
-
-    // Add the initial vertex to open_set
-    open_set.insert(start);
-    // For each vertex, the cost of getting from the start vertex to that vertex.
-    g_map[start] = 0;
-    f_map[start] = 0;
-
-    int current;
-    // int best_distance = std::numeric_limits<int>::max();
-    while (!open_set.empty()) {
+    open_set.insert(std::make_tuple(start, 0));
+    closed_set.insert(start);
+    std::tuple<int, int> current;
+    while (closed_set.size() != graph.size()) {
       current = *open_set.begin();
-      if (is_goal_state(current)) {
-        // Construct the path
-        break;
-      }
+      // open_set.erase(std::find(open_set.begin(), open_set.end(), current));
+      
+      for (int w = 0; w < graph.size(); w++) {
+        if (w != start && graph.cost_matrix()[start][w] < std::numeric_limits<int>::max()) {
+          if (!has(closed_set, w)) {
 
-      open_set.erase(std::find(open_set.begin(), open_set.end(), current));
-      closed_set.insert(current);
-
-      for (auto w : graph.adjacent_vertex(current)) {
-        // Ignore the neighbor which is already evaluated.
-        if (has(closed_set, w)) continue;
-
-        // Discover a new node
-        if (!has(open_set, w)) open_set.insert(w);
-        // Generate a graph
-        Graph g(closed_set.size());
-        for (int i = 0; i < closed_set.size(); i++) {
-          for (int j = 0; j < closed_set.size(); j++) {
-            g.set_edge_weight(i, j, graph.get_edge(i, j).weight());
+            auto g = Graph::make_subgraph(graph, closed_set);
+            MST t(g);
+            t.generate(MSTAlgorithms::kruskal);
+            int h = t.distance();
+            open_set.insert(std::make_tuple(w, h + graph.cost_matrix()[std::get<0>(current)][w]));
           }
         }
-        g.print();
-
-        MST t(g);
-        t.generate(MSTAlgorithms::kruskal);
-        t.print();
-
-        auto tentative_score = g_map[current] + graph.get_edge(current, w).weight();
-        if (tentative_score >= g_map[w]) continue;
-        came_from[w] = current;
-        g_map[w] = tentative_score;
-        f_map[w] = g_map[w] + t.distance() + graph.get_edge(w, 0).weight();
       }
+      // current = 
     }
+
+    // // Set the map's default value to max (could have used infinity)
+    // for (int i = 0; i < graph.vertices().size(); i++) {
+    //   auto max = std::numeric_limits<int>::max();
+    //   g_map[i] = max;
+    //   f_map[i] = max;
+    // }
+
+    // // Add the initial vertex to open_set
+    // open_set.insert(start);
+    // // For each vertex, the cost of getting from the start vertex to that vertex.
+    // g_map[start] = 0;
+    // f_map[start] = 0;
+
+    // int current;
+    // // int best_distance = std::numeric_limits<int>::max();
+    // while (!open_set.empty()) {
+    //   current = *open_set.begin();
+    //   if (is_goal_state(current)) {
+    //     break;
+    //   }
+
+    //   open_set.erase(std::find(open_set.begin(), open_set.end(), current));
+    //   closed_set.insert(current);
+    //   printf("neighbors of %d: ", current);
+    //   for (auto w : graph.get_neighbors(current)) {
+    //     printf("%d ", w);
+    //   }
+    //   printf("\n");
+    //   for (int w : graph.get_neighbors(current)) {
+    //     // Ignore the neighbor which is already evaluated.
+    //     if (has(closed_set, w)) continue;
+
+    //     // Discover a new node
+    //     if (!has(open_set, w))  {
+    //       printf("%d is not in the open set\n", w);
+    //       open_set.insert(w);
+    //     }
+    //     // Generate a graph
+    //     auto g = Graph::make_subgraph(graph, closed_set);
+    //     printf("\n");
+    //     g.print();
+
+    //     MST t(g);
+    //     t.generate(MSTAlgorithms::kruskal);
+    //     t.print();
+
+    //     auto tentative_score = g_map[current] + graph.get_edge(current, w).weight();
+    //     if (tentative_score >= g_map[w]) continue;
+    //     came_from[w] = current;
+    //     g_map[w] = tentative_score;
+    //     f_map[w] = g_map[w] + t.distance() + graph.get_edge(w, 0).weight();
+    //   }
+    // }
 
     std::vector<int> total_path;
     total_path.push_back(current);
@@ -292,7 +321,7 @@ class TSP {
     for (auto v : came_from) {
       total_path.push_back(v.second);
     }
-    for (auto t: total_path) {
+    for (auto t : total_path) {
       printf("%d ", t);
     }
     printf("\n");

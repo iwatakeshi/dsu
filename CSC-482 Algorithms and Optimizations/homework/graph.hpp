@@ -8,6 +8,7 @@
 #include <limits>
 #include <list>
 #include <numeric>
+#include <set>
 #include <stdexcept>
 #include <vector>
 
@@ -124,7 +125,9 @@ class Graph {
   void set_edge_weight(const unsigned row, const unsigned column, const unsigned weight) {
     if (row < size_ && column < size_) {
       cost_matrix_[row][column] = weight;
-      auto edge  = Edge(row, column, weight);
+      adjacency_matrix_[row][column] = column;
+      adjacency_matrix_[column][row] = row;
+      auto edge = Edge(row, column, weight);
       std::vector<Edge>::iterator it = std::find(edges_.begin(), edges_.end(), edge);
       if (it == edges_.end() || edges_.empty()) {
         edges_.push_back(edge);
@@ -217,6 +220,17 @@ class Graph {
     throw std::out_of_range("Index is out of range.");
   }
 
+  std::vector<int> get_neighbors(int v) {
+    std::vector<int> neighbors;
+    neighbors.push_back(v);
+    for (int i = 0; i < size_; i++) {
+      if (contains(v, i)) {
+        neighbors.push_back(i);
+      }
+    }
+    return neighbors;
+  }
+
   // std::vector<std::vector<int>> adjacent_vertices() {
   //   std::vector<std::vector<int>> adj;
   // }
@@ -278,6 +292,29 @@ class Graph {
     auto esize = edges_.size();
     auto vsize = vertices_.size();
     return (2 * esize) / (vsize * (vsize - 1));
+  }
+
+  static Graph make_subgraph(Graph& graph, std::set<int> set) {
+    int gsize = graph.size();
+    Graph sub(gsize);
+    std::vector<Edge> edges;
+
+    auto has = [](std::set<int>& set, int v) {
+      return set.find(v) != set.end() && set.size() > 0;
+    };
+
+    for (int i = 0; i < gsize; i++) {
+      for (int j = i + 1; j < gsize; j++) {
+        if (!has(set, i) && !has(set, j)) {
+          edges.push_back(Edge(i, j, graph.cost_matrix()[i][j]));
+        }
+      }
+    }
+
+    for(auto edge : edges) {
+      sub.add_edge(edge.either(), edge.other(edge.either()), edge.weight());
+    }
+    return sub;
   }
 
   // std::vector<std::vector<int>> find_perfect_matching(std::vector<std::vector<int>> adj_matrix, std::vector<int> odd_degree_vertices) {
