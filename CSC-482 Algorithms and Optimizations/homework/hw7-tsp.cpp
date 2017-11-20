@@ -230,8 +230,8 @@ class TSP {
       return closed_set.size() == graph.vertices().size() && v == start;
     };
 
-    auto path_exists = [](std::set<int> &set, int v) {
-      return set.find(v) != set.end();
+    auto has = [](std::set<int>& set, int v) {
+      return set.find(v) != set.end() && set.size() > 0;
     };
 
     // Set the map's default value to max (could have used infinity)
@@ -261,26 +261,21 @@ class TSP {
 
       for (auto w : graph.adjacent_vertex(current)) {
         // Ignore the neighbor which is already evaluated.
-        if (closed_set.find(w) != closed_set.end()) continue;
+        if (has(closed_set, w)) continue;
 
         // Discover a new node
-        if (!path_exists(open_set, w) || open_set.empty()) open_set.insert(w);
-        printf("size %ld \n", open_set.size());
+        if (!has(open_set, w)) open_set.insert(w);
         // Generate a graph
         Graph g(closed_set.size());
         for (int i = 0; i < closed_set.size(); i++) {
-          for (int j = i + 1; j < closed_set.size(); j++) {
+          for (int j = 0; j < closed_set.size(); j++) {
             g.set_edge_weight(i, j, graph.get_edge(i, j).weight());
           }
         }
-        // for (auto s : closed_set) {
-        //   for (auto t : closed_set) {
-        //     g.add_edge(s, t, graph.get_edge(s, t).weight());
-        //   }
-        // }
         g.print();
+
         MST t(g);
-        t.generate(MSTAlgorithms::kruskal);
+        t.generate(MSTAlgorithms::prim);
         t.print();
 
         auto tentative_score = g_map[current] + graph.get_edge(current, w).weight();
@@ -290,10 +285,18 @@ class TSP {
         f_map[w] = g_map[w] + t.distance() + graph.get_edge(w, 0).weight();
       }
     }
+
+    std::vector<int> total_path;
+    total_path.push_back(current);
+
     for (auto v : came_from) {
-        printf("%d: %d \n", v.first, v.second);
-      }
-      printf("\n");
+      total_path.push_back(v.second);
+    }
+    for (auto t: total_path) {
+      printf("%d ", t);
+    }
+    printf("\n");
+    return make_tuple(0, total_path);
   }
 
   static void
@@ -335,7 +338,7 @@ int main(int argc, char* argv[]) {
   clock_t start, stop;
   srand(time(0));
 
-  int n = 10, low = 1, high = 4, root = 0;
+  int n = 4, low = 1, high = 4, root = 0;
 
   Graph graph(n, low, high);
   graph.print();
@@ -343,42 +346,43 @@ int main(int argc, char* argv[]) {
   MST mst(graph);
   TSP tsp(&graph, &mst);
 
-  printf("\nBrute:\n");
-  start = clock();
-  auto solution1 = tsp.brute();
-  stop = clock();
-  TSP::print(solution1);
-  printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
+  // printf("\nBrute:\n");
+  // start = clock();
+  // auto solution1 = tsp.brute();
+  // stop = clock();
+  // TSP::print(solution1);
+  // printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
 
-  printf("\nGreedy (Nearest Neighbor):\n");
-  start = clock();
-  auto solution2 = tsp.greedy();
-  stop = clock();
-  TSP::print(solution2);
-  printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
+  // printf("\nGreedy (Nearest Neighbor):\n");
+  // start = clock();
+  // auto solution2 = tsp.greedy();
+  // stop = clock();
+  // TSP::print(solution2);
+  // printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
 
-  printf("\nMonte Carlo:\n");
-  start = clock();
-  int iterations = 10;
-  auto solution3 = tsp.montecarlo(iterations);
-  stop = clock();
-  TSP::print(solution3);
-  printf("Time: %f\n", ((stop - start) / (double)CLOCKS_PER_SEC) / iterations);
+  // printf("\nMonte Carlo:\n");
+  // start = clock();
+  // int iterations = 10;
+  // auto solution3 = tsp.montecarlo(iterations);
+  // stop = clock();
+  // TSP::print(solution3);
+  // printf("Time: %f\n", ((stop - start) / (double)CLOCKS_PER_SEC) / iterations);
 
-  printf("\nKruskal's MST + DFS (2-Approximation) with graph density of %3.2f:\n", graph.density());
-  start = clock();
-  auto solution4 = tsp.two_approximate(MSTAlgorithms::kruskal);
-  stop = clock();
-  TSP::print(solution4);
-  printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
+  // printf("\nKruskal's MST + DFS (Two-Approximation) with graph density of %3.2f:\n", graph.density());
+  // start = clock();
+  // auto solution4 = tsp.two_approximate(MSTAlgorithms::kruskal);
+  // stop = clock();
+  // TSP::print(solution4);
+  // printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
 
-  printf("\nPrim's MST + DFS (2-Approximation)with graph density of %3.2f:\n", graph.density());
-  start = clock();
-  auto solution5 = tsp.two_approximate(MSTAlgorithms::lazy_prim);
-  stop = clock();
-  TSP::print(solution5);
-  printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
-  
-  tsp.a_star();
+  // printf("\nPrim's MST + DFS (Two-Approximation)with graph density of %3.2f:\n", graph.density());
+  // start = clock();
+  // auto solution5 = tsp.two_approximate(MSTAlgorithms::prim);
+  // stop = clock();
+  // TSP::print(solution5);
+  // printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
+
+  auto solution6 = tsp.a_star();
+  TSP::print(solution6);
   return 0;
 }

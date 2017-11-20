@@ -27,7 +27,9 @@
     _v = edge._v;
     _w = edge._w;
   };
-
+  bool operator==(const Edge& edge) {
+    return _weight == edge._weight && _v == edge._v && _w == edge._w;
+  }
   bool operator<(const Edge& edge) {
     return _weight < edge.weight();
   }

@@ -124,6 +124,14 @@ class Graph {
   void set_edge_weight(const unsigned row, const unsigned column, const unsigned weight) {
     if (row < size_ && column < size_) {
       cost_matrix_[row][column] = weight;
+      auto edge  = Edge(row, column, weight);
+      std::vector<Edge>::iterator it = std::find(edges_.begin(), edges_.end(), edge);
+      if (it == edges_.end() || edges_.empty()) {
+        edges_.push_back(edge);
+      } else {
+        edges_[std::distance(edges_.begin(), it)] = edge;
+      }
+      return;
     }
     throw std::out_of_range("Index is out of range.");
   }
