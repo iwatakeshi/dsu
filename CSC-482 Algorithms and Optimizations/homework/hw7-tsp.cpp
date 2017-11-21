@@ -297,7 +297,7 @@ class TSP {
       }
     }
     printf("\n");
-    printf("Weight: %d\n", distance);
+    printf("Distance: %d\n", distance);
   }
 };
 
@@ -350,14 +350,14 @@ int main(int argc, char* argv[]) {
   TSP::print(solution3);
   printf("Time: %f\n", ((stop - start) / (double)CLOCKS_PER_SEC) / iterations);
 
-  printf("\nKruskal's MST + DFS (Two-Approximation) with graph density of %3.2f:\n", graph.density());
+  printf("\nKruskal's MST + DFS (Two-Approximation)\n");
   start = clock();
   auto solution4 = tsp.two_approximate(MSTAlgorithms::kruskal);
   stop = clock();
   TSP::print(solution4);
   printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
 
-  printf("\nPrim's MST + DFS (Two-Approximation) with graph density of %3.2f:\n", graph.density());
+  printf("\nPrim's MST + DFS (Two-Approximation)\n");
   start = clock();
   auto solution5 = tsp.two_approximate(MSTAlgorithms::lazy_prim);
   stop = clock();
