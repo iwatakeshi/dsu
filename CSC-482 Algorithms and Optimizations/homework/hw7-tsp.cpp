@@ -16,13 +16,13 @@
 #include <list>
 #include <map>
 #include <numeric>
+#include <queue>
 #include <random>
 #include <set>
 #include <stack>
 #include <stdio.h>
 #include <tuple>
 #include <vector>
-#include <queue>
 
 class TSP {
   public:
@@ -209,123 +209,76 @@ class TSP {
     return std::make_tuple(distance, best_tour);
   }
 
-  auto a_star() {
+  auto a_star(MSTGenerator generator) {
     auto compare = [](std::tuple<int, int> lhs, std::tuple<int, int> rhs) {
-      return std::get<1>(lhs) > std::get<1>(rhs);
+      return std::get<1>(lhs) < std::get<1>(rhs);
     };
-    std::priority_queue<std::tuple<int, int>, std::vector<int>, decltype(compare)> open_queue(compare);
+
     // The set of vertices already evaluated
-    std::set<std::tuple<int, int>> open_set;
+    std::set<std::tuple<int, int>, decltype(compare)> open_set(compare);
     // The set of currently discovered vertices that are not evaluated yet.
     // Initially, only the start node is known.
     std::set<int> closed_set;
-    // For each vertex, which vertex it can most efficiently be reached from.
-    // If a vertex can be reached from many vertices, came_from will eventually contain the
-    // most efficient previous step.
-    std::map<int, int> came_from;
-    // For each node, the cost of getting from the start node to that node.
-    std::map<int, int> g_map;
-    // The cost of going from start to start is zero.
-    std::map<int, int> f_map;
+
     // The starting point
     auto start = std::make_tuple(0, 0);
-
-    // Determines if we have reached our goal
-    auto is_goal_state = [&](int v) {
-      return closed_set.size() == graph.size();
-    };
-
     auto has = [](std::set<int>& set, int v) {
       return set.find(v) != set.end() && set.size() > 0;
     };
 
-    open_set.insert(std::make_tuple(start, 0));
-    closed_set.insert(start);
-    std::tuple<int, int> current;
-    while (closed_set.size() != graph.size()) {
-      current = *open_set.begin();
-      // open_set.erase(std::find(open_set.begin(), open_set.end(), current));
-      
-      for (int w = 0; w < graph.size(); w++) {
-        if (w != start && graph.cost_matrix()[start][w] < std::numeric_limits<int>::max()) {
-          if (!has(closed_set, w)) {
+    auto vertex = [](std::tuple<int, int> v) {
+      return std::get<0>(v);
+    };
 
+    auto pop = [](std::set<std::tuple<int, int>, decltype(compare)> &set) {
+      auto it = set.begin();
+      set.erase(it);
+      return std::get<0>(*it);
+    };
+
+    auto size = graph.size();
+    auto visited = new int[size]();
+
+
+    // Start has been visited
+    closed_set.insert(vertex(start));
+    int current = vertex(start);
+    auto n_visited = 1;
+    visited[current] = n_visited++;
+
+    while (closed_set.size() != size) {
+      for (int w = 0; w < size; w++) {
+        if (w != current && graph.contains(current, w)) {
+          if (!has(closed_set, w)) {
+            // Generate a subgraph for the minimum spanning tree
             auto g = Graph::make_subgraph(graph, closed_set);
             MST t(g);
-            t.generate(MSTAlgorithms::kruskal);
+            t.generate(generator);
             int h = t.distance();
-            open_set.insert(std::make_tuple(w, h + graph.cost_matrix()[std::get<0>(current)][w]));
+            open_set.insert(std::make_tuple(w, h + graph.cost_matrix()[current][w]));
           }
         }
       }
-      // current = 
+      current = pop(open_set);
+      closed_set.insert(current);
+      visited[current] = n_visited++;
     }
 
-    // // Set the map's default value to max (could have used infinity)
-    // for (int i = 0; i < graph.vertices().size(); i++) {
-    //   auto max = std::numeric_limits<int>::max();
-    //   g_map[i] = max;
-    //   f_map[i] = max;
-    // }
-
-    // // Add the initial vertex to open_set
-    // open_set.insert(start);
-    // // For each vertex, the cost of getting from the start vertex to that vertex.
-    // g_map[start] = 0;
-    // f_map[start] = 0;
-
-    // int current;
-    // // int best_distance = std::numeric_limits<int>::max();
-    // while (!open_set.empty()) {
-    //   current = *open_set.begin();
-    //   if (is_goal_state(current)) {
-    //     break;
-    //   }
-
-    //   open_set.erase(std::find(open_set.begin(), open_set.end(), current));
-    //   closed_set.insert(current);
-    //   printf("neighbors of %d: ", current);
-    //   for (auto w : graph.get_neighbors(current)) {
-    //     printf("%d ", w);
-    //   }
-    //   printf("\n");
-    //   for (int w : graph.get_neighbors(current)) {
-    //     // Ignore the neighbor which is already evaluated.
-    //     if (has(closed_set, w)) continue;
-
-    //     // Discover a new node
-    //     if (!has(open_set, w))  {
-    //       printf("%d is not in the open set\n", w);
-    //       open_set.insert(w);
-    //     }
-    //     // Generate a graph
-    //     auto g = Graph::make_subgraph(graph, closed_set);
-    //     printf("\n");
-    //     g.print();
-
-    //     MST t(g);
-    //     t.generate(MSTAlgorithms::kruskal);
-    //     t.print();
-
-    //     auto tentative_score = g_map[current] + graph.get_edge(current, w).weight();
-    //     if (tentative_score >= g_map[w]) continue;
-    //     came_from[w] = current;
-    //     g_map[w] = tentative_score;
-    //     f_map[w] = g_map[w] + t.distance() + graph.get_edge(w, 0).weight();
-    //   }
-    // }
-
-    std::vector<int> total_path;
-    total_path.push_back(current);
-
-    for (auto v : came_from) {
-      total_path.push_back(v.second);
+    std::vector<int> total_path(graph.size());
+    for (int i = 1; i <= closed_set.size(); i++) {
+      for (int j = 0; j < closed_set.size(); j++) {
+        if (visited[j] == i) {
+          total_path[i - 1] = j;
+        }
+      }
     }
-    for (auto t : total_path) {
-      printf("%d ", t);
+    int distance = 0;
+    for (int i = 0; i < total_path.size() - 1; i++) {
+      distance += graph.cost_matrix()[total_path[i]][total_path[i + 1]];
     }
-    printf("\n");
-    return make_tuple(0, total_path);
+    distance +=  graph.get_edge(total_path[total_path.size() - 1], 0).weight();
+    total_path.push_back(0);
+    return make_tuple(distance, total_path);
   }
 
   static void
@@ -375,43 +328,52 @@ int main(int argc, char* argv[]) {
   MST mst(graph);
   TSP tsp(&graph, &mst);
 
-  // printf("\nBrute:\n");
-  // start = clock();
-  // auto solution1 = tsp.brute();
-  // stop = clock();
-  // TSP::print(solution1);
-  // printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
+  printf("\nBrute:\n");
+  start = clock();
+  auto solution1 = tsp.brute();
+  stop = clock();
+  TSP::print(solution1);
+  printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
 
-  // printf("\nGreedy (Nearest Neighbor):\n");
-  // start = clock();
-  // auto solution2 = tsp.greedy();
-  // stop = clock();
-  // TSP::print(solution2);
-  // printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
+  printf("\nGreedy (Nearest Neighbor):\n");
+  start = clock();
+  auto solution2 = tsp.greedy();
+  stop = clock();
+  TSP::print(solution2);
+  printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
 
-  // printf("\nMonte Carlo:\n");
-  // start = clock();
-  // int iterations = 10;
-  // auto solution3 = tsp.montecarlo(iterations);
-  // stop = clock();
-  // TSP::print(solution3);
-  // printf("Time: %f\n", ((stop - start) / (double)CLOCKS_PER_SEC) / iterations);
+  printf("\nMonte Carlo:\n");
+  start = clock();
+  int iterations = 10;
+  auto solution3 = tsp.montecarlo(iterations);
+  stop = clock();
+  TSP::print(solution3);
+  printf("Time: %f\n", ((stop - start) / (double)CLOCKS_PER_SEC) / iterations);
 
-  // printf("\nKruskal's MST + DFS (Two-Approximation) with graph density of %3.2f:\n", graph.density());
-  // start = clock();
-  // auto solution4 = tsp.two_approximate(MSTAlgorithms::kruskal);
-  // stop = clock();
-  // TSP::print(solution4);
-  // printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
+  printf("\nKruskal's MST + DFS (Two-Approximation) with graph density of %3.2f:\n", graph.density());
+  start = clock();
+  auto solution4 = tsp.two_approximate(MSTAlgorithms::kruskal);
+  stop = clock();
+  TSP::print(solution4);
+  printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
 
-  // printf("\nPrim's MST + DFS (Two-Approximation)with graph density of %3.2f:\n", graph.density());
-  // start = clock();
-  // auto solution5 = tsp.two_approximate(MSTAlgorithms::prim);
-  // stop = clock();
-  // TSP::print(solution5);
-  // printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
-
-  auto solution6 = tsp.a_star();
+  printf("\nPrim's MST + DFS (Two-Approximation) with graph density of %3.2f:\n", graph.density());
+  start = clock();
+  auto solution5 = tsp.two_approximate(MSTAlgorithms::lazy_prim);
+  stop = clock();
+  TSP::print(solution5);
+  printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
+  
+  printf("\nA* + Kruskal's MST as h(n) \n");
+  start = clock();
+  auto solution6 = tsp.a_star(MSTAlgorithms::kruskal);
   TSP::print(solution6);
+  printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
+
+  printf("\nA* + Prim's MST as h(n) \n");
+  start = clock();
+  auto solution7 = tsp.a_star(MSTAlgorithms::lazy_prim);
+  TSP::print(solution7);
+  printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
   return 0;
 }

@@ -117,7 +117,6 @@ class MSTAlgorithms {
 
   static auto lazy_prim(Graph& graph) {
     auto edges = graph.edges();
-    printf("size %ld\n", edges.size());
     std::vector<Edge> T;
     bool* marked = new bool[graph.size()]();
 
@@ -150,51 +149,52 @@ class MSTAlgorithms {
     return std::make_tuple(distance, T);
   }
 
-  //http://www.geeksforgeeks.org/greedy-algorithms-set-5-prims-minimum-spanning-tree-mst-2/
-  static auto prim(Graph& graph) {
-    auto vsize = graph.size();
-    auto cost_matrix = graph.cost_matrix();
-    int parent[vsize];
-    int key[vsize];
-    bool marked[vsize];
+  // //http://www.geeksforgeeks.org/greedy-algorithms-set-5-prims-minimum-spanning-tree-mst-2/
+  // static auto prim(Graph& graph) {
+  //   auto size = graph.size();
+  //   auto cost_matrix = graph.cost_matrix();
+  //   int parent[size];
+  //   int key[size];
+  //   bool marked[size];
 
-    auto min_key = [&](int key[], bool marked[]) {
-      int min = std::numeric_limits<int>::max(), min_index;
-      for (int v = 0; v < vsize; v++) {
-        if (marked[v] == false && key[v] < min) {
-          min = key[v], min_index = v;
-        }
-      }
-      return min_index;
-    };
+  //   auto min_key = [&](int key[], bool marked[]) {
+  //     int min = std::numeric_limits<int>::max(), min_index = 0;
+  //     for (int v = 0; v < size; v++) {
+  //       if (marked[v] == false && key[v] < min) {
+  //         min = key[v], min_index = v;
+  //       }
+  //     }
+  //     return min_index;
+  //   };
 
-    for (int i = 0; i < vsize; i++) {
-      key[i] = std::numeric_limits<int>::max(), marked[i] = false;
-    }
+  //   for (int i = 0; i < size; i++) {
+  //     key[i] = std::numeric_limits<int>::max(), marked[i] = false;
+  //   }
 
-    key[0] = 0;
-    parent[0] = -1;
+  //   key[0] = 0;
+  //   parent[0] = -1;
 
-    for (int count = 0; count < vsize - 1; count++) {
-      int u = min_key(key, marked);
-      marked[u] = true;
+  //   for (int count = 0; count < size - 1; count++) {
+  //     int u = min_key(key, marked);
+  //     marked[u] = true;
 
-      for (int v = 0; v < vsize; v++) {
-        if (cost_matrix[u][v] && marked[v] == false && cost_matrix[u][v] < key[v]) {
-          parent[v] = u, key[v] = cost_matrix[u][v];
-        }
-      }
-    }
+  //     for (int v = 0; v < size; v++) {
+  //       if (cost_matrix[u][v] && marked[v] == false && cost_matrix[u][v] < key[v]) {
+  //         parent[v] = u, key[v] = cost_matrix[u][v];
+  //       }
+  //     }
+  //   }
 
-    int distance = 0;
-    std::vector<Edge> T;
-    for (int v = 1; v < vsize; v++) {
-      auto edge = Edge(parent[v], v, cost_matrix[v][parent[v]]);
-      distance += edge.weight();
-      T.push_back(edge);
-    }
-    return make_tuple(distance, T);
-  }
+  //   int distance = 0;
+  //   std::vector<Edge> T;
+  //   for (int v = 1; v < size; v++) {
+  //     auto edge = Edge(parent[v], v, cost_matrix[v][parent[v]]);
+  //     distance += edge.weight();
+  //     T.push_back(edge);
+  //   }
+
+  //   return make_tuple(distance, T);
+  // }
 };
 
 #endif

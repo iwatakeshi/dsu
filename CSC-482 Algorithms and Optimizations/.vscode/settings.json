@@ -61,6 +61,7 @@
     "cinttypes": "cpp",
     "forward_list": "cpp",
     "list": "cpp",
-    "*.gen": "cpp"
+    "*.gen": "cpp",
+    "queue": "cpp"
   }
 }
