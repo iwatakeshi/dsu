@@ -367,12 +367,14 @@ int main(int argc, char* argv[]) {
   printf("\nA* + Kruskal's MST as h(n) \n");
   start = clock();
   auto solution6 = tsp.a_star(MSTAlgorithms::kruskal);
+  stop = clock();
   TSP::print(solution6);
   printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
 
   printf("\nA* + Prim's MST as h(n) \n");
   start = clock();
   auto solution7 = tsp.a_star(MSTAlgorithms::lazy_prim);
+  stop = clock();
   TSP::print(solution7);
   printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
   return 0;
