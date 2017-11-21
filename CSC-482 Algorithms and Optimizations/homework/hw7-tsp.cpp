@@ -19,17 +19,25 @@ int main(int argc, char* argv[]) {
   clock_t start, stop;
   srand(time(0));
 
-  // int n = 8, low = 1, high = 4, root = 0;
-  // Graph random_g(n, low, high);
-  std::vector<std::vector<std::vector<double>>> tests(2);
-  std::vector<double> average_costs;
-  std::vector<double> average_qualities;
-  std::vector<double> average_times;
-  std::vector<std::string> algorithm_names = {
-    "Brute (Non-recursive)", "Greedy (Nearest Neighbor)",
-    "Monte Carlo (k = 1...100)", "Kruskal's MST + Two-Approximate",
-    "Prim's MST + Two-Approximate", "Kruskal's MST + A*", "Prim's MST + A*"
-  };
+  // A) Brute Force vs Projected O(N!)
+  printf("Brute Running Time Test:\n");
+  printf("%-20s%-20s\n", "N", "Time");
+  for (int i = 0; i < 145; i++)
+    printf("-");
+  printf("\n");
+  for (int n = 1; n < 13; n++) {
+    TSP tsp(n, 1, 100);
+    start = clock();
+    tsp.brute();
+    stop = clock();
+    printf("%-20d%-20f\n", n, (stop - start) / (double)CLOCKS_PER_SEC);
+  }
+  printf("\n");
+  
+  for (int i = 0; i < 145; i++)
+    printf("-");
+  printf("\n");
+
   // Worst Case for Greedy Algorithm:
   printf("Worst Case Greedy Algorithm:\n");
   test_type worst_case = run_worst_case_greedy();
