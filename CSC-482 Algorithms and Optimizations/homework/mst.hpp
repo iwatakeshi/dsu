@@ -35,6 +35,13 @@ class MST {
     return *this;
   }
 
+  MST operator=(const MST& other) {
+    distance_ = other.distance_;
+    tree_ = other.tree_;
+    graph_ = other.graph_;
+    return *this;
+  }
+
   ~MST() {
   }
 
@@ -146,6 +153,8 @@ class MSTAlgorithms {
       auto w = e.other(v);
       distance += e.weight();
     }
+    
+    delete marked;
     return std::make_tuple(distance, T);
   }
 

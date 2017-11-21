@@ -1,0 +1,1207 @@
+Worst Case Greedy Algorithm:
+Algorithm                                            Tour                                                 Distance            Time                
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Brute (Non-recursive) (Non-optimal Graph)            a --> b --> d --> c --> g --> e --> f --> h --> a    11                  0.010190
+Brute (Non-recursive) (Optimal Graph)                a --> b --> d --> c --> g --> e --> f --> h --> a    11                  0.010185
+Greedy (Nearest Neighbor) (Non-optimal Graph)        a --> e --> b --> d --> c --> g --> h --> f --> a    2147473656          0.000009
+Greedy (Nearest Neighbor) (Optimal Graph)            a --> e --> b --> d --> c --> g --> h --> f --> a    13                  0.000008
+Kruskal's MST + A* (Non-optimal Graph)               a --> e --> b --> d --> c --> g --> h --> f --> a    2147473656          0.001668
+Kruskal's MST + A* (Optimal Graph)                   a --> e --> b --> d --> c --> g --> h --> f --> a    13                  0.001676
+Kruskal's MST + Two-Approximate (Non-optimal Graph)  a --> f --> g --> b --> c --> h --> d --> e --> a    2147473664          0.000051
+Kruskal's MST + Two-Approximate (Optimal Graph)      a --> f --> g --> b --> c --> h --> d --> e --> a    21                  0.000051
+Prim's MST + A* (Non-optimal Graph)                  a --> e --> a --> b --> d --> c --> g --> f --> a    2147473659          0.001606
+Prim's MST + A* (Optimal Graph)                      a --> e --> a --> b --> d --> c --> g --> f --> a    16                  0.001701
+Prim's MST + Two-Approximate (Non-optimal Graph)     a --> e --> g --> d --> c --> f --> h --> b --> a    13                  0.000058
+Prim's MST + Two-Approximate (Optimal Graph)         a --> e --> g --> d --> c --> f --> h --> b --> a    13                  0.000057
+
+Small N Test:
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+N = 4
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Brute (Non-recursive)                             14.000000           1.000000                                          1.049783            
+Greedy (Nearest Neighbor)                         17.000000           1.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         2122.000000         99.700000                                         0.004024            
+Kruskal's MST + Two Approximate                   33.000000           1.900000                                          0.000067            
+Prim's MST + Two Approximate                      20.000000           1.000000                                          0.000117            
+Kruskal's MST + A*                                17.000000           1.000000                                          0.004396            
+Prim's MST + A*                                   18.000000           1.000000                                          0.004052            
+
+
+N = 5
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Brute (Non-recursive)                             14.000000           1.000000                                          1.121833            
+Greedy (Nearest Neighbor)                         17.000000           1.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         2493.000000         111.200000                                        0.004198            
+Kruskal's MST + Two Approximate                   38.000000           2.000000                                          0.000081            
+Prim's MST + Two Approximate                      21.000000           1.000000                                          0.000124            
+Kruskal's MST + A*                                17.000000           1.000000                                          0.005009            
+Prim's MST + A*                                   21.000000           1.100000                                          0.004056            
+
+
+N = 6
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Brute (Non-recursive)                             17.000000           1.000000                                          1.072799            
+Greedy (Nearest Neighbor)                         19.000000           1.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         2723.000000         106.400000                                        0.004117            
+Kruskal's MST + Two Approximate                   47.000000           2.300000                                          0.000077            
+Prim's MST + Two Approximate                      26.000000           1.000000                                          0.000128            
+Kruskal's MST + A*                                19.000000           1.000000                                          0.004627            
+Prim's MST + A*                                   23.000000           1.000000                                          0.004046            
+
+
+N = 7
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Brute (Non-recursive)                             19.000000           1.000000                                          1.086988            
+Greedy (Nearest Neighbor)                         23.000000           1.000000                                          0.000017            
+Monte Carlo (k = 1...100)                         3335.000000         109.400000                                        0.004153            
+Kruskal's MST + Two Approximate                   54.000000           2.300000                                          0.000079            
+Prim's MST + Two Approximate                      33.000000           1.200000                                          0.000119            
+Kruskal's MST + A*                                23.000000           1.000000                                          0.004533            
+Prim's MST + A*                                   29.000000           1.100000                                          0.003989            
+
+
+N = 8
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Brute (Non-recursive)                             19.000000           1.000000                                          1.095723            
+Greedy (Nearest Neighbor)                         23.000000           1.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         3524.000000         138.100000                                        0.004352            
+Kruskal's MST + Two Approximate                   57.000000           2.700000                                          0.000093            
+Prim's MST + Two Approximate                      32.000000           1.100000                                          0.000130            
+Kruskal's MST + A*                                23.000000           1.000000                                          0.004949            
+Prim's MST + A*                                   26.000000           1.000000                                          0.004210            
+
+
+N = 9
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Brute (Non-recursive)                             24.000000           1.000000                                          1.076412            
+Greedy (Nearest Neighbor)                         29.000000           1.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         4126.000000         119.700000                                        0.004006            
+Kruskal's MST + Two Approximate                   68.000000           2.400000                                          0.000076            
+Prim's MST + Two Approximate                      41.000000           1.200000                                          0.000127            
+Kruskal's MST + A*                                29.000000           1.000000                                          0.004712            
+Prim's MST + A*                                   36.000000           1.000000                                          0.004201            
+
+
+N = 10
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Brute (Non-recursive)                             26.000000           1.000000                                          1.053085            
+Greedy (Nearest Neighbor)                         31.000000           1.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         4697.000000         130.600000                                        0.004084            
+Kruskal's MST + Two Approximate                   74.000000           2.400000                                          0.000078            
+Prim's MST + Two Approximate                      44.000000           1.200000                                          0.000118            
+Kruskal's MST + A*                                31.000000           1.000000                                          0.004494            
+Prim's MST + A*                                   42.000000           1.100000                                          0.004012            
+
+
+
+Large N Test:
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+N = 10
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         31.000000           0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         4601.000000         0.000000                                          0.003979            
+Kruskal's MST + Two Approximate                   75.000000           0.000000                                          0.000076            
+Prim's MST + Two Approximate                      45.000000           0.000000                                          0.000122            
+Kruskal's MST + A*                                31.000000           0.000000                                          0.004498            
+Prim's MST + A*                                   40.000000           0.000000                                          0.004049            
+
+
+N = 20
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         55.000000           0.000000                                          0.000015            
+Monte Carlo (k = 1...100)                         8194.000000         0.000000                                          0.004038            
+Kruskal's MST + Two Approximate                   140.000000          0.000000                                          0.000071            
+Prim's MST + Two Approximate                      80.000000           0.000000                                          0.000125            
+Kruskal's MST + A*                                55.000000           0.000000                                          0.004581            
+Prim's MST + A*                                   73.000000           0.000000                                          0.004166            
+
+
+N = 30
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         78.000000           0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         12403.000000        0.000000                                          0.004003            
+Kruskal's MST + Two Approximate                   211.000000          0.000000                                          0.000075            
+Prim's MST + Two Approximate                      121.000000          0.000000                                          0.000131            
+Kruskal's MST + A*                                78.000000           0.000000                                          0.004577            
+Prim's MST + A*                                   98.000000           0.000000                                          0.004147            
+
+
+N = 40
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         110.000000          0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         16213.000000        0.000000                                          0.004040            
+Kruskal's MST + Two Approximate                   276.000000          0.000000                                          0.000082            
+Prim's MST + Two Approximate                      166.000000          0.000000                                          0.000133            
+Kruskal's MST + A*                                110.000000          0.000000                                          0.004587            
+Prim's MST + A*                                   137.000000          0.000000                                          0.004245            
+
+
+N = 50
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         123.000000          0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         19285.000000        0.000000                                          0.004089            
+Kruskal's MST + Two Approximate                   328.000000          0.000000                                          0.000082            
+Prim's MST + Two Approximate                      196.000000          0.000000                                          0.000126            
+Kruskal's MST + A*                                123.000000          0.000000                                          0.004688            
+Prim's MST + A*                                   171.000000          0.000000                                          0.004146            
+
+
+N = 60
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         157.000000          0.000000                                          0.000015            
+Monte Carlo (k = 1...100)                         23896.000000        0.000000                                          0.004080            
+Kruskal's MST + Two Approximate                   413.000000          0.000000                                          0.000087            
+Prim's MST + Two Approximate                      236.000000          0.000000                                          0.000128            
+Kruskal's MST + A*                                157.000000          0.000000                                          0.004592            
+Prim's MST + A*                                   201.000000          0.000000                                          0.004130            
+
+
+N = 70
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         183.000000          0.000000                                          0.000015            
+Monte Carlo (k = 1...100)                         27836.000000        0.000000                                          0.004142            
+Kruskal's MST + Two Approximate                   487.000000          0.000000                                          0.000080            
+Prim's MST + Two Approximate                      268.000000          0.000000                                          0.000136            
+Kruskal's MST + A*                                183.000000          0.000000                                          0.004735            
+Prim's MST + A*                                   226.000000          0.000000                                          0.004306            
+
+
+N = 80
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         205.000000          0.000000                                          0.000016            
+Monte Carlo (k = 1...100)                         32092.000000        0.000000                                          0.004129            
+Kruskal's MST + Two Approximate                   553.000000          0.000000                                          0.000079            
+Prim's MST + Two Approximate                      318.000000          0.000000                                          0.000126            
+Kruskal's MST + A*                                205.000000          0.000000                                          0.004651            
+Prim's MST + A*                                   278.000000          0.000000                                          0.004247            
+
+
+N = 90
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         221.000000          0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         35087.000000        0.000000                                          0.004009            
+Kruskal's MST + Two Approximate                   621.000000          0.000000                                          0.000079            
+Prim's MST + Two Approximate                      358.000000          0.000000                                          0.000128            
+Kruskal's MST + A*                                221.000000          0.000000                                          0.004555            
+Prim's MST + A*                                   289.000000          0.000000                                          0.004106            
+
+
+N = 100
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         247.000000          0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         39208.000000        0.000000                                          0.004018            
+Kruskal's MST + Two Approximate                   676.000000          0.000000                                          0.000081            
+Prim's MST + Two Approximate                      377.000000          0.000000                                          0.000129            
+Kruskal's MST + A*                                247.000000          0.000000                                          0.004543            
+Prim's MST + A*                                   331.000000          0.000000                                          0.004100            
+
+
+N = 110
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         258.000000          0.000000                                          0.000015            
+Monte Carlo (k = 1...100)                         42891.000000        0.000000                                          0.004118            
+Kruskal's MST + Two Approximate                   758.000000          0.000000                                          0.000086            
+Prim's MST + Two Approximate                      437.000000          0.000000                                          0.000139            
+Kruskal's MST + A*                                258.000000          0.000000                                          0.004797            
+Prim's MST + A*                                   383.000000          0.000000                                          0.004217            
+
+
+N = 120
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         302.000000          0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         47526.000000        0.000000                                          0.004138            
+Kruskal's MST + Two Approximate                   851.000000          0.000000                                          0.000085            
+Prim's MST + Two Approximate                      486.000000          0.000000                                          0.000127            
+Kruskal's MST + A*                                302.000000          0.000000                                          0.004763            
+Prim's MST + A*                                   396.000000          0.000000                                          0.004310            
+
+
+N = 130
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         326.000000          0.000000                                          0.000015            
+Monte Carlo (k = 1...100)                         49763.000000        0.000000                                          0.004190            
+Kruskal's MST + Two Approximate                   882.000000          0.000000                                          0.000084            
+Prim's MST + Two Approximate                      514.000000          0.000000                                          0.000127            
+Kruskal's MST + A*                                326.000000          0.000000                                          0.004969            
+Prim's MST + A*                                   432.000000          0.000000                                          0.004691            
+
+
+N = 140
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         350.000000          0.000000                                          0.000015            
+Monte Carlo (k = 1...100)                         56716.000000        0.000000                                          0.004225            
+Kruskal's MST + Two Approximate                   973.000000          0.000000                                          0.000083            
+Prim's MST + Two Approximate                      569.000000          0.000000                                          0.000135            
+Kruskal's MST + A*                                350.000000          0.000000                                          0.004919            
+Prim's MST + A*                                   470.000000          0.000000                                          0.004259            
+
+
+N = 150
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         378.000000          0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         57533.000000        0.000000                                          0.003968            
+Kruskal's MST + Two Approximate                   1010.000000         0.000000                                          0.000081            
+Prim's MST + Two Approximate                      578.000000          0.000000                                          0.000130            
+Kruskal's MST + A*                                378.000000          0.000000                                          0.004512            
+Prim's MST + A*                                   454.000000          0.000000                                          0.004051            
+
+
+N = 160
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         381.000000          0.000000                                          0.000015            
+Monte Carlo (k = 1...100)                         62221.000000        0.000000                                          0.003969            
+Kruskal's MST + Two Approximate                   1099.000000         0.000000                                          0.000084            
+Prim's MST + Two Approximate                      596.000000          0.000000                                          0.000132            
+Kruskal's MST + A*                                381.000000          0.000000                                          0.004551            
+Prim's MST + A*                                   512.000000          0.000000                                          0.004060            
+
+
+N = 170
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         452.000000          0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         68810.000000        0.000000                                          0.003977            
+Kruskal's MST + Two Approximate                   1189.000000         0.000000                                          0.000077            
+Prim's MST + Two Approximate                      688.000000          0.000000                                          0.000122            
+Kruskal's MST + A*                                452.000000          0.000000                                          0.004562            
+Prim's MST + A*                                   559.000000          0.000000                                          0.004115            
+
+
+N = 180
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         445.000000          0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         68932.000000        0.000000                                          0.003980            
+Kruskal's MST + Two Approximate                   1223.000000         0.000000                                          0.000089            
+Prim's MST + Two Approximate                      672.000000          0.000000                                          0.000128            
+Kruskal's MST + A*                                445.000000          0.000000                                          0.004548            
+Prim's MST + A*                                   591.000000          0.000000                                          0.004126            
+
+
+N = 190
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         440.000000          0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         74232.000000        0.000000                                          0.003966            
+Kruskal's MST + Two Approximate                   1318.000000         0.000000                                          0.000084            
+Prim's MST + Two Approximate                      724.000000          0.000000                                          0.000124            
+Kruskal's MST + A*                                440.000000          0.000000                                          0.004561            
+Prim's MST + A*                                   623.000000          0.000000                                          0.003998            
+
+
+N = 200
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         481.000000          0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         78613.000000        0.000000                                          0.003997            
+Kruskal's MST + Two Approximate                   1335.000000         0.000000                                          0.000073            
+Prim's MST + Two Approximate                      743.000000          0.000000                                          0.000122            
+Kruskal's MST + A*                                481.000000          0.000000                                          0.004543            
+Prim's MST + A*                                   679.000000          0.000000                                          0.004144            
+
+
+N = 210
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         540.000000          0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         83477.000000        0.000000                                          0.004004            
+Kruskal's MST + Two Approximate                   1418.000000         0.000000                                          0.000085            
+Prim's MST + Two Approximate                      830.000000          0.000000                                          0.000125            
+Kruskal's MST + A*                                540.000000          0.000000                                          0.004569            
+Prim's MST + A*                                   660.000000          0.000000                                          0.004165            
+
+
+N = 220
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         564.000000          0.000000                                          0.000021            
+Monte Carlo (k = 1...100)                         85776.000000        0.000000                                          0.004298            
+Kruskal's MST + Two Approximate                   1507.000000         0.000000                                          0.000091            
+Prim's MST + Two Approximate                      860.000000          0.000000                                          0.000129            
+Kruskal's MST + A*                                564.000000          0.000000                                          0.004719            
+Prim's MST + A*                                   686.000000          0.000000                                          0.004263            
+
+
+N = 230
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         546.000000          0.000000                                          0.000019            
+Monte Carlo (k = 1...100)                         89602.000000        0.000000                                          0.004439            
+Kruskal's MST + Two Approximate                   1598.000000         0.000000                                          0.000087            
+Prim's MST + Two Approximate                      867.000000          0.000000                                          0.000133            
+Kruskal's MST + A*                                546.000000          0.000000                                          0.004903            
+Prim's MST + A*                                   726.000000          0.000000                                          0.004427            
+
+
+N = 240
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         565.000000          0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         92165.000000        0.000000                                          0.004152            
+Kruskal's MST + Two Approximate                   1644.000000         0.000000                                          0.000080            
+Prim's MST + Two Approximate                      914.000000          0.000000                                          0.000126            
+Kruskal's MST + A*                                565.000000          0.000000                                          0.004835            
+Prim's MST + A*                                   779.000000          0.000000                                          0.004301            
+
+
+N = 250
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         599.000000          0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         97515.000000        0.000000                                          0.004201            
+Kruskal's MST + Two Approximate                   1702.000000         0.000000                                          0.000083            
+Prim's MST + Two Approximate                      955.000000          0.000000                                          0.000127            
+Kruskal's MST + A*                                599.000000          0.000000                                          0.004800            
+Prim's MST + A*                                   794.000000          0.000000                                          0.004451            
+
+
+N = 260
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         632.000000          0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         102458.000000       0.000000                                          0.004050            
+Kruskal's MST + Two Approximate                   1775.000000         0.000000                                          0.000077            
+Prim's MST + Two Approximate                      1032.000000         0.000000                                          0.000122            
+Kruskal's MST + A*                                632.000000          0.000000                                          0.004655            
+Prim's MST + A*                                   877.000000          0.000000                                          0.004257            
+
+
+N = 270
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         704.000000          0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         106679.000000       0.000000                                          0.003960            
+Kruskal's MST + Two Approximate                   1808.000000         0.000000                                          0.000078            
+Prim's MST + Two Approximate                      1085.000000         0.000000                                          0.000123            
+Kruskal's MST + A*                                704.000000          0.000000                                          0.004550            
+Prim's MST + A*                                   862.000000          0.000000                                          0.004171            
+
+
+N = 280
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         689.000000          0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         110690.000000       0.000000                                          0.004040            
+Kruskal's MST + Two Approximate                   1928.000000         0.000000                                          0.000077            
+Prim's MST + Two Approximate                      1064.000000         0.000000                                          0.000125            
+Kruskal's MST + A*                                689.000000          0.000000                                          0.004551            
+Prim's MST + A*                                   885.000000          0.000000                                          0.004134            
+
+
+N = 290
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         736.000000          0.000000                                          0.000020            
+Monte Carlo (k = 1...100)                         114783.000000       0.000000                                          0.004038            
+Kruskal's MST + Two Approximate                   2026.000000         0.000000                                          0.000079            
+Prim's MST + Two Approximate                      1187.000000         0.000000                                          0.000127            
+Kruskal's MST + A*                                736.000000          0.000000                                          0.004598            
+Prim's MST + A*                                   967.000000          0.000000                                          0.004076            
+
+
+N = 300
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         728.000000          0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         113523.000000       0.000000                                          0.004007            
+Kruskal's MST + Two Approximate                   1986.000000         0.000000                                          0.000076            
+Prim's MST + Two Approximate                      1184.000000         0.000000                                          0.000124            
+Kruskal's MST + A*                                728.000000          0.000000                                          0.004680            
+Prim's MST + A*                                   897.000000          0.000000                                          0.004126            
+
+
+N = 310
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         790.000000          0.000000                                          0.000015            
+Monte Carlo (k = 1...100)                         119210.000000       0.000000                                          0.004051            
+Kruskal's MST + Two Approximate                   2110.000000         0.000000                                          0.000083            
+Prim's MST + Two Approximate                      1159.000000         0.000000                                          0.000123            
+Kruskal's MST + A*                                790.000000          0.000000                                          0.004631            
+Prim's MST + A*                                   1002.000000         0.000000                                          0.004190            
+
+
+N = 320
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         791.000000          0.000000                                          0.000015            
+Monte Carlo (k = 1...100)                         124515.000000       0.000000                                          0.004104            
+Kruskal's MST + Two Approximate                   2167.000000         0.000000                                          0.000078            
+Prim's MST + Two Approximate                      1283.000000         0.000000                                          0.000120            
+Kruskal's MST + A*                                791.000000          0.000000                                          0.004607            
+Prim's MST + A*                                   972.000000          0.000000                                          0.004185            
+
+
+N = 330
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         744.000000          0.000000                                          0.000015            
+Monte Carlo (k = 1...100)                         128065.000000       0.000000                                          0.004175            
+Kruskal's MST + Two Approximate                   2299.000000         0.000000                                          0.000078            
+Prim's MST + Two Approximate                      1225.000000         0.000000                                          0.000133            
+Kruskal's MST + A*                                744.000000          0.000000                                          0.005043            
+Prim's MST + A*                                   1048.000000         0.000000                                          0.004405            
+
+
+N = 340
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         804.000000          0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         130310.000000       0.000000                                          0.004256            
+Kruskal's MST + Two Approximate                   2332.000000         0.000000                                          0.000081            
+Prim's MST + Two Approximate                      1259.000000         0.000000                                          0.000130            
+Kruskal's MST + A*                                804.000000          0.000000                                          0.004930            
+Prim's MST + A*                                   1046.000000         0.000000                                          0.004602            
+
+
+N = 350
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         878.000000          0.000000                                          0.000015            
+Monte Carlo (k = 1...100)                         133688.000000       0.000000                                          0.004329            
+Kruskal's MST + Two Approximate                   2335.000000         0.000000                                          0.000087            
+Prim's MST + Two Approximate                      1370.000000         0.000000                                          0.000127            
+Kruskal's MST + A*                                878.000000          0.000000                                          0.004903            
+Prim's MST + A*                                   1155.000000         0.000000                                          0.004472            
+
+
+N = 360
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         821.000000          0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         141205.000000       0.000000                                          0.004219            
+Kruskal's MST + Two Approximate                   2491.000000         0.000000                                          0.000082            
+Prim's MST + Two Approximate                      1343.000000         0.000000                                          0.000124            
+Kruskal's MST + A*                                821.000000          0.000000                                          0.004761            
+Prim's MST + A*                                   1245.000000         0.000000                                          0.004161            
+
+
+N = 370
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         954.000000          0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         147037.000000       0.000000                                          0.004331            
+Kruskal's MST + Two Approximate                   2530.000000         0.000000                                          0.000092            
+Prim's MST + Two Approximate                      1414.000000         0.000000                                          0.000135            
+Kruskal's MST + A*                                954.000000          0.000000                                          0.004798            
+Prim's MST + A*                                   1172.000000         0.000000                                          0.004407            
+
+
+N = 380
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         969.000000          0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         150662.000000       0.000000                                          0.004122            
+Kruskal's MST + Two Approximate                   2640.000000         0.000000                                          0.000081            
+Prim's MST + Two Approximate                      1469.000000         0.000000                                          0.000127            
+Kruskal's MST + A*                                969.000000          0.000000                                          0.004784            
+Prim's MST + A*                                   1242.000000         0.000000                                          0.004277            
+
+
+N = 390
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1022.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         154561.000000       0.000000                                          0.004269            
+Kruskal's MST + Two Approximate                   2709.000000         0.000000                                          0.000094            
+Prim's MST + Two Approximate                      1546.000000         0.000000                                          0.000137            
+Kruskal's MST + A*                                1022.000000         0.000000                                          0.004937            
+Prim's MST + A*                                   1271.000000         0.000000                                          0.004589            
+
+
+N = 400
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1019.000000         0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         154187.000000       0.000000                                          0.004208            
+Kruskal's MST + Two Approximate                   2719.000000         0.000000                                          0.000091            
+Prim's MST + Two Approximate                      1644.000000         0.000000                                          0.000144            
+Kruskal's MST + A*                                1019.000000         0.000000                                          0.004823            
+Prim's MST + A*                                   1242.000000         0.000000                                          0.004425            
+
+
+N = 410
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1046.000000         0.000000                                          0.000016            
+Monte Carlo (k = 1...100)                         158709.000000       0.000000                                          0.004343            
+Kruskal's MST + Two Approximate                   2807.000000         0.000000                                          0.000085            
+Prim's MST + Two Approximate                      1563.000000         0.000000                                          0.000129            
+Kruskal's MST + A*                                1046.000000         0.000000                                          0.005005            
+Prim's MST + A*                                   1363.000000         0.000000                                          0.004380            
+
+
+N = 420
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1046.000000         0.000000                                          0.000016            
+Monte Carlo (k = 1...100)                         162247.000000       0.000000                                          0.004142            
+Kruskal's MST + Two Approximate                   2863.000000         0.000000                                          0.000078            
+Prim's MST + Two Approximate                      1647.000000         0.000000                                          0.000133            
+Kruskal's MST + A*                                1046.000000         0.000000                                          0.004817            
+Prim's MST + A*                                   1323.000000         0.000000                                          0.004262            
+
+
+N = 430
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         963.000000          0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         161426.000000       0.000000                                          0.004008            
+Kruskal's MST + Two Approximate                   2967.000000         0.000000                                          0.000080            
+Prim's MST + Two Approximate                      1641.000000         0.000000                                          0.000121            
+Kruskal's MST + A*                                963.000000          0.000000                                          0.004624            
+Prim's MST + A*                                   1335.000000         0.000000                                          0.004069            
+
+
+N = 440
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         996.000000          0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         167680.000000       0.000000                                          0.004018            
+Kruskal's MST + Two Approximate                   3000.000000         0.000000                                          0.000075            
+Prim's MST + Two Approximate                      1605.000000         0.000000                                          0.000127            
+Kruskal's MST + A*                                996.000000          0.000000                                          0.004666            
+Prim's MST + A*                                   1268.000000         0.000000                                          0.004200            
+
+
+N = 450
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1110.000000         0.000000                                          0.000015            
+Monte Carlo (k = 1...100)                         179820.000000       0.000000                                          0.004114            
+Kruskal's MST + Two Approximate                   3028.000000         0.000000                                          0.000083            
+Prim's MST + Two Approximate                      1714.000000         0.000000                                          0.000133            
+Kruskal's MST + A*                                1110.000000         0.000000                                          0.004636            
+Prim's MST + A*                                   1562.000000         0.000000                                          0.004192            
+
+
+N = 460
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1163.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         179251.000000       0.000000                                          0.004127            
+Kruskal's MST + Two Approximate                   3201.000000         0.000000                                          0.000081            
+Prim's MST + Two Approximate                      1726.000000         0.000000                                          0.000129            
+Kruskal's MST + A*                                1163.000000         0.000000                                          0.004746            
+Prim's MST + A*                                   1538.000000         0.000000                                          0.004466            
+
+
+N = 470
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1225.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         188048.000000       0.000000                                          0.004065            
+Kruskal's MST + Two Approximate                   3101.000000         0.000000                                          0.000077            
+Prim's MST + Two Approximate                      1822.000000         0.000000                                          0.000126            
+Kruskal's MST + A*                                1225.000000         0.000000                                          0.004584            
+Prim's MST + A*                                   1615.000000         0.000000                                          0.004173            
+
+
+N = 480
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1238.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         187604.000000       0.000000                                          0.004109            
+Kruskal's MST + Two Approximate                   3239.000000         0.000000                                          0.000076            
+Prim's MST + Two Approximate                      1856.000000         0.000000                                          0.000123            
+Kruskal's MST + A*                                1238.000000         0.000000                                          0.004666            
+Prim's MST + A*                                   1562.000000         0.000000                                          0.004212            
+
+
+N = 490
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1184.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         187988.000000       0.000000                                          0.004078            
+Kruskal's MST + Two Approximate                   3364.000000         0.000000                                          0.000078            
+Prim's MST + Two Approximate                      1914.000000         0.000000                                          0.000125            
+Kruskal's MST + A*                                1184.000000         0.000000                                          0.004598            
+Prim's MST + A*                                   1585.000000         0.000000                                          0.004232            
+
+
+N = 500
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1326.000000         0.000000                                          0.000017            
+Monte Carlo (k = 1...100)                         199613.000000       0.000000                                          0.003973            
+Kruskal's MST + Two Approximate                   3472.000000         0.000000                                          0.000079            
+Prim's MST + Two Approximate                      1943.000000         0.000000                                          0.000116            
+Kruskal's MST + A*                                1326.000000         0.000000                                          0.004564            
+Prim's MST + A*                                   1703.000000         0.000000                                          0.004048            
+
+
+N = 510
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1256.000000         0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         198734.000000       0.000000                                          0.003991            
+Kruskal's MST + Two Approximate                   3530.000000         0.000000                                          0.000078            
+Prim's MST + Two Approximate                      1955.000000         0.000000                                          0.000120            
+Kruskal's MST + A*                                1256.000000         0.000000                                          0.004557            
+Prim's MST + A*                                   1574.000000         0.000000                                          0.004209            
+
+
+N = 520
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1210.000000         0.000000                                          0.000016            
+Monte Carlo (k = 1...100)                         206613.000000       0.000000                                          0.003986            
+Kruskal's MST + Two Approximate                   3578.000000         0.000000                                          0.000079            
+Prim's MST + Two Approximate                      2030.000000         0.000000                                          0.000120            
+Kruskal's MST + A*                                1210.000000         0.000000                                          0.004560            
+Prim's MST + A*                                   1668.000000         0.000000                                          0.004126            
+
+
+N = 530
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1320.000000         0.000000                                          0.000015            
+Monte Carlo (k = 1...100)                         205566.000000       0.000000                                          0.004048            
+Kruskal's MST + Two Approximate                   3635.000000         0.000000                                          0.000076            
+Prim's MST + Two Approximate                      2028.000000         0.000000                                          0.000130            
+Kruskal's MST + A*                                1320.000000         0.000000                                          0.004579            
+Prim's MST + A*                                   1692.000000         0.000000                                          0.004142            
+
+
+N = 540
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1351.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         208632.000000       0.000000                                          0.004046            
+Kruskal's MST + Two Approximate                   3605.000000         0.000000                                          0.000077            
+Prim's MST + Two Approximate                      2128.000000         0.000000                                          0.000128            
+Kruskal's MST + A*                                1351.000000         0.000000                                          0.004646            
+Prim's MST + A*                                   1804.000000         0.000000                                          0.004213            
+
+
+N = 550
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1418.000000         0.000000                                          0.000015            
+Monte Carlo (k = 1...100)                         212931.000000       0.000000                                          0.004186            
+Kruskal's MST + Two Approximate                   3754.000000         0.000000                                          0.000078            
+Prim's MST + Two Approximate                      2159.000000         0.000000                                          0.000132            
+Kruskal's MST + A*                                1418.000000         0.000000                                          0.004793            
+Prim's MST + A*                                   1730.000000         0.000000                                          0.004354            
+
+
+N = 560
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1399.000000         0.000000                                          0.000015            
+Monte Carlo (k = 1...100)                         215588.000000       0.000000                                          0.004262            
+Kruskal's MST + Two Approximate                   3764.000000         0.000000                                          0.000081            
+Prim's MST + Two Approximate                      2080.000000         0.000000                                          0.000128            
+Kruskal's MST + A*                                1399.000000         0.000000                                          0.005002            
+Prim's MST + A*                                   1893.000000         0.000000                                          0.004745            
+
+
+N = 570
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1399.000000         0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         219674.000000       0.000000                                          0.004052            
+Kruskal's MST + Two Approximate                   3861.000000         0.000000                                          0.000079            
+Prim's MST + Two Approximate                      2300.000000         0.000000                                          0.000127            
+Kruskal's MST + A*                                1399.000000         0.000000                                          0.004729            
+Prim's MST + A*                                   1815.000000         0.000000                                          0.004287            
+
+
+N = 580
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1499.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         230668.000000       0.000000                                          0.004110            
+Kruskal's MST + Two Approximate                   3950.000000         0.000000                                          0.000084            
+Prim's MST + Two Approximate                      2279.000000         0.000000                                          0.000127            
+Kruskal's MST + A*                                1499.000000         0.000000                                          0.004793            
+Prim's MST + A*                                   1934.000000         0.000000                                          0.004211            
+
+
+N = 590
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1409.000000         0.000000                                          0.000016            
+Monte Carlo (k = 1...100)                         231334.000000       0.000000                                          0.004278            
+Kruskal's MST + Two Approximate                   4089.000000         0.000000                                          0.000096            
+Prim's MST + Two Approximate                      2251.000000         0.000000                                          0.000138            
+Kruskal's MST + A*                                1409.000000         0.000000                                          0.004884            
+Prim's MST + A*                                   2045.000000         0.000000                                          0.004418            
+
+
+N = 600
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1509.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         236595.000000       0.000000                                          0.004167            
+Kruskal's MST + Two Approximate                   4119.000000         0.000000                                          0.000077            
+Prim's MST + Two Approximate                      2440.000000         0.000000                                          0.000128            
+Kruskal's MST + A*                                1509.000000         0.000000                                          0.004702            
+Prim's MST + A*                                   1958.000000         0.000000                                          0.004141            
+
+
+N = 610
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1541.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         242024.000000       0.000000                                          0.003989            
+Kruskal's MST + Two Approximate                   4140.000000         0.000000                                          0.000078            
+Prim's MST + Two Approximate                      2446.000000         0.000000                                          0.000128            
+Kruskal's MST + A*                                1541.000000         0.000000                                          0.004597            
+Prim's MST + A*                                   1997.000000         0.000000                                          0.004127            
+
+
+N = 620
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1530.000000         0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         240795.000000       0.000000                                          0.003983            
+Kruskal's MST + Two Approximate                   4203.000000         0.000000                                          0.000078            
+Prim's MST + Two Approximate                      2331.000000         0.000000                                          0.000128            
+Kruskal's MST + A*                                1530.000000         0.000000                                          0.004596            
+Prim's MST + A*                                   1757.000000         0.000000                                          0.004170            
+
+
+N = 630
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1611.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         245012.000000       0.000000                                          0.004040            
+Kruskal's MST + Two Approximate                   4393.000000         0.000000                                          0.000079            
+Prim's MST + Two Approximate                      2498.000000         0.000000                                          0.000122            
+Kruskal's MST + A*                                1611.000000         0.000000                                          0.004576            
+Prim's MST + A*                                   2166.000000         0.000000                                          0.004156            
+
+
+N = 640
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1601.000000         0.000000                                          0.000015            
+Monte Carlo (k = 1...100)                         255378.000000       0.000000                                          0.004138            
+Kruskal's MST + Two Approximate                   4414.000000         0.000000                                          0.000074            
+Prim's MST + Two Approximate                      2571.000000         0.000000                                          0.000129            
+Kruskal's MST + A*                                1601.000000         0.000000                                          0.004760            
+Prim's MST + A*                                   2132.000000         0.000000                                          0.004241            
+
+
+N = 650
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1656.000000         0.000000                                          0.000015            
+Monte Carlo (k = 1...100)                         256699.000000       0.000000                                          0.004063            
+Kruskal's MST + Two Approximate                   4446.000000         0.000000                                          0.000082            
+Prim's MST + Two Approximate                      2637.000000         0.000000                                          0.000123            
+Kruskal's MST + A*                                1656.000000         0.000000                                          0.004581            
+Prim's MST + A*                                   2102.000000         0.000000                                          0.004187            
+
+
+N = 660
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1593.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         251866.000000       0.000000                                          0.004222            
+Kruskal's MST + Two Approximate                   4512.000000         0.000000                                          0.000084            
+Prim's MST + Two Approximate                      2455.000000         0.000000                                          0.000132            
+Kruskal's MST + A*                                1593.000000         0.000000                                          0.004783            
+Prim's MST + A*                                   1794.000000         0.000000                                          0.004379            
+
+
+N = 670
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1657.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         260779.000000       0.000000                                          0.003999            
+Kruskal's MST + Two Approximate                   4515.000000         0.000000                                          0.000078            
+Prim's MST + Two Approximate                      2563.000000         0.000000                                          0.000127            
+Kruskal's MST + A*                                1657.000000         0.000000                                          0.004568            
+Prim's MST + A*                                   2286.000000         0.000000                                          0.004105            
+
+
+N = 680
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1647.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         263817.000000       0.000000                                          0.004031            
+Kruskal's MST + Two Approximate                   4620.000000         0.000000                                          0.000080            
+Prim's MST + Two Approximate                      2588.000000         0.000000                                          0.000125            
+Kruskal's MST + A*                                1647.000000         0.000000                                          0.004626            
+Prim's MST + A*                                   2023.000000         0.000000                                          0.004217            
+
+
+N = 690
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1706.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         271054.000000       0.000000                                          0.004140            
+Kruskal's MST + Two Approximate                   4708.000000         0.000000                                          0.000092            
+Prim's MST + Two Approximate                      2675.000000         0.000000                                          0.000135            
+Kruskal's MST + A*                                1706.000000         0.000000                                          0.004741            
+Prim's MST + A*                                   2260.000000         0.000000                                          0.004205            
+
+
+N = 700
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1763.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         275407.000000       0.000000                                          0.003981            
+Kruskal's MST + Two Approximate                   4773.000000         0.000000                                          0.000077            
+Prim's MST + Two Approximate                      2733.000000         0.000000                                          0.000124            
+Kruskal's MST + A*                                1763.000000         0.000000                                          0.004593            
+Prim's MST + A*                                   2391.000000         0.000000                                          0.004214            
+
+
+N = 710
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1748.000000         0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         278422.000000       0.000000                                          0.004058            
+Kruskal's MST + Two Approximate                   4859.000000         0.000000                                          0.000079            
+Prim's MST + Two Approximate                      2730.000000         0.000000                                          0.000131            
+Kruskal's MST + A*                                1748.000000         0.000000                                          0.004552            
+Prim's MST + A*                                   2417.000000         0.000000                                          0.004240            
+
+
+N = 720
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1836.000000         0.000000                                          0.000018            
+Monte Carlo (k = 1...100)                         280140.000000       0.000000                                          0.004186            
+Kruskal's MST + Two Approximate                   4926.000000         0.000000                                          0.000085            
+Prim's MST + Two Approximate                      2854.000000         0.000000                                          0.000122            
+Kruskal's MST + A*                                1836.000000         0.000000                                          0.004914            
+Prim's MST + A*                                   2176.000000         0.000000                                          0.004282            
+
+
+N = 730
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1699.000000         0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         280472.000000       0.000000                                          0.004043            
+Kruskal's MST + Two Approximate                   4927.000000         0.000000                                          0.000076            
+Prim's MST + Two Approximate                      2769.000000         0.000000                                          0.000128            
+Kruskal's MST + A*                                1699.000000         0.000000                                          0.004643            
+Prim's MST + A*                                   2381.000000         0.000000                                          0.004182            
+
+
+N = 740
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1805.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         286675.000000       0.000000                                          0.003997            
+Kruskal's MST + Two Approximate                   5033.000000         0.000000                                          0.000077            
+Prim's MST + Two Approximate                      2871.000000         0.000000                                          0.000117            
+Kruskal's MST + A*                                1805.000000         0.000000                                          0.004577            
+Prim's MST + A*                                   2555.000000         0.000000                                          0.004149            
+
+
+N = 750
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1797.000000         0.000000                                          0.000015            
+Monte Carlo (k = 1...100)                         291014.000000       0.000000                                          0.004253            
+Kruskal's MST + Two Approximate                   5209.000000         0.000000                                          0.000086            
+Prim's MST + Two Approximate                      2992.000000         0.000000                                          0.000134            
+Kruskal's MST + A*                                1797.000000         0.000000                                          0.004761            
+Prim's MST + A*                                   2364.000000         0.000000                                          0.004553            
+
+
+N = 760
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1826.000000         0.000000                                          0.000017            
+Monte Carlo (k = 1...100)                         302018.000000       0.000000                                          0.004247            
+Kruskal's MST + Two Approximate                   5146.000000         0.000000                                          0.000080            
+Prim's MST + Two Approximate                      3011.000000         0.000000                                          0.000122            
+Kruskal's MST + A*                                1826.000000         0.000000                                          0.004815            
+Prim's MST + A*                                   2406.000000         0.000000                                          0.004312            
+
+
+N = 770
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1909.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         303104.000000       0.000000                                          0.004048            
+Kruskal's MST + Two Approximate                   5267.000000         0.000000                                          0.000080            
+Prim's MST + Two Approximate                      3054.000000         0.000000                                          0.000124            
+Kruskal's MST + A*                                1909.000000         0.000000                                          0.004689            
+Prim's MST + A*                                   2300.000000         0.000000                                          0.004242            
+
+
+N = 780
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         1946.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         296672.000000       0.000000                                          0.004166            
+Kruskal's MST + Two Approximate                   5268.000000         0.000000                                          0.000081            
+Prim's MST + Two Approximate                      3124.000000         0.000000                                          0.000136            
+Kruskal's MST + A*                                1946.000000         0.000000                                          0.004878            
+Prim's MST + A*                                   2654.000000         0.000000                                          0.004530            
+
+
+N = 790
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2051.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         314204.000000       0.000000                                          0.004516            
+Kruskal's MST + Two Approximate                   5437.000000         0.000000                                          0.000092            
+Prim's MST + Two Approximate                      3243.000000         0.000000                                          0.000133            
+Kruskal's MST + A*                                2051.000000         0.000000                                          0.004992            
+Prim's MST + A*                                   2654.000000         0.000000                                          0.004295            
+
+
+N = 800
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2018.000000         0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         321774.000000       0.000000                                          0.004084            
+Kruskal's MST + Two Approximate                   5475.000000         0.000000                                          0.000087            
+Prim's MST + Two Approximate                      3091.000000         0.000000                                          0.000135            
+Kruskal's MST + A*                                2018.000000         0.000000                                          0.004706            
+Prim's MST + A*                                   2610.000000         0.000000                                          0.004265            
+
+
+N = 810
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2002.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         314250.000000       0.000000                                          0.004170            
+Kruskal's MST + Two Approximate                   5547.000000         0.000000                                          0.000080            
+Prim's MST + Two Approximate                      3190.000000         0.000000                                          0.000128            
+Kruskal's MST + A*                                2002.000000         0.000000                                          0.004711            
+Prim's MST + A*                                   2614.000000         0.000000                                          0.004343            
+
+
+N = 820
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2092.000000         0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         324239.000000       0.000000                                          0.004181            
+Kruskal's MST + Two Approximate                   5659.000000         0.000000                                          0.000086            
+Prim's MST + Two Approximate                      3379.000000         0.000000                                          0.000133            
+Kruskal's MST + A*                                2092.000000         0.000000                                          0.005203            
+Prim's MST + A*                                   2705.000000         0.000000                                          0.004433            
+
+
+N = 830
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2099.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         319624.000000       0.000000                                          0.004020            
+Kruskal's MST + Two Approximate                   5555.000000         0.000000                                          0.000079            
+Prim's MST + Two Approximate                      3236.000000         0.000000                                          0.000125            
+Kruskal's MST + A*                                2099.000000         0.000000                                          0.004700            
+Prim's MST + A*                                   2525.000000         0.000000                                          0.004227            
+
+
+N = 840
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2037.000000         0.000000                                          0.000015            
+Monte Carlo (k = 1...100)                         325196.000000       0.000000                                          0.004183            
+Kruskal's MST + Two Approximate                   5851.000000         0.000000                                          0.000083            
+Prim's MST + Two Approximate                      3295.000000         0.000000                                          0.000124            
+Kruskal's MST + A*                                2037.000000         0.000000                                          0.004961            
+Prim's MST + A*                                   2547.000000         0.000000                                          0.004408            
+
+
+N = 850
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2102.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         332335.000000       0.000000                                          0.004633            
+Kruskal's MST + Two Approximate                   5751.000000         0.000000                                          0.000091            
+Prim's MST + Two Approximate                      3224.000000         0.000000                                          0.000147            
+Kruskal's MST + A*                                2102.000000         0.000000                                          0.004840            
+Prim's MST + A*                                   2602.000000         0.000000                                          0.004278            
+
+
+N = 860
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2175.000000         0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         341475.000000       0.000000                                          0.004077            
+Kruskal's MST + Two Approximate                   6000.000000         0.000000                                          0.000077            
+Prim's MST + Two Approximate                      3385.000000         0.000000                                          0.000123            
+Kruskal's MST + A*                                2175.000000         0.000000                                          0.004566            
+Prim's MST + A*                                   2753.000000         0.000000                                          0.004180            
+
+
+N = 870
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2071.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         342141.000000       0.000000                                          0.004070            
+Kruskal's MST + Two Approximate                   6002.000000         0.000000                                          0.000080            
+Prim's MST + Two Approximate                      3347.000000         0.000000                                          0.000126            
+Kruskal's MST + A*                                2071.000000         0.000000                                          0.004616            
+Prim's MST + A*                                   2714.000000         0.000000                                          0.004164            
+
+
+N = 880
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2166.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         347045.000000       0.000000                                          0.004171            
+Kruskal's MST + Two Approximate                   6181.000000         0.000000                                          0.000096            
+Prim's MST + Two Approximate                      3375.000000         0.000000                                          0.000128            
+Kruskal's MST + A*                                2166.000000         0.000000                                          0.004866            
+Prim's MST + A*                                   2644.000000         0.000000                                          0.004278            
+
+
+N = 890
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2196.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         348545.000000       0.000000                                          0.004157            
+Kruskal's MST + Two Approximate                   6066.000000         0.000000                                          0.000080            
+Prim's MST + Two Approximate                      3491.000000         0.000000                                          0.000128            
+Kruskal's MST + A*                                2196.000000         0.000000                                          0.004799            
+Prim's MST + A*                                   2896.000000         0.000000                                          0.004301            
+
+
+N = 900
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2196.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         343859.000000       0.000000                                          0.004087            
+Kruskal's MST + Two Approximate                   6126.000000         0.000000                                          0.000077            
+Prim's MST + Two Approximate                      3401.000000         0.000000                                          0.000123            
+Kruskal's MST + A*                                2196.000000         0.000000                                          0.004652            
+Prim's MST + A*                                   2725.000000         0.000000                                          0.004302            
+
+
+N = 910
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2026.000000         0.000000                                          0.000015            
+Monte Carlo (k = 1...100)                         344483.000000       0.000000                                          0.004095            
+Kruskal's MST + Two Approximate                   6160.000000         0.000000                                          0.000080            
+Prim's MST + Two Approximate                      3443.000000         0.000000                                          0.000124            
+Kruskal's MST + A*                                2026.000000         0.000000                                          0.004687            
+Prim's MST + A*                                   2838.000000         0.000000                                          0.004268            
+
+
+N = 920
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2347.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         356289.000000       0.000000                                          0.004052            
+Kruskal's MST + Two Approximate                   6205.000000         0.000000                                          0.000080            
+Prim's MST + Two Approximate                      3553.000000         0.000000                                          0.000128            
+Kruskal's MST + A*                                2347.000000         0.000000                                          0.004653            
+Prim's MST + A*                                   3149.000000         0.000000                                          0.004219            
+
+
+N = 930
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2386.000000         0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         366531.000000       0.000000                                          0.004055            
+Kruskal's MST + Two Approximate                   6386.000000         0.000000                                          0.000086            
+Prim's MST + Two Approximate                      3750.000000         0.000000                                          0.000129            
+Kruskal's MST + A*                                2386.000000         0.000000                                          0.004601            
+Prim's MST + A*                                   3265.000000         0.000000                                          0.004175            
+
+
+N = 940
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2355.000000         0.000000                                          0.000013            
+Monte Carlo (k = 1...100)                         365408.000000       0.000000                                          0.003997            
+Kruskal's MST + Two Approximate                   6399.000000         0.000000                                          0.000075            
+Prim's MST + Two Approximate                      3559.000000         0.000000                                          0.000134            
+Kruskal's MST + A*                                2355.000000         0.000000                                          0.004608            
+Prim's MST + A*                                   3189.000000         0.000000                                          0.004130            
+
+
+N = 950
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2263.000000         0.000000                                          0.000016            
+Monte Carlo (k = 1...100)                         359964.000000       0.000000                                          0.004140            
+Kruskal's MST + Two Approximate                   6422.000000         0.000000                                          0.000079            
+Prim's MST + Two Approximate                      3737.000000         0.000000                                          0.000129            
+Kruskal's MST + A*                                2263.000000         0.000000                                          0.004799            
+Prim's MST + A*                                   3056.000000         0.000000                                          0.004432            
+
+
+N = 960
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2373.000000         0.000000                                          0.000016            
+Monte Carlo (k = 1...100)                         376127.000000       0.000000                                          0.004149            
+Kruskal's MST + Two Approximate                   6643.000000         0.000000                                          0.000083            
+Prim's MST + Two Approximate                      3708.000000         0.000000                                          0.000130            
+Kruskal's MST + A*                                2373.000000         0.000000                                          0.004815            
+Prim's MST + A*                                   3149.000000         0.000000                                          0.004232            
+
+
+N = 970
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2441.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         381752.000000       0.000000                                          0.004170            
+Kruskal's MST + Two Approximate                   6452.000000         0.000000                                          0.000079            
+Prim's MST + Two Approximate                      3733.000000         0.000000                                          0.000118            
+Kruskal's MST + A*                                2441.000000         0.000000                                          0.004678            
+Prim's MST + A*                                   2886.000000         0.000000                                          0.004247            
+
+
+N = 980
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2469.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         385469.000000       0.000000                                          0.004082            
+Kruskal's MST + Two Approximate                   6729.000000         0.000000                                          0.000080            
+Prim's MST + Two Approximate                      3876.000000         0.000000                                          0.000130            
+Kruskal's MST + A*                                2469.000000         0.000000                                          0.004709            
+Prim's MST + A*                                   3206.000000         0.000000                                          0.004236            
+
+
+N = 990
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2482.000000         0.000000                                          0.000019            
+Monte Carlo (k = 1...100)                         395996.000000       0.000000                                          0.004303            
+Kruskal's MST + Two Approximate                   6862.000000         0.000000                                          0.000077            
+Prim's MST + Two Approximate                      3876.000000         0.000000                                          0.000119            
+Kruskal's MST + A*                                2482.000000         0.000000                                          0.004740            
+Prim's MST + A*                                   3015.000000         0.000000                                          0.004331            
+
+
+N = 1000
+Algorithm                                         Average Cost        Average Quality                                   Average Time        
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Greedy (Nearest Neighbor)                         2370.000000         0.000000                                          0.000014            
+Monte Carlo (k = 1...100)                         385565.000000       0.000000                                          0.004934            
+Kruskal's MST + Two Approximate                   6715.000000         0.000000                                          0.000086            
+Prim's MST + Two Approximate                      3767.000000         0.000000                                          0.000141            
+Kruskal's MST + A*                                2370.000000         0.000000                                          0.005581            
+Prim's MST + A*                                   3148.000000         0.000000                                          0.004838            
+
+

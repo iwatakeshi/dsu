@@ -32,7 +32,6 @@ class Graph {
   Graph(){};
 
   Graph(unsigned size) {
-    // Size of the graph
     size_ = size;
     cost_matrix_.resize(size);
     edge_matrix_.resize(size);
@@ -84,6 +83,16 @@ class Graph {
    * Assignment Operator
    */
   Graph& operator=(Graph& other) {
+    size_ = other.size_;
+    edges_ = other.edges_;
+    vertices_ = other.vertices_;
+    cost_matrix_ = other.cost_matrix_;
+    edge_matrix_ = other.edge_matrix_;
+    adjacency_matrix_ = other.adjacency_matrix_;
+    return *this;
+  }
+
+  Graph operator=(const Graph& other) {
     size_ = other.size_;
     edges_ = other.edges_;
     vertices_ = other.vertices_;
@@ -172,11 +181,20 @@ class Graph {
    */
   void add_edge(const unsigned v, const unsigned w, const unsigned weight) {
     if ((v < size_) && (w < size_) && !contains(v, w)) {
+      auto edge = Edge(v, w, weight);
+      // Add connection to the cost matrix
       cost_matrix_[v][w] = weight;
       cost_matrix_[w][v] = weight;
+      // Add connection to the adjacency matrix
       adjacency_matrix_[v].push_back(w);
       adjacency_matrix_[w].push_back(v);
-      edges_.push_back(Edge(v, w, weight));
+      // Add connection to the edge matrix
+      edge_matrix_[v][w] = edge;
+      edge_matrix_[w][v] = edge;
+      // Add the edge to the list of edges
+      edges_.push_back(edge);
+      // The vertices if they don't exist...
+      // just in case they weren't added in the constuctor
       add_vertex(v);
       add_vertex(w);
     }
@@ -228,17 +246,14 @@ class Graph {
 
   std::vector<int> adjacent_vertex(int v) {
     if (v < size_) {
-      // for(auto i : adjacency_matrix_) {
-      //   for (auto e : i) {
-      //     printf("%d ", e);
-      //   }
-      // }
-      // printf("\n");
       return adjacency_matrix_[v];
     }
     throw std::out_of_range("Index is out of range.");
   }
 
+  /**
+   * Returns the adjacent vertices including the vertex itself.
+   */
   std::vector<int> get_neighbors(int v) {
     std::vector<int> neighbors;
     neighbors.push_back(v);
@@ -249,10 +264,6 @@ class Graph {
     }
     return neighbors;
   }
-
-  // std::vector<std::vector<int>> adjacent_vertices() {
-  //   std::vector<std::vector<int>> adj;
-  // }
 
   /**
    * Returns an adjacency matrix

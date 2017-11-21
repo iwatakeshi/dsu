@@ -11,7 +11,7 @@
       "cwd": "${workspaceRoot}",
       "environment": [],
       "externalConsole": false,
-      "MIMode": "lldb"
+      "MIMode": "gdb"
     },
     {
       "name": "(lldb) Launch random",
