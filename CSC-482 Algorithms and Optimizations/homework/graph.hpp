@@ -34,7 +34,6 @@ class Graph {
   Graph(unsigned size) {
     // Size of the graph
     size_ = size;
-
     cost_matrix_.resize(size);
     edge_matrix_.resize(size);
     adjacency_matrix_.resize(size);
@@ -42,12 +41,21 @@ class Graph {
       cost_matrix_[i].resize(size);
       edge_matrix_[i].resize(size);
       adjacency_matrix_.resize(size);
-      vertices_.push_back(i);
+      add_vertex(i);
       for (int j = 0; j < size; j++) {
         cost_matrix_[i][j] = 0;
       }
     }
   };
+
+  Graph(std::vector<std::vector<int>> matrix)
+      : Graph(matrix.size()) {
+    for (int i = 0; i < matrix.size(); i++) {
+      for (int j = 0; j < matrix.size(); j++) {
+        add_edge(i, j, matrix[i][j]);
+      }
+    }
+  }
 
   Graph(const unsigned size, const unsigned low, const unsigned high)
       : Graph(size) {
@@ -56,20 +64,20 @@ class Graph {
 
   Graph(const Graph& other) {
     size_ = other.size_;
-    adjacency_matrix_ = other.adjacency_matrix_;
+    edges_ = other.edges_;
+    vertices_ = other.vertices_;
     cost_matrix_ = other.cost_matrix_;
     edge_matrix_ = other.edge_matrix_;
-    vertices_ = other.vertices_;
-    edges_ = other.edges_;
+    adjacency_matrix_ = other.adjacency_matrix_;
   }
 
   Graph(Graph& other) {
     size_ = other.size_;
-    adjacency_matrix_ = other.adjacency_matrix_;
+    edges_ = other.edges_;
+    vertices_ = other.vertices_;
     cost_matrix_ = other.cost_matrix_;
     edge_matrix_ = other.edge_matrix_;
-    vertices_ = other.vertices_;
-    edges_ = other.edges_;
+    adjacency_matrix_ = other.adjacency_matrix_;
   }
 
   /**
@@ -77,11 +85,11 @@ class Graph {
    */
   Graph& operator=(Graph& other) {
     size_ = other.size_;
-    adjacency_matrix_ = other.adjacency_matrix_;
+    edges_ = other.edges_;
+    vertices_ = other.vertices_;
     cost_matrix_ = other.cost_matrix_;
     edge_matrix_ = other.edge_matrix_;
-    vertices_ = other.vertices_;
-    edges_ = other.edges_;
+    adjacency_matrix_ = other.adjacency_matrix_;
     return *this;
   }
 
@@ -151,6 +159,15 @@ class Graph {
     }
   }
   /**
+   * Adds a vertex to the matrix
+   */
+  void add_vertex(const unsigned v) {
+    auto it = std::find(vertices_.begin(), vertices_.end(), v);
+    if (it == vertices_.end() || vertices_.empty()) {
+      vertices_.push_back(v);
+    }
+  }
+  /**
    * Adds an edge to the matrix
    */
   void add_edge(const unsigned v, const unsigned w, const unsigned weight) {
@@ -160,6 +177,8 @@ class Graph {
       adjacency_matrix_[v].push_back(w);
       adjacency_matrix_[w].push_back(v);
       edges_.push_back(Edge(v, w, weight));
+      add_vertex(v);
+      add_vertex(w);
     }
   }
   /**
@@ -311,7 +330,7 @@ class Graph {
       }
     }
 
-    for(auto edge : edges) {
+    for (auto edge : edges) {
       sub.add_edge(edge.either(), edge.other(edge.either()), edge.weight());
     }
     return sub;

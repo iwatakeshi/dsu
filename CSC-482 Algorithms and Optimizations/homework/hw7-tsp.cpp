@@ -230,7 +230,7 @@ class TSP {
       return std::get<0>(v);
     };
 
-    auto pop = [](std::set<std::tuple<int, int>, decltype(compare)> &set) {
+    auto pop = [](std::set<std::tuple<int, int>, decltype(compare)>& set) {
       auto it = set.begin();
       set.erase(it);
       return std::get<0>(*it);
@@ -238,7 +238,6 @@ class TSP {
 
     auto size = graph.size();
     auto visited = new int[size]();
-
 
     // Start has been visited
     closed_set.insert(vertex(start));
@@ -276,7 +275,7 @@ class TSP {
     for (int i = 0; i < total_path.size() - 1; i++) {
       distance += graph.cost_matrix()[total_path[i]][total_path[i + 1]];
     }
-    distance +=  graph.get_edge(total_path[total_path.size() - 1], 0).weight();
+    distance += graph.get_edge(total_path[total_path.size() - 1], 0).weight();
     total_path.push_back(0);
     return make_tuple(distance, total_path);
   }
@@ -320,9 +319,18 @@ int main(int argc, char* argv[]) {
   clock_t start, stop;
   srand(time(0));
 
-  int n = 6, low = 1, high = 4, root = 0;
-
-  Graph graph(n, low, high);
+  int n = 8, low = 1, high = 4, root = 0;
+  std::vector<std::vector<int>> b_graph = {
+    { 0, 2, 3, 3, 1, 4, 3, 2 },
+    { 2, 0, 3, 2, 1, 4, 2, 4 },
+    { 3, 3, 0, 1, 2, 2, 1, 2 },
+    { 3, 2, 1, 0, 2, 3, 1, 3 },
+    { 1, 1, 2, 2, 0, 1, 1, 2 },
+    { 4, 4, 2, 3, 1, 0, 4, 1 },
+    { 3, 2, 1, 1, 1, 4, 0, 2 },
+    { 2, 4, 2, 3, 2, 1, 2, 0 }
+  };
+  Graph graph(b_graph);
   graph.print();
 
   MST mst(graph);
@@ -335,47 +343,47 @@ int main(int argc, char* argv[]) {
   TSP::print(solution1);
   printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
 
-  printf("\nGreedy (Nearest Neighbor):\n");
-  start = clock();
-  auto solution2 = tsp.greedy();
-  stop = clock();
-  TSP::print(solution2);
-  printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
+  // printf("\nGreedy (Nearest Neighbor):\n");
+  // start = clock();
+  // auto solution2 = tsp.greedy();
+  // stop = clock();
+  // TSP::print(solution2);
+  // printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
 
-  printf("\nMonte Carlo:\n");
-  start = clock();
-  int iterations = 10;
-  auto solution3 = tsp.montecarlo(iterations);
-  stop = clock();
-  TSP::print(solution3);
-  printf("Time: %f\n", ((stop - start) / (double)CLOCKS_PER_SEC) / iterations);
+  // printf("\nMonte Carlo:\n");
+  // start = clock();
+  // int iterations = 10;
+  // auto solution3 = tsp.montecarlo(iterations);
+  // stop = clock();
+  // TSP::print(solution3);
+  // printf("Time: %f\n", ((stop - start) / (double)CLOCKS_PER_SEC) / iterations);
 
-  printf("\nKruskal's MST + DFS (Two-Approximation)\n");
-  start = clock();
-  auto solution4 = tsp.two_approximate(MSTAlgorithms::kruskal);
-  stop = clock();
-  TSP::print(solution4);
-  printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
+  // printf("\nKruskal's MST + DFS (Two-Approximation)\n");
+  // start = clock();
+  // auto solution4 = tsp.two_approximate(MSTAlgorithms::kruskal);
+  // stop = clock();
+  // TSP::print(solution4);
+  // printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
 
-  printf("\nPrim's MST + DFS (Two-Approximation)\n");
-  start = clock();
-  auto solution5 = tsp.two_approximate(MSTAlgorithms::lazy_prim);
-  stop = clock();
-  TSP::print(solution5);
-  printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
-  
-  printf("\nA* + Kruskal's MST as h(n) \n");
-  start = clock();
-  auto solution6 = tsp.a_star(MSTAlgorithms::kruskal);
-  stop = clock();
-  TSP::print(solution6);
-  printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
+  // printf("\nPrim's MST + DFS (Two-Approximation)\n");
+  // start = clock();
+  // auto solution5 = tsp.two_approximate(MSTAlgorithms::lazy_prim);
+  // stop = clock();
+  // TSP::print(solution5);
+  // printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
 
-  printf("\nA* + Prim's MST as h(n) \n");
-  start = clock();
-  auto solution7 = tsp.a_star(MSTAlgorithms::lazy_prim);
-  stop = clock();
-  TSP::print(solution7);
-  printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
+  // printf("\nA* + Kruskal's MST as h(n) \n");
+  // start = clock();
+  // auto solution6 = tsp.a_star(MSTAlgorithms::kruskal);
+  // stop = clock();
+  // TSP::print(solution6);
+  // printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
+
+  // printf("\nA* + Prim's MST as h(n) \n");
+  // start = clock();
+  // auto solution7 = tsp.a_star(MSTAlgorithms::lazy_prim);
+  // stop = clock();
+  // TSP::print(solution7);
+  // printf("Time: %f\n", (stop - start) / (double)CLOCKS_PER_SEC);
   return 0;
 }
