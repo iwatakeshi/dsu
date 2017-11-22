@@ -154,7 +154,7 @@ class MSTAlgorithms {
       distance += e.weight();
     }
     
-    delete marked;
+    delete marked[];
     return std::make_tuple(distance, T);
   }
 
