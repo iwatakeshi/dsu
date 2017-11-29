@@ -3,6 +3,7 @@
 #include "edge.hpp"
 #include "graph.hpp"
 #include "mst.hpp"
+#include <algorithm>
 #include <chrono>
 #include <random>
 #include <stack>
@@ -55,6 +56,77 @@ class TSP {
     // Add the final destination
     best_tour.push_back(0);
     return make_tuple(best_distance, best_tour, "Brute (Non-recursive)");
+  }
+
+  // Credits: http://www.cs.ucf.edu/~dmarino/progcontests/modules/dptsp/DP-TSP-Notes.pdf
+  auto dynamic() {
+    int n = graph.size();
+    // Stores the subset
+    std::vector<std::vector<int>> dp(1 << n, std::vector<int>(n, std::numeric_limits<int>::max()));
+    dp[0][0] = 0;
+    auto bit_check = [&](int a, int b) {
+      return (b & (1 << a)) > 0;
+    };
+
+    // Generate the minimum sub-distance
+    // Credits: https://jet1black.wordpress.com/2015/07/22/bitmask-dp-on-tsp/
+    for (int i = 0; i < (1 << n); i++) {
+      for (int j = 0; j < n; j++) {
+        if (bit_check(j, i)) {
+          auto mask = i ^ (1 << j);
+          std::vector<int> k(n);
+          std::fill(k.begin(), k.end(), 0);
+
+          std::transform(k.begin(), k.end(), k.begin(), [&](int x) -> int {
+            return dp[mask][x] + graph.get_edge(x, j).weight();
+          });
+          std::sort(k.begin(), k.end());
+
+          dp[i][j] = k[0];
+        }
+      }
+    }
+
+    std::vector<int> tour(1, 0);
+    std::vector<bool> visited(n, false);
+
+    // Backtracking start with subset that contains all vertices
+    size_t s = (1 << n) - 1;
+
+    // Mark first vertex as visited
+    visited[0] = true;
+
+    for (int i = 0; i < n - 1; i++) {
+
+      int best_vertex;
+      int best_distance = std::numeric_limits<int>::max();
+
+      // Find next non-visited vertex with best sub-distance from
+      // previous vertex in the cycle
+      for (int j = 0; j < n; j++) {
+        auto previous_distance = graph.get_edge(tour.back(), j).weight();
+        if (!visited[j] && dp[s][j] + previous_distance < best_distance) {
+          best_distance = dp[s][j] + previous_distance;
+          best_vertex = j;
+        }
+      }
+      // Mark vertex as visited and exclude it from the subset
+      tour.push_back(best_vertex);
+      visited[best_vertex] = true;
+      s &= ~(1 << best_vertex);
+    }
+
+    // Add the ending vertex
+    tour.push_back(0);
+
+    int distance = 0;
+    for (auto it = tour.begin(); it != tour.end(); ++it) {
+      if (it != tour.begin()) {
+        distance += graph.get_edge(*it, *std::prev(it)).weight();
+      }
+    }
+    
+    return std::make_tuple(distance, tour, "Dynamic Programming");
   }
 
   auto greedy() {
@@ -273,14 +345,35 @@ class TSP {
     return make_tuple(distance, total_path, "A*");
   }
 
-  static void
-  print(std::tuple<int, std::vector<int>> solution) {
+  static void print(std::tuple<int, std::vector<int>> solution) {
     auto distance = std::get<0>(solution);
     auto tour = std::get<1>(solution);
     char letters[26] = {
       'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
       'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
     };
+    printf("Tour: ");
+    for (int i = 0; i < tour.size(); i++) {
+      printf("%c ", letters[tour[i]]);
+      if (i != tour.size() - 1) {
+        printf("--> ");
+      }
+    }
+    printf("\n");
+    printf("Distance: %d\n", distance);
+  }
+
+  static void print(std::tuple<int, std::vector<int>, std::string> solution) {
+    auto distance = std::get<0>(solution);
+    auto tour = std::get<1>(solution);
+    auto name = std::get<2>(solution);
+    char letters[26] = {
+      'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+      'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+    };
+    
+    printf("%s:\n", name.c_str());
+
     printf("Tour: ");
     for (int i = 0; i < tour.size(); i++) {
       printf("%c ", letters[tour[i]]);
