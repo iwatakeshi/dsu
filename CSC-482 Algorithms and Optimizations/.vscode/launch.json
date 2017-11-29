@@ -1,11 +1,19 @@
 {
   "version": "0.2.0",
   "configurations": [
+  {
+    "type": "lldb",
+    "request": "launch",
+    "name": "Launch",
+    "program": "${workspaceRoot}/homework/hw8-dtsp.o",
+    "args": [],
+    "cwd": "${workspaceRoot}"
+  },
     {
-      "name": "(lldb) Launch Homework 7",
+      "name": "(lldb) Launch Homework 8",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceRoot}/homework/hw7-tsp.o",
+      "program": "${workspaceRoot}/homework/hw8-dtsp.o",
       // "args": ["-s", "2"],
       "stopAtEntry": false,
       "cwd": "${workspaceRoot}",
@@ -13,17 +21,17 @@
       "externalConsole": false,
       "MIMode": "gdb"
     },
-    {
-      "name": "(lldb) Launch random",
-      "type": "cppdbg",
-      "request": "launch",
-      "program": "${workspaceRoot}/homework/numgen.o",
-      // "args": ["-s", "2"],
-      "stopAtEntry": false,
-      "cwd": "${workspaceRoot}",
-      "environment": [],
-      "externalConsole": true,
-      "MIMode": "gdb"
-    }
+    // {
+    //   "name": "(lldb) Launch random",
+    //   "type": "cppdbg",
+    //   "request": "launch",
+    //   "program": "${workspaceRoot}/homework/numgen.o",
+    //   // "args": ["-s", "2"],
+    //   "stopAtEntry": false,
+    //   "cwd": "${workspaceRoot}",
+    //   "environment": [],
+    //   "externalConsole": true,
+    //   "MIMode": "gdb"
+    // }
   ]
 }
