@@ -1,17 +1,20 @@
 #ifndef BENCH_H
 #define BENCH_H
 #include <ctime>
-#include <string>
 #include <functional>
+#include <string>
+#include <tuple>
 
 class Bench {
   public:
-  static void bench(std::string title, std::function<void(void)> f, bool enabled) {
+  template <typename func>
+  static auto time(func f) {
     clock_t start, stop;
     start = clock();
-    f();
-    printf("Time: %3.2f", (stop - stop) / (double) CLOCKS_PER_SEC);
+    auto solution = f();
+    stop = clock();
+    return std::make_tuple((stop - start) / (double)CLOCKS_PER_SEC, solution);
   }
-}
+};
 
 #endif

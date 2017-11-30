@@ -10,6 +10,9 @@
 #include <string>
 #include <vector>
 
+typedef typename std::tuple<int, std::vector<int>, std::string> tsp_t;
+
+
 class TSP {
   public:
   Graph graph;
@@ -78,7 +81,8 @@ class TSP {
           std::fill(k.begin(), k.end(), 0);
 
           std::transform(k.begin(), k.end(), k.begin(), [&](int x) -> int {
-            return dp[mask][x] + graph.get_edge(x, j).weight();
+            auto val = dp[mask][x] + graph.get_edge(x, j).weight();
+            return val < 0 ? std::numeric_limits<int>::max() : val;
           });
           std::sort(k.begin(), k.end());
 

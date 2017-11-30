@@ -1,0 +1,120 @@
+Graph size: 4 x 4
+
+Brute (Non-recursive):
+Tour: a --> b --> d --> c --> a 
+Distance: 24
+Time: 0.000008
+
+Dynamic Programming:
+Tour: a --> b --> c --> d --> a 
+Distance: 24
+Time: 0.000022
+
+Graph size: 5 x 5
+
+Brute (Non-recursive):
+Tour: a --> c --> d --> b --> e --> a 
+Distance: 27
+Time: 0.000023
+
+Dynamic Programming:
+Tour: a --> c --> d --> b --> e --> a 
+Distance: 27
+Time: 0.000053
+
+Graph size: 6 x 6
+
+Brute (Non-recursive):
+Tour: a --> b --> d --> c --> f --> e --> a 
+Distance: 20
+Time: 0.000211
+
+Dynamic Programming:
+Tour: a --> b --> d --> c --> f --> e --> a 
+Distance: 20
+Time: 0.000175
+
+Graph size: 7 x 7
+
+Brute (Non-recursive):
+Tour: a --> c --> e --> b --> d --> g --> f --> a 
+Distance: 17
+Time: 0.001131
+
+Dynamic Programming:
+Tour: a --> f --> g --> d --> b --> e --> c --> a 
+Distance: 17
+Time: 0.000318
+
+Graph size: 8 x 8
+
+Brute (Non-recursive):
+Tour: a --> b --> h --> f --> e --> d --> g --> c --> a 
+Distance: 21
+Time: 0.010286
+
+Dynamic Programming:
+Tour: a --> b --> c --> e --> d --> g --> f --> h --> a 
+Distance: 22
+Time: 0.000821
+
+Graph size: 9 x 9
+
+Brute (Non-recursive):
+Tour: a --> c --> i --> f --> b --> e --> d --> h --> g --> a 
+Distance: 27
+Time: 0.098833
+
+Dynamic Programming:
+Tour: a --> c --> d --> b --> e --> h --> g --> i --> f --> a 
+Distance: 35
+Time: 0.002026
+
+Graph size: 10 x 10
+
+Brute (Non-recursive):
+Tour: a --> c --> h --> f --> i --> g --> b --> d --> e --> j --> a 
+Distance: 26
+Time: 1.058746
+
+Dynamic Programming:
+Tour: a --> c --> h --> i --> f --> e --> d --> b --> g --> j --> a 
+Distance: 29
+Time: 0.004848
+
+Graph size: 11 x 11
+
+Brute (Non-recursive):
+Tour: a --> c --> e --> f --> i --> d --> j --> k --> b --> g --> h --> a 
+Distance: 26
+Time: 12.252903
+
+Dynamic Programming:
+Tour: a --> c --> e --> g --> i --> d --> j --> f --> k --> b --> h --> a 
+Distance: 32
+Time: 0.011032
+
+Graph size: 12 x 12
+
+Brute (Non-recursive):
+Tour: a --> f --> i --> g --> e --> h --> d --> b --> c --> l --> k --> j --> a 
+Distance: 23
+Time: 156.706400
+
+Dynamic Programming:
+Tour: a --> f --> d --> b --> c --> j --> k --> l --> g --> i --> e --> h --> a 
+Distance: 33
+Time: 0.025950
+
+Graph size: 13 x 13
+
+Brute (Non-recursive):
+Tour: a --> g --> d --> j --> l --> e --> f --> b --> k --> m --> c --> h --> i --> a 
+Distance: 27
+Time: 2135.585001
+
+Dynamic Programming:
+Tour: a --> g --> d --> j --> l --> c --> h --> i --> e --> f --> b --> k --> m --> a 
+Distance: 31
+Time: 0.059788
+
