@@ -16,8 +16,11 @@ int main() {
   std::map<std::string, std::vector<std::string>> test_tour;
 
   const std::string brute = "Brute (Non-recursive)";
-  const std::string dynamic = "Dynamic Programming";
-
+  const std::string dynamic = "Dynamic Programming (Non-recursive)";
+  // TSP tsp(10, 1, 10);
+  // TSP::print(tsp.brute());
+  // TSP::print(tsp.dynamic());
+  // TSP::print(tsp.dynamic_recursive());
   for (int n = 4; n < 10; n++) {
     printf("N = %d\n", n);
     for (int i = 0; i < 150; i++)
@@ -31,7 +34,7 @@ int main() {
       };
       double last_brute_distance;
       printf("Trial = %d\n", trial);
-      printf("%-25s%-20s%-20s%-20s%-20s\n", "Algorithm", "Quality", "Distance", "Time", "Tour");
+      printf("%-50s%-20s%-20s%-20s%-20s\n", "Algorithm", "Quality", "Distance", "Time", "Tour");
       for (auto test : tests) {
         auto result = Bench::time(test);
         auto solution = std::get<1>(result);
@@ -50,26 +53,26 @@ int main() {
           test_quality[name].push_back(1.0);
       }
 
-      printf("%-25s%-20f%-20f%-20f%-20s\n", brute.c_str(),
+      printf("%-50s%-20f%-20f%-20f%-20s\n", brute.c_str(),
           test_quality[brute].back(),
           test_distance[brute].back(),
           test_time[brute].back(),
           test_tour[brute].back().c_str());
-      printf("%-25s%-20f%-20f%-20f%-20s\n", dynamic.c_str(),
+      printf("%-50s%-20f%-20f%-20f%-20s\n", dynamic.c_str(),
           test_quality[dynamic].back(),
           test_distance[dynamic].back(),
           test_time[dynamic].back(),
           test_tour[dynamic].back().c_str());
       printf("\n");
     }
-    printf("%-25s%-20s%-20s%-20s\n", "Algorithm", "Average Quality", "Average Distance", "Average Time");
+    printf("%-50s%-20s%-20s%-20s\n", "Algorithm", "Average Quality", "Average Distance", "Average Time");
 
-    printf("%-25s%-20f%-20f%-20f\n", brute.c_str(),
+    printf("%-50s%-20f%-20f%-20f\n", brute.c_str(),
         double(std::accumulate(test_quality[brute].begin(), test_quality[brute].end(), 0.0) / test_quality[brute].size()),
         double(std::accumulate(test_distance[brute].begin(), test_distance[brute].end(), 0.0) / test_distance[brute].size()),
         double(std::accumulate(test_time[brute].begin(), test_time[brute].end(), 0.0) / test_time[brute].size()));
 
-    printf("%-25s%-20f%-20f%-20f\n", dynamic.c_str(),
+    printf("%-50s%-20f%-20f%-20f\n", dynamic.c_str(),
         double(std::accumulate(test_quality[dynamic].begin(), test_quality[dynamic].end(), 0.0) / test_quality[dynamic].size()),
         double(std::accumulate(test_distance[dynamic].begin(), test_distance[dynamic].end(), 0.0) / test_distance[dynamic].size()),
         double(std::accumulate(test_time[dynamic].begin(), test_time[dynamic].end(), 0.0) / test_time[dynamic].size()));

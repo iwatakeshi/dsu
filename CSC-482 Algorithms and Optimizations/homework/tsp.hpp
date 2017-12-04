@@ -5,15 +5,82 @@
 #include "mst.hpp"
 #include <algorithm>
 #include <chrono>
+#include <cmath>
 #include <random>
 #include <stack>
 #include <string>
+#include <unordered_set>
 #include <vector>
 
 typedef typename std::tuple<int, std::vector<int>, std::string> tsp_t;
 
-
 class TSP {
+  private:
+  template <typename func>
+  auto min_by(std::vector<int>& vector, func f) {
+    std::vector<std::tuple<int, int>> temp;
+    std::transform(vector.begin(), vector.end(), std::back_inserter(temp), [&](int x) {
+      return std::make_tuple(x, f(x));
+    });
+    std::sort(temp.begin(), temp.end(), [](std::tuple<int, int> a, std::tuple<int, int> b) {
+      return std::get<1>(a) < std::get<1>(b);
+    });
+    return std::get<0>(temp[0]);
+  }
+
+  void dynamic_trace_back_(std::vector<std::vector<int>>& dp, std::vector<int>& tour, int i, int end) {
+    if (i == 0) {
+      tour.push_back(0);
+    } else {
+      std::vector<int> k(graph.size());
+      std::iota(k.begin(), k.end(), 0);
+      auto val = min_by(k, [&](int x) -> int {
+        auto v = dp[i][x] + graph.get_edge(end, x).weight();
+        return v < 0 ? std::numeric_limits<int>::max() : v;
+      });
+      tour.push_back(val);
+      dynamic_trace_back_(dp, tour, i ^ (1 << val), val);
+    }
+  }
+  auto dynamic_trace_back(std::vector<std::vector<int>>& dp) {
+    std::vector<int> tour;
+    tour.push_back(0);
+    auto mask = ((1 << graph.size()) - 1) ^ 1;
+    dynamic_trace_back_(dp, tour, mask, 0);
+    int distance = 0;
+    for (int i = 0; i < tour.size() - 1; i++) {
+      auto edge = graph.get_edge(tour[i], tour[i + 1]);
+      distance += edge.weight();
+    }
+    return std::make_tuple(distance, tour);
+  }
+  auto dynamic_recursive_(std::vector<std::vector<int>>& dp, int mask, int pos) {
+    auto dist = graph.cost_matrix();
+
+    if (mask == (1 << graph.size()) - 1) {
+      return dist[pos][0];
+    }
+
+    if (dp[mask][pos] != std::numeric_limits<int>::max()) {
+      return dp[mask][pos];
+    }
+    
+    // Set the best distance as max
+    int best_distance = std::numeric_limits<int>::max();
+    int first_step;
+    // Travel to unvisited vertices
+    for (int w = 0; w < graph.size(); w++) {
+      // Make sure we haven't visisted vertex w
+      if ((mask & (1 << w)) == 0) {
+        int distance = dist[pos][w] + dynamic_recursive_(dp, mask | (1 << w), w);
+        if (distance < best_distance) {
+          best_distance = distance;
+        }
+      }
+    }
+    return dp[mask][pos] = best_distance;
+  }
+
   public:
   Graph graph;
   MST mst;
@@ -60,11 +127,9 @@ class TSP {
     best_tour.push_back(0);
     return make_tuple(best_distance, best_tour, "Brute (Non-recursive)");
   }
-
   // Credits: http://www.cs.ucf.edu/~dmarino/progcontests/modules/dptsp/DP-TSP-Notes.pdf
   auto dynamic() {
     int n = graph.size();
-    // Stores the subset
     std::vector<std::vector<int>> dp(1 << n, std::vector<int>(n, std::numeric_limits<int>::max()));
     dp[0][0] = 0;
     auto bit_check = [&](int a, int b) {
@@ -78,7 +143,7 @@ class TSP {
         if (bit_check(j, i)) {
           auto mask = i ^ (1 << j);
           std::vector<int> k(n);
-          std::fill(k.begin(), k.end(), 0);
+          std::iota(k.begin(), k.end(), 0);
 
           std::transform(k.begin(), k.end(), k.begin(), [&](int x) -> int {
             auto val = dp[mask][x] + graph.get_edge(x, j).weight();
@@ -90,47 +155,18 @@ class TSP {
         }
       }
     }
+    auto result = dynamic_trace_back(dp);
 
-    std::vector<int> tour(1, 0);
-    std::vector<bool> visited(n, false);
+    return std::make_tuple(std::get<0>(result), std::get<1>(result), "Dynamic Programming (Non-recursive)");
+  }
 
-    // Backtracking start with subset that contains all vertices
-    size_t s = (1 << n) - 1;
+  auto dynamic_recursive() {
+    std::vector<std::vector<int>> dp(1 << graph.size(), std::vector<int>(graph.size(), std::numeric_limits<int>::max()));
+    dp[0][0] = 0;
+    dynamic_recursive_(dp, 1, 0);
+    auto result = dynamic_trace_back(dp);
 
-    // Mark first vertex as visited
-    visited[0] = true;
-
-    for (int i = 0; i < n - 1; i++) {
-
-      int best_vertex;
-      int best_distance = std::numeric_limits<int>::max();
-
-      // Find next non-visited vertex with best sub-distance from
-      // previous vertex in the cycle
-      for (int j = 0; j < n; j++) {
-        auto previous_distance = graph.get_edge(tour.back(), j).weight();
-        if (!visited[j] && dp[s][j] + previous_distance < best_distance) {
-          best_distance = dp[s][j] + previous_distance;
-          best_vertex = j;
-        }
-      }
-      // Mark vertex as visited and exclude it from the subset
-      tour.push_back(best_vertex);
-      visited[best_vertex] = true;
-      s &= ~(1 << best_vertex);
-    }
-
-    // Add the ending vertex
-    tour.push_back(0);
-
-    int distance = 0;
-    for (auto it = tour.begin(); it != tour.end(); ++it) {
-      if (it != tour.begin()) {
-        distance += graph.get_edge(*it, *std::prev(it)).weight();
-      }
-    }
-    
-    return std::make_tuple(distance, tour, "Dynamic Programming");
+    return std::make_tuple(std::get<0>(result), std::get<1>(result), "Dynamic Programming");
   }
 
   auto greedy() {
@@ -375,7 +411,7 @@ class TSP {
       'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
       'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
     };
-    
+
     printf("%s:\n", name.c_str());
 
     printf("Tour: ");
