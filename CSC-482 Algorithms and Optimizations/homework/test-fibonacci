@@ -1,0 +1,31 @@
+#!/bin/bash
+
+TIMEFORMAT="real: %3R user: %3U sys: %4S"
+
+# test fibonacci (recursive) 
+for size in $(seq 1 55)
+  do
+    time_output=$( { time ./hw2-fibonacci.o -s -t $size; } 2>&1)
+    echo "[test-fibonacci] info: ./hw2-fibonacci.o $size, $time_output"
+  done
+
+  # test fibonacci (non-recursive) 
+for size in $(seq 1 55)
+  do
+    time_output=$( { time ./hw2-fibonacci.o -l -s -t -r $size; } 2>&1)
+    echo "[test-fibonacci] info: ./hw2-fibonacci.o --looped $size, $time_output"
+  done
+
+  # test fibonacci (memoized) 
+for size in $(seq 1 55)
+  do
+    time_output=$( { time ./hw2-fibonacci.o -c -s -t -r $size; } 2>&1)
+    echo "[test-fibonacci] info: ./hw2-fibonacci.o -cached $size, $time_output"
+  done
+
+  # test fibonacci (recursive) 
+for size in $(seq 1 55)
+  do
+    time_output=$( { time ./hw2-fibonacci.o -m -s -t -r $size; } 2>&1)
+    echo "[test-fibonacci] info: ./hw2-fibonacci.o --matrixed $size, $time_output"
+  done

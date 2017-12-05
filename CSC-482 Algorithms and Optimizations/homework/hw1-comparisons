@@ -1,0 +1,168 @@
+start: bubble-sort-2
+comparisons: 0
+end: bubble-sort-2 
+
+start: bubble-sort-4
+comparisons: 3
+end: bubble-sort-4 
+
+start: bubble-sort-8
+comparisons: 10
+end: bubble-sort-8 
+
+start: bubble-sort-16
+comparisons: 64
+end: bubble-sort-16 
+
+start: bubble-sort-32
+comparisons: 309
+end: bubble-sort-32 
+
+start: bubble-sort-64
+comparisons: 941
+end: bubble-sort-64 
+
+start: bubble-sort-128
+comparisons: 3568
+end: bubble-sort-128 
+
+start: bubble-sort-256
+comparisons: 16391
+end: bubble-sort-256 
+
+start: bubble-sort-512
+comparisons: 63209
+end: bubble-sort-512 
+
+start: bubble-sort-1024
+comparisons: 261380
+end: bubble-sort-1024 
+
+start: bubble-sort-2048
+comparisons: 1082009
+end: bubble-sort-2048 
+
+start: bubble-sort-4096
+comparisons: 4205756
+end: bubble-sort-4096 
+
+start: bubble-sort-8192
+comparisons: 16997812
+end: bubble-sort-8192 
+
+start: bubble-sort-16384
+comparisons: 66922747
+end: bubble-sort-16384 
+
+start: bubble-sort-32768
+comparisons: 269160773
+end: bubble-sort-32768 
+
+start: bubble-sort-65536
+comparisons: 1075184452
+end: bubble-sort-65536 
+
+start: bubble-sort-131072
+comparisons: 4284234677
+end: bubble-sort-131072 
+
+start: bubble-sort-262144
+comparisons: 17185340618
+end: bubble-sort-262144 
+
+start: bubble-sort-524288
+comparisons: 68744510279
+end: bubble-sort-524288 
+
+start: bubble-sort-1048576
+comparisons: 274900081173
+end: bubble-sort-1048576 
+
+start: bubble-sort-2097152
+comparisons: 1099246372752
+end: bubble-sort-2097152 
+
+start: merge-sort-2
+comparisons: 1
+end: merge-sort-2 
+
+start: merge-sort-4
+comparisons: 3
+end: merge-sort-4 
+
+start: merge-sort-8
+comparisons: 9
+end: merge-sort-8 
+
+start: merge-sort-16
+comparisons: 22
+end: merge-sort-16 
+
+start: merge-sort-32
+comparisons: 67
+end: merge-sort-32 
+
+start: merge-sort-64
+comparisons: 161
+end: merge-sort-64 
+
+start: merge-sort-128
+comparisons: 381
+end: merge-sort-128 
+
+start: merge-sort-256
+comparisons: 886
+end: merge-sort-256 
+
+start: merge-sort-512
+comparisons: 1978
+end: merge-sort-512 
+
+start: merge-sort-1024
+comparisons: 4480
+end: merge-sort-1024 
+
+start: merge-sort-2048
+comparisons: 9983
+end: merge-sort-2048 
+
+start: merge-sort-4096
+comparisons: 22022
+end: merge-sort-4096 
+
+start: merge-sort-8192
+comparisons: 48084
+end: merge-sort-8192 
+
+start: merge-sort-16384
+comparisons: 104382
+end: merge-sort-16384 
+
+start: merge-sort-32768
+comparisons: 225193
+end: merge-sort-32768 
+
+start: merge-sort-65536
+comparisons: 482772
+end: merge-sort-65536 
+
+start: merge-sort-131072
+comparisons: 1030887
+end: merge-sort-131072 
+
+start: merge-sort-262144
+comparisons: 2193376
+end: merge-sort-262144 
+
+start: merge-sort-524288
+comparisons: 4649603
+end: merge-sort-524288 
+
+start: merge-sort-1048576
+comparisons: 9822678
+end: merge-sort-1048576 
+
+start: merge-sort-2097152
+comparisons: 20694984
+end: merge-sort-2097152 
+
