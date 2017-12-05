@@ -1,0 +1,664 @@
+desc: (none)
+cmd: ./hw8-dtsp.o --massif-out-file=hw8-dtsp.valgrind
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=111785341030
+mem_heap_B=84898
+mem_heap_extra_B=1062
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=1415209766635
+mem_heap_B=86602
+mem_heap_extra_B=1038
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=1630366594368
+mem_heap_B=109153082
+mem_heap_extra_B=8394278
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=1791559123506
+mem_heap_B=226595818
+mem_heap_extra_B=41949326
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=1984773578710
+mem_heap_B=226595818
+mem_heap_extra_B=41949326
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=2159580085579
+mem_heap_B=469867946
+mem_heap_extra_B=67115014
+mem_stacks_B=0
+heap_tree=detailed
+n3: 469867946 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 369106936 0x116296: __gnu_cxx::new_allocator<int>::allocate(unsigned long, void const*) (new_allocator.h:104)
+  n1: 369106936 0x114B64: std::allocator_traits<std::allocator<int> >::allocate(std::allocator<int>&, unsigned long) (alloc_traits.h:436)
+   n2: 369106936 0x112E6A: std::_Vector_base<int, std::allocator<int> >::_M_allocate(unsigned long) (stl_vector.h:170)
+    n1: 369106760 0x113DEF: std::_Vector_base<int, std::allocator<int> >::_M_create_storage(unsigned long) (stl_vector.h:185)
+     n2: 369106760 0x111D5F: std::_Vector_base<int, std::allocator<int> >::_Vector_base(unsigned long, std::allocator<int> const&) (stl_vector.h:136)
+      n2: 369106672 0x10F1AC: std::vector<int, std::allocator<int> >::vector(std::vector<int, std::allocator<int> > const&) (stl_vector.h:322)
+       n2: 369106672 0x1169EB: void std::_Construct<std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > const&>(std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > const&) (stl_construct.h:75)
+        n1: 369098752 0x117330: std::vector<int, std::allocator<int> >* std::__uninitialized_fill_n<false>::__uninit_fill_n<std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > const&) (stl_uninitialized.h:202)
+         n1: 369098752 0x115A78: std::vector<int, std::allocator<int> >* std::uninitialized_fill_n<std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > const&) (stl_uninitialized.h:247)
+          n1: 369098752 0x1143C6: std::vector<int, std::allocator<int> >* std::__uninitialized_fill_n_a<std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > const&, std::allocator<std::vector<int, std::allocator<int> > >&) (stl_uninitialized.h:358)
+           n1: 369098752 0x1123B0: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_fill_initialize(unsigned long, std::vector<int, std::allocator<int> > const&) (stl_vector.h:1299)
+            n1: 369098752 0x10F7D1: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(unsigned long, std::vector<int, std::allocator<int> > const&, std::allocator<std::vector<int, std::allocator<int> > > const&) (stl_vector.h:294)
+             n1: 369098752 0x10C0E5: TSP::dynamic() (tsp.hpp:133)
+              n1: 369098752 0x1093F1: main::{lambda()#2}::operator()() const (hw8-dtsp.cpp:45)
+               n1: 369098752 0x109447: auto Bench::time<main::{lambda()#2}>(main::{lambda()#2}) (bench.h:14)
+                n0: 369098752 0x1097C9: main (hw8-dtsp.cpp:45)
+        n0: 7920 in 1 place, below massif's threshold (1.00%)
+       n0: 0 in 4 places, all below massif's threshold (1.00%)
+      n0: 88 in 2 places, all below massif's threshold (1.00%)
+    n0: 176 in 4 places, all below massif's threshold (1.00%)
+ n1: 100665408 0x1160A5: __gnu_cxx::new_allocator<std::vector<int, std::allocator<int> > >::allocate(unsigned long, void const*) (new_allocator.h:104)
+  n1: 100665408 0x114988: std::allocator_traits<std::allocator<std::vector<int, std::allocator<int> > > >::allocate(std::allocator<std::vector<int, std::allocator<int> > >&, unsigned long) (alloc_traits.h:436)
+   n2: 100665408 0x112B32: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_allocate(unsigned long) (stl_vector.h:170)
+    n1: 100663296 0x113F99: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_create_storage(unsigned long) (stl_vector.h:185)
+     n1: 100663296 0x111E49: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_Vector_base(unsigned long, std::allocator<std::vector<int, std::allocator<int> > > const&) (stl_vector.h:136)
+      n1: 100663296 0x10F7BA: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(unsigned long, std::vector<int, std::allocator<int> > const&, std::allocator<std::vector<int, std::allocator<int> > > const&) (stl_vector.h:293)
+       n1: 100663296 0x10C0E5: TSP::dynamic() (tsp.hpp:133)
+        n1: 100663296 0x1093F1: main::{lambda()#2}::operator()() const (hw8-dtsp.cpp:45)
+         n1: 100663296 0x109447: auto Bench::time<main::{lambda()#2}>(main::{lambda()#2}) (bench.h:14)
+          n0: 100663296 0x1097C9: main (hw8-dtsp.cpp:45)
+    n0: 2112 in 2 places, all below massif's threshold (1.00%)
+ n0: 95602 in 8 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=7
+#-----------
+time=2361217051077
+mem_heap_B=469867858
+mem_heap_extra_B=67114998
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=2480118852160
+mem_heap_B=469867858
+mem_heap_extra_B=67114998
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=2618837549121
+mem_heap_B=469867858
+mem_heap_extra_B=67114998
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=2777373025680
+mem_heap_B=469867858
+mem_heap_extra_B=67114998
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=2960679287727
+mem_heap_B=469867858
+mem_heap_extra_B=67114998
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=3158810481676
+mem_heap_B=973186850
+mem_heap_extra_B=100669382
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=3376797741669
+mem_heap_B=973186850
+mem_heap_extra_B=100669382
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=3495700456956
+mem_heap_B=973186850
+mem_heap_extra_B=100669382
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=3624511243751
+mem_heap_B=973186850
+mem_heap_extra_B=100669382
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=3768185251469
+mem_heap_B=973186850
+mem_heap_extra_B=100669382
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=3921766906747
+mem_heap_B=973186850
+mem_heap_extra_B=100669382
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=4085257098160
+mem_heap_B=973186850
+mem_heap_extra_B=100669382
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=4258655702385
+mem_heap_B=973186850
+mem_heap_extra_B=100669382
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=4437008648085
+mem_heap_B=973186850
+mem_heap_extra_B=100669382
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=4625270363774
+mem_heap_B=973186850
+mem_heap_extra_B=100669382
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=4724355272088
+mem_heap_B=973186850
+mem_heap_extra_B=100669382
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=4914542848776
+mem_heap_B=973186850
+mem_heap_extra_B=100669382
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=5021432986960
+mem_heap_B=2013376954
+mem_heap_extra_B=134223638
+mem_stacks_B=0
+heap_tree=peak
+n3: 2013376954 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1610622432 0x116296: __gnu_cxx::new_allocator<int>::allocate(unsigned long, void const*) (new_allocator.h:104)
+  n1: 1610622432 0x114B64: std::allocator_traits<std::allocator<int> >::allocate(std::allocator<int>&, unsigned long) (alloc_traits.h:436)
+   n2: 1610622432 0x112E6A: std::_Vector_base<int, std::allocator<int> >::_M_allocate(unsigned long) (stl_vector.h:170)
+    n1: 1610622240 0x113DEF: std::_Vector_base<int, std::allocator<int> >::_M_create_storage(unsigned long) (stl_vector.h:185)
+     n2: 1610622240 0x111D5F: std::_Vector_base<int, std::allocator<int> >::_Vector_base(unsigned long, std::allocator<int> const&) (stl_vector.h:136)
+      n2: 1610622144 0x10F1AC: std::vector<int, std::allocator<int> >::vector(std::vector<int, std::allocator<int> > const&) (stl_vector.h:322)
+       n2: 1610622144 0x1169EB: void std::_Construct<std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > const&>(std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > const&) (stl_construct.h:75)
+        n1: 1610612736 0x117330: std::vector<int, std::allocator<int> >* std::__uninitialized_fill_n<false>::__uninit_fill_n<std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > const&) (stl_uninitialized.h:202)
+         n1: 1610612736 0x115A78: std::vector<int, std::allocator<int> >* std::uninitialized_fill_n<std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > const&) (stl_uninitialized.h:247)
+          n1: 1610612736 0x1143C6: std::vector<int, std::allocator<int> >* std::__uninitialized_fill_n_a<std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > const&, std::allocator<std::vector<int, std::allocator<int> > >&) (stl_uninitialized.h:358)
+           n1: 1610612736 0x1123B0: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_fill_initialize(unsigned long, std::vector<int, std::allocator<int> > const&) (stl_vector.h:1299)
+            n1: 1610612736 0x10F7D1: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(unsigned long, std::vector<int, std::allocator<int> > const&, std::allocator<std::vector<int, std::allocator<int> > > const&) (stl_vector.h:294)
+             n1: 1610612736 0x10C0E5: TSP::dynamic() (tsp.hpp:133)
+              n1: 1610612736 0x1093F1: main::{lambda()#2}::operator()() const (hw8-dtsp.cpp:45)
+               n1: 1610612736 0x109447: auto Bench::time<main::{lambda()#2}>(main::{lambda()#2}) (bench.h:14)
+                n0: 1610612736 0x1097C9: main (hw8-dtsp.cpp:45)
+        n0: 9408 in 1 place, below massif's threshold (1.00%)
+       n0: 0 in 4 places, all below massif's threshold (1.00%)
+      n0: 96 in 2 places, all below massif's threshold (1.00%)
+    n0: 192 in 4 places, all below massif's threshold (1.00%)
+ n1: 402655488 0x1160A5: __gnu_cxx::new_allocator<std::vector<int, std::allocator<int> > >::allocate(unsigned long, void const*) (new_allocator.h:104)
+  n1: 402655488 0x114988: std::allocator_traits<std::allocator<std::vector<int, std::allocator<int> > > >::allocate(std::allocator<std::vector<int, std::allocator<int> > >&, unsigned long) (alloc_traits.h:436)
+   n2: 402655488 0x112B32: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_allocate(unsigned long) (stl_vector.h:170)
+    n1: 402653184 0x113F99: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_create_storage(unsigned long) (stl_vector.h:185)
+     n1: 402653184 0x111E49: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_Vector_base(unsigned long, std::allocator<std::vector<int, std::allocator<int> > > const&) (stl_vector.h:136)
+      n1: 402653184 0x10F7BA: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(unsigned long, std::vector<int, std::allocator<int> > const&, std::allocator<std::vector<int, std::allocator<int> > > const&) (stl_vector.h:293)
+       n1: 402653184 0x10C0E5: TSP::dynamic() (tsp.hpp:133)
+        n1: 402653184 0x1093F1: main::{lambda()#2}::operator()() const (hw8-dtsp.cpp:45)
+         n1: 402653184 0x109447: auto Bench::time<main::{lambda()#2}>(main::{lambda()#2}) (bench.h:14)
+          n0: 402653184 0x1097C9: main (hw8-dtsp.cpp:45)
+    n0: 2304 in 2 places, all below massif's threshold (1.00%)
+ n0: 99034 in 8 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=25
+#-----------
+time=5126732125312
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=5325302993868
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=5520435438536
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=5649522998610
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=detailed
+n3: 2013376858 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1610622336 0x116296: __gnu_cxx::new_allocator<int>::allocate(unsigned long, void const*) (new_allocator.h:104)
+  n1: 1610622336 0x114B64: std::allocator_traits<std::allocator<int> >::allocate(std::allocator<int>&, unsigned long) (alloc_traits.h:436)
+   n2: 1610622336 0x112E6A: std::_Vector_base<int, std::allocator<int> >::_M_allocate(unsigned long) (stl_vector.h:170)
+    n1: 1610622144 0x113DEF: std::_Vector_base<int, std::allocator<int> >::_M_create_storage(unsigned long) (stl_vector.h:185)
+     n2: 1610622144 0x111D5F: std::_Vector_base<int, std::allocator<int> >::_Vector_base(unsigned long, std::allocator<int> const&) (stl_vector.h:136)
+      n2: 1610622144 0x10F1AC: std::vector<int, std::allocator<int> >::vector(std::vector<int, std::allocator<int> > const&) (stl_vector.h:322)
+       n2: 1610622144 0x1169EB: void std::_Construct<std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > const&>(std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > const&) (stl_construct.h:75)
+        n1: 1610612736 0x117330: std::vector<int, std::allocator<int> >* std::__uninitialized_fill_n<false>::__uninit_fill_n<std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > const&) (stl_uninitialized.h:202)
+         n1: 1610612736 0x115A78: std::vector<int, std::allocator<int> >* std::uninitialized_fill_n<std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > const&) (stl_uninitialized.h:247)
+          n1: 1610612736 0x1143C6: std::vector<int, std::allocator<int> >* std::__uninitialized_fill_n_a<std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > const&, std::allocator<std::vector<int, std::allocator<int> > >&) (stl_uninitialized.h:358)
+           n1: 1610612736 0x1123B0: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_fill_initialize(unsigned long, std::vector<int, std::allocator<int> > const&) (stl_vector.h:1299)
+            n1: 1610612736 0x10F7D1: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(unsigned long, std::vector<int, std::allocator<int> > const&, std::allocator<std::vector<int, std::allocator<int> > > const&) (stl_vector.h:294)
+             n1: 1610612736 0x10C0E5: TSP::dynamic() (tsp.hpp:133)
+              n1: 1610612736 0x1093F1: main::{lambda()#2}::operator()() const (hw8-dtsp.cpp:45)
+               n1: 1610612736 0x109447: auto Bench::time<main::{lambda()#2}>(main::{lambda()#2}) (bench.h:14)
+                n0: 1610612736 0x1097C9: main (hw8-dtsp.cpp:45)
+        n0: 9408 in 1 place, below massif's threshold (1.00%)
+       n0: 0 in 4 places, all below massif's threshold (1.00%)
+      n0: 0 in 2 places, all below massif's threshold (1.00%)
+    n0: 192 in 4 places, all below massif's threshold (1.00%)
+ n1: 402655488 0x1160A5: __gnu_cxx::new_allocator<std::vector<int, std::allocator<int> > >::allocate(unsigned long, void const*) (new_allocator.h:104)
+  n1: 402655488 0x114988: std::allocator_traits<std::allocator<std::vector<int, std::allocator<int> > > >::allocate(std::allocator<std::vector<int, std::allocator<int> > >&, unsigned long) (alloc_traits.h:436)
+   n2: 402655488 0x112B32: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_allocate(unsigned long) (stl_vector.h:170)
+    n1: 402653184 0x113F99: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_create_storage(unsigned long) (stl_vector.h:185)
+     n1: 402653184 0x111E49: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_Vector_base(unsigned long, std::allocator<std::vector<int, std::allocator<int> > > const&) (stl_vector.h:136)
+      n1: 402653184 0x10F7BA: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(unsigned long, std::vector<int, std::allocator<int> > const&, std::allocator<std::vector<int, std::allocator<int> > > const&) (stl_vector.h:293)
+       n1: 402653184 0x10C0E5: TSP::dynamic() (tsp.hpp:133)
+        n1: 402653184 0x1093F1: main::{lambda()#2}::operator()() const (hw8-dtsp.cpp:45)
+         n1: 402653184 0x109447: auto Bench::time<main::{lambda()#2}>(main::{lambda()#2}) (bench.h:14)
+          n0: 402653184 0x1097C9: main (hw8-dtsp.cpp:45)
+    n0: 2304 in 2 places, all below massif's threshold (1.00%)
+ n0: 99034 in 8 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=29
+#-----------
+time=5886683952422
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=6023500344462
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=6153589764049
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=6366110524767
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=6498936017494
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=6658255633883
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=6817574507885
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=6976891657183
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=7136211114729
+mem_heap_B=2013376954
+mem_heap_extra_B=134223638
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=7295531949140
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=7454850844086
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=7646140673178
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=7773487051224
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=8006519495077
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=8182335491096
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=8382683927134
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=8509434978455
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=8713872177120
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=8941571166663
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=9169275921611
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=9291740477870
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=9292041146965
+mem_heap_B=2013376858
+mem_heap_extra_B=134223630
+mem_stacks_B=0
+heap_tree=detailed
+n3: 2013376858 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1610622336 0x116296: __gnu_cxx::new_allocator<int>::allocate(unsigned long, void const*) (new_allocator.h:104)
+  n1: 1610622336 0x114B64: std::allocator_traits<std::allocator<int> >::allocate(std::allocator<int>&, unsigned long) (alloc_traits.h:436)
+   n2: 1610622336 0x112E6A: std::_Vector_base<int, std::allocator<int> >::_M_allocate(unsigned long) (stl_vector.h:170)
+    n1: 1610622144 0x113DEF: std::_Vector_base<int, std::allocator<int> >::_M_create_storage(unsigned long) (stl_vector.h:185)
+     n2: 1610622144 0x111D5F: std::_Vector_base<int, std::allocator<int> >::_Vector_base(unsigned long, std::allocator<int> const&) (stl_vector.h:136)
+      n2: 1610622144 0x10F1AC: std::vector<int, std::allocator<int> >::vector(std::vector<int, std::allocator<int> > const&) (stl_vector.h:322)
+       n2: 1610622144 0x1169EB: void std::_Construct<std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > const&>(std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > const&) (stl_construct.h:75)
+        n1: 1610612736 0x117330: std::vector<int, std::allocator<int> >* std::__uninitialized_fill_n<false>::__uninit_fill_n<std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > const&) (stl_uninitialized.h:202)
+         n1: 1610612736 0x115A78: std::vector<int, std::allocator<int> >* std::uninitialized_fill_n<std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > const&) (stl_uninitialized.h:247)
+          n1: 1610612736 0x1143C6: std::vector<int, std::allocator<int> >* std::__uninitialized_fill_n_a<std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > const&, std::allocator<std::vector<int, std::allocator<int> > >&) (stl_uninitialized.h:358)
+           n1: 1610612736 0x1123B0: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_fill_initialize(unsigned long, std::vector<int, std::allocator<int> > const&) (stl_vector.h:1299)
+            n1: 1610612736 0x10F7D1: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(unsigned long, std::vector<int, std::allocator<int> > const&, std::allocator<std::vector<int, std::allocator<int> > > const&) (stl_vector.h:294)
+             n1: 1610612736 0x10C0E5: TSP::dynamic() (tsp.hpp:133)
+              n1: 1610612736 0x1093F1: main::{lambda()#2}::operator()() const (hw8-dtsp.cpp:45)
+               n1: 1610612736 0x109447: auto Bench::time<main::{lambda()#2}>(main::{lambda()#2}) (bench.h:14)
+                n0: 1610612736 0x1097C9: main (hw8-dtsp.cpp:45)
+        n0: 9408 in 1 place, below massif's threshold (1.00%)
+       n0: 0 in 4 places, all below massif's threshold (1.00%)
+      n0: 0 in 2 places, all below massif's threshold (1.00%)
+    n0: 192 in 4 places, all below massif's threshold (1.00%)
+ n1: 402655488 0x1160A5: __gnu_cxx::new_allocator<std::vector<int, std::allocator<int> > >::allocate(unsigned long, void const*) (new_allocator.h:104)
+  n1: 402655488 0x114988: std::allocator_traits<std::allocator<std::vector<int, std::allocator<int> > > >::allocate(std::allocator<std::vector<int, std::allocator<int> > >&, unsigned long) (alloc_traits.h:436)
+   n2: 402655488 0x112B32: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_allocate(unsigned long) (stl_vector.h:170)
+    n1: 402653184 0x113F99: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_create_storage(unsigned long) (stl_vector.h:185)
+     n1: 402653184 0x111E49: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_Vector_base(unsigned long, std::allocator<std::vector<int, std::allocator<int> > > const&) (stl_vector.h:136)
+      n1: 402653184 0x10F7BA: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(unsigned long, std::vector<int, std::allocator<int> > const&, std::allocator<std::vector<int, std::allocator<int> > > const&) (stl_vector.h:293)
+       n1: 402653184 0x10C0E5: TSP::dynamic() (tsp.hpp:133)
+        n1: 402653184 0x1093F1: main::{lambda()#2}::operator()() const (hw8-dtsp.cpp:45)
+         n1: 402653184 0x109447: auto Bench::time<main::{lambda()#2}>(main::{lambda()#2}) (bench.h:14)
+          n0: 402653184 0x1097C9: main (hw8-dtsp.cpp:45)
+    n0: 2304 in 2 places, all below massif's threshold (1.00%)
+ n0: 99034 in 8 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=51
+#-----------
+time=9292341807561
+mem_heap_B=1901968862
+mem_heap_extra_B=124939642
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=9292642468233
+mem_heap_B=1763202398
+mem_heap_extra_B=113375770
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=9292943128905
+mem_heap_B=1624435934
+mem_heap_extra_B=101811898
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=9293243789577
+mem_heap_B=1485669470
+mem_heap_extra_B=90248026
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=9293544450249
+mem_heap_B=1346903006
+mem_heap_extra_B=78684154
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=9293845110921
+mem_heap_B=1208136542
+mem_heap_extra_B=67120282
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=9294145771593
+mem_heap_B=1069370078
+mem_heap_extra_B=55556410
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=9294446432265
+mem_heap_B=930603614
+mem_heap_extra_B=43992538
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=9294747092937
+mem_heap_B=791837150
+mem_heap_extra_B=32428666
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=60
+#-----------
+time=9295047753609
+mem_heap_B=653070686
+mem_heap_extra_B=20864794
+mem_stacks_B=0
+heap_tree=detailed
+n3: 653070686 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 402655488 0x1160A5: __gnu_cxx::new_allocator<std::vector<int, std::allocator<int> > >::allocate(unsigned long, void const*) (new_allocator.h:104)
+  n1: 402655488 0x114988: std::allocator_traits<std::allocator<std::vector<int, std::allocator<int> > > >::allocate(std::allocator<std::vector<int, std::allocator<int> > >&, unsigned long) (alloc_traits.h:436)
+   n2: 402655488 0x112B32: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_allocate(unsigned long) (stl_vector.h:170)
+    n1: 402653184 0x113F99: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_create_storage(unsigned long) (stl_vector.h:185)
+     n1: 402653184 0x111E49: std::_Vector_base<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_Vector_base(unsigned long, std::allocator<std::vector<int, std::allocator<int> > > const&) (stl_vector.h:136)
+      n1: 402653184 0x10F7BA: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(unsigned long, std::vector<int, std::allocator<int> > const&, std::allocator<std::vector<int, std::allocator<int> > > const&) (stl_vector.h:293)
+       n1: 402653184 0x10C0E5: TSP::dynamic() (tsp.hpp:133)
+        n1: 402653184 0x1093F1: main::{lambda()#2}::operator()() const (hw8-dtsp.cpp:45)
+         n1: 402653184 0x109447: auto Bench::time<main::{lambda()#2}>(main::{lambda()#2}) (bench.h:14)
+          n0: 402653184 0x1097C9: main (hw8-dtsp.cpp:45)
+    n0: 2304 in 2 places, all below massif's threshold (1.00%)
+ n1: 250316164 0x116296: __gnu_cxx::new_allocator<int>::allocate(unsigned long, void const*) (new_allocator.h:104)
+  n1: 250316164 0x114B64: std::allocator_traits<std::allocator<int> >::allocate(std::allocator<int>&, unsigned long) (alloc_traits.h:436)
+   n2: 250316164 0x112E6A: std::_Vector_base<int, std::allocator<int> >::_M_allocate(unsigned long) (stl_vector.h:170)
+    n1: 250315972 0x113DEF: std::_Vector_base<int, std::allocator<int> >::_M_create_storage(unsigned long) (stl_vector.h:185)
+     n2: 250315972 0x111D5F: std::_Vector_base<int, std::allocator<int> >::_Vector_base(unsigned long, std::allocator<int> const&) (stl_vector.h:136)
+      n2: 250315972 0x10F1AC: std::vector<int, std::allocator<int> >::vector(std::vector<int, std::allocator<int> > const&) (stl_vector.h:322)
+       n2: 250315872 0x1169EB: void std::_Construct<std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > const&>(std::vector<int, std::allocator<int> >*, std::vector<int, std::allocator<int> > const&) (stl_construct.h:75)
+        n1: 250306464 0x117330: std::vector<int, std::allocator<int> >* std::__uninitialized_fill_n<false>::__uninit_fill_n<std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > const&) (stl_uninitialized.h:202)
+         n1: 250306464 0x115A78: std::vector<int, std::allocator<int> >* std::uninitialized_fill_n<std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > const&) (stl_uninitialized.h:247)
+          n1: 250306464 0x1143C6: std::vector<int, std::allocator<int> >* std::__uninitialized_fill_n_a<std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> >, std::vector<int, std::allocator<int> > >(std::vector<int, std::allocator<int> >*, unsigned long, std::vector<int, std::allocator<int> > const&, std::allocator<std::vector<int, std::allocator<int> > >&) (stl_uninitialized.h:358)
+           n1: 250306464 0x1123B0: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::_M_fill_initialize(unsigned long, std::vector<int, std::allocator<int> > const&) (stl_vector.h:1299)
+            n1: 250306464 0x10F7D1: std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >::vector(unsigned long, std::vector<int, std::allocator<int> > const&, std::allocator<std::vector<int, std::allocator<int> > > const&) (stl_vector.h:294)
+             n1: 250306464 0x10C0E5: TSP::dynamic() (tsp.hpp:133)
+              n1: 250306464 0x1093F1: main::{lambda()#2}::operator()() const (hw8-dtsp.cpp:45)
+               n1: 250306464 0x109447: auto Bench::time<main::{lambda()#2}>(main::{lambda()#2}) (bench.h:14)
+                n0: 250306464 0x1097C9: main (hw8-dtsp.cpp:45)
+        n0: 9408 in 1 place, below massif's threshold (1.00%)
+       n0: 100 in 4 places, all below massif's threshold (1.00%)
+      n0: 0 in 2 places, all below massif's threshold (1.00%)
+    n0: 192 in 4 places, all below massif's threshold (1.00%)
+ n0: 99034 in 8 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=61
+#-----------
+time=9295348414281
+mem_heap_B=514304222
+mem_heap_extra_B=9300922
+mem_stacks_B=0
+heap_tree=empty
